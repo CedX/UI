@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [0.4.1](https://github.com/CedX/UI/compare/v0.4.0...v0.4.1)
+- Fixed the spacing of the theme dropdown label.
+- Updated the font weight of the toaster headers.
+
 ## Version [0.4.0](https://github.com/CedX/UI/compare/v0.3.0...v0.4.0)
 - Added the `New-UIDialogBox`, `New-UIToast` and `New-UIToaster` cmdlets.
 - Added the `uiDialogBox`, `uiToast` and `uiToaster` aliases.
