@@ -2,6 +2,7 @@
 .SYNOPSIS
 	Represents information relevant to the pagination of data items.
 #>
+[NoRunspaceAffinity()]
 class Pagination {
 
 	<#

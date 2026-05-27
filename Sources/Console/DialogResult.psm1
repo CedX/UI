@@ -2,6 +2,7 @@
 .SYNOPSIS
 	Specifies common return values of a dialog box.
 #>
+[NoRunspaceAffinity()]
 class DialogResult {
 
 	<#

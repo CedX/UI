@@ -2,6 +2,7 @@
 .SYNOPSIS
 	Defines the scenario used in data validation.
 #>
+[NoRunspaceAffinity()]
 class Scenario {
 
 	<#
