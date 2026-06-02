@@ -10,7 +10,7 @@
 	"version": "0.4.1",
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
-		"@types/bootstrap": "^5.2.10",
+		"@types/bootstrap": "^5.2.11",
 		"@types/chai": "^5.2.3",
 		"@types/mocha": "^10.0.10",
 		"@types/node": "^25.9.1",
@@ -25,7 +25,7 @@
 		"playwright-chromium": "^1.60.0",
 		"serve-handler": "^6.1.7",
 		"typescript": "^6.0.3",
-		"typescript-eslint": "^8.60.0"
+		"typescript-eslint": "^8.60.1"
 	},
 	"engines": {
 		"node": ">=26.0.0"
