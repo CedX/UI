@@ -33,10 +33,17 @@ public sealed class Sort(IEnumerable<KeyValuePair<string, SortDirection>>? prope
 	/// </summary>
 	/// <param name="property">The property name.</param>
 	/// <returns>The icon corresponding to the specified property.</returns>
-	public string GetIcon(string property) => !TryGetValue(property, out var direction) ? "swap_vert" : direction switch {
-		SortDirection.Ascending => "arrow_upward",
-		SortDirection.Descending => "arrow_downward"
-	};
+	public string GetIcon(string property) {
+		try {
+			return this[property] switch {
+				SortDirection.Ascending => "arrow_upward",
+				SortDirection.Descending => "arrow_downward"
+			};
+		}
+		catch (KeyNotFoundException) {
+			return "swap_vert";
+		}
+	}
 
 	/// <summary>
 	/// Returns a string representation of this object.
