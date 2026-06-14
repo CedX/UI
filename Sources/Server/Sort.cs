@@ -48,7 +48,7 @@ public sealed class Sort(IEnumerable<KeyValuePair<string, SortDirection>>? prope
 }
 
 /// <summary>
-/// Specifies the direction of a sort property.
+/// Specifies the direction of a sorted property.
 /// </summary>
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum SortDirection {

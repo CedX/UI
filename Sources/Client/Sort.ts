@@ -1,5 +1,5 @@
 /**
- * Specifies the direction of a sort property.
+ * Specifies the direction of a sorted property.
  */
 export const SortDirection = Object.freeze({
 
@@ -15,30 +15,30 @@ export const SortDirection = Object.freeze({
 });
 
 /**
- * Specifies the direction of a sort property.
+ * Specifies the direction of a sorted property.
  */
 export type SortDirection = typeof SortDirection[keyof typeof SortDirection];
 
 /**
  * Holds the name of a property and the direction to sort by.
  */
-export type SortProperty = [string, SortDirection];
+export type SortedProperty = [string, SortDirection];
 
 /**
  * Represents information relevant to the sorting of data items.
  */
-export class Sort implements Iterable<SortProperty> {
+export class Sort implements Iterable<SortedProperty> {
 
 	/**
 	 * The list of sort properties.
 	 */
-	#properties: SortProperty[];
+	#properties: SortedProperty[];
 
 	/**
 	 * Creates new sort.
 	 * @param properties The list of properties to be sorted.
 	 */
-	constructor(properties: SortProperty[] = []) {
+	constructor(properties: SortedProperty[] = []) {
 		this.#properties = properties;
 	}
 
@@ -82,7 +82,7 @@ export class Sort implements Iterable<SortProperty> {
 	 * Returns a new iterator that allows iterating the entries of this sort.
 	 * @returns An iterator over the sort properties.
 	 */
-	[Symbol.iterator](): Iterator<SortProperty> {
+	[Symbol.iterator](): Iterator<SortedProperty> {
 		return this.#properties[Symbol.iterator]();
 	}
 
@@ -141,11 +141,11 @@ export class Sort implements Iterable<SortProperty> {
 	}
 
 	/**
-	 * Gets the sort property at the specified index.
+	 * Gets the sorted property at the specified index.
 	 * @param index The position in this sort.
-	 * @returns The sort property at the specified index, or `null` if it doesn't exist.
+	 * @returns The sorted property at the specified index, or `null` if it doesn't exist.
 	 */
-	getAt(index: number): SortProperty|null {
+	getAt(index: number): SortedProperty|null {
 		return this.#properties.at(index) ?? null;
 	}
 
@@ -191,7 +191,7 @@ export class Sort implements Iterable<SortProperty> {
 	}
 
 	/**
-	 * Removes the sort property at the specified index.
+	 * Removes the sorted property at the specified index.
 	 * @param index The position in this sort.
 	 */
 	removeAt(index: number): void {
@@ -213,7 +213,7 @@ export class Sort implements Iterable<SortProperty> {
 	}
 
 	/**
-	 * Sets the sort property at the specified index.
+	 * Sets the sorted property at the specified index.
 	 * @param index The position in this sort.
 	 * @param property The property name.
 	 * @param direction The sort direction.
