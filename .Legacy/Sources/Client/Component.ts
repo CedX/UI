@@ -1,4 +1,4 @@
-import {effect, type EffectOptions} from "../Signal.js";
+import {effect, type EffectOptions} from "./Signal.js";
 
 /**
  * The base class for signal-based custom elements.
