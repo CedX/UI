@@ -1,6 +1,9 @@
 <Solution>
-	<Project Path="Sources/Server/UI.csproj" />
-	<Project Path="Tests/Server/UI.Tests.csproj">
+	<Folder Name="/Sources/" />
+	<Folder Name="/Sources/Client/" />
+	<Project Path="Sources/Console/Console.csproj" />
+	<Project Path="Sources/Server/Server.csproj" />
+	<Project Path="Tests/Server/Server.Tests.csproj">
 		<Build Solution="Release|*" Project="false" />
 	</Project>
 </Solution>
