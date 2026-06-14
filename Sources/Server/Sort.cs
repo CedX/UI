@@ -6,16 +6,16 @@ using System.Text.Json.Serialization;
 /// Represents information relevant to the sorting of data items.
 /// </summary>
 /// <param name="properties">The list of properties to be sorted.</param>
-public sealed class Sort(IEnumerable<KeyValuePair<string, SortOrder>>? properties = null): OrderedDictionary<string, SortOrder>(properties ?? []) {
+public sealed class Sort(IEnumerable<KeyValuePair<string, SortDirection>>? properties = null): OrderedDictionary<string, SortDirection>(properties ?? []) {
 
 	/// <summary>
-	/// Creates a new sort from the specified property and order.
+	/// Creates a new sort from the specified property and direction.
 	/// </summary>
 	/// <param name="property">The property name.</param>
-	/// <param name="order">The sort order.</param>
-	/// <returns>The sort corresponding to the property and order.</returns>
-	public static Sort Of(string property, SortOrder order = SortOrder.Ascending) => new([
-		new(property, order)
+	/// <param name="direction">The sort direction.</param>
+	/// <returns>The sort corresponding to the property and direction.</returns>
+	public static Sort Of(string property, SortDirection direction = SortDirection.Ascending) => new([
+		new(property, direction)
 	]);
 
 	/// <summary>
@@ -24,8 +24,8 @@ public sealed class Sort(IEnumerable<KeyValuePair<string, SortOrder>>? propertie
 	/// <param name="value">A string representing a sort.</param>
 	/// <returns>The sort corresponding to the specified string.</returns>
 	public static Sort Parse(string value) => new((value.Length > 0 ? value.Split(',') : []).Select(token => {
-		var order = token.StartsWith('-') ? SortOrder.Descending : SortOrder.Ascending;
-		return new KeyValuePair<string, SortOrder>(order == SortOrder.Ascending ? token : token[1..], order);
+		var direction = token.StartsWith('-') ? SortDirection.Descending : SortDirection.Ascending;
+		return new KeyValuePair<string, SortDirection>(direction == SortDirection.Ascending ? token : token[1..], direction);
 	}));
 
 	/// <summary>
@@ -34,8 +34,8 @@ public sealed class Sort(IEnumerable<KeyValuePair<string, SortOrder>>? propertie
 	/// <param name="property">The property name.</param>
 	/// <returns>The icon corresponding to the specified property.</returns>
 	public string GetIcon(string property) => this[property] switch {
-		SortOrder.Ascending => "arrow_upward",
-		SortOrder.Descending => "arrow_downward",
+		SortDirection.Ascending => "arrow_upward",
+		SortDirection.Descending => "arrow_downward",
 		_ => "swap_vert"
 	};
 
@@ -44,14 +44,14 @@ public sealed class Sort(IEnumerable<KeyValuePair<string, SortOrder>>? propertie
 	/// </summary>
 	/// <returns>The string representation of this object.</returns>
 	public override string ToString() =>
-		string.Join(',', this.Select((property) => $"{(property.Value == SortOrder.Descending ? "-" : "")}{property.Key}"));
+		string.Join(',', this.Select((property) => $"{(property.Value == SortDirection.Descending ? "-" : "")}{property.Key}"));
 }
 
 /// <summary>
-/// Specifies the order of a sort property.
+/// Specifies the direction of a sort property.
 /// </summary>
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum SortOrder {
+public enum SortDirection {
 
 	/// <summary>
 	/// The sort is ascending.

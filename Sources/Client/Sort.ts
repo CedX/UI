@@ -1,7 +1,7 @@
 /**
- * Specifies the order of a sort property.
+ * Specifies the direction of a sort property.
  */
-export const SortOrder = Object.freeze({
+export const SortDirection = Object.freeze({
 
 	/**
 	 * The sort is ascending.
@@ -15,14 +15,14 @@ export const SortOrder = Object.freeze({
 });
 
 /**
- * Specifies the order of a sort property.
+ * Specifies the direction of a sort property.
  */
-export type SortOrder = typeof SortOrder[keyof typeof SortOrder];
+export type SortDirection = typeof SortDirection[keyof typeof SortDirection];
 
 /**
- * Holds the name of a property and the order to sort by.
+ * Holds the name of a property and the direction to sort by.
  */
-export type SortProperty = [string, SortOrder];
+export type SortProperty = [string, SortDirection];
 
 /**
  * Represents information relevant to the sorting of data items.
@@ -57,13 +57,13 @@ export class Sort implements Iterable<SortProperty> {
 	}
 
 	/**
-	 * Creates a new sort from the specified property and order.
+	 * Creates a new sort from the specified property and direction.
 	 * @param property The property name.
-	 * @param order The sort order.
-	 * @returns The sort corresponding to the property and order.
+	 * @param direction The sort direction.
+	 * @returns The sort corresponding to the property and direction.
 	 */
-	static of(property: string, order: SortOrder = SortOrder.Ascending): Sort {
-		return new this([[property, order]]);
+	static of(property: string, direction: SortDirection = SortDirection.Ascending): Sort {
+		return new this([[property, direction]]);
 	}
 
 	/**
@@ -73,8 +73,8 @@ export class Sort implements Iterable<SortProperty> {
 	 */
 	static parse(value: string): Sort {
 		return new this((value ? value.split(",") : []).map(token => {
-			const order = token.startsWith("-") ? SortOrder.Descending : SortOrder.Ascending;
-			return [order == SortOrder.Ascending ? token : token.slice(1), order];
+			const direction = token.startsWith("-") ? SortDirection.Descending : SortDirection.Ascending;
+			return [direction == SortDirection.Ascending ? token : token.slice(1), direction];
 		}));
 	}
 
@@ -89,12 +89,12 @@ export class Sort implements Iterable<SortProperty> {
 	/**
 	 * Appends the specified property to this sort.
 	 * @param property The property name.
-	 * @param order The sort order.
+	 * @param direction The sort direction.
 	 * @throws `Error` when a property with the same name already exists.
 	 */
-	add(property: string, order: SortOrder): void {
+	add(property: string, direction: SortDirection): void {
 		if (this.containsKey(property)) throw new Error("A property with the same name already exists.");
-		this.#properties.push([property, order]);
+		this.#properties.push([property, direction]);
 	}
 
 	/**
@@ -111,11 +111,11 @@ export class Sort implements Iterable<SortProperty> {
 	 * @returns A value indicating the relationship between the two objects.
 	 */
 	compare(x: object, y: object): number {
-		for (const [property, order] of this.#properties) {
+		for (const [property, direction] of this.#properties) {
 			const xAttr = Reflect.get(x, property); // eslint-disable-line @typescript-eslint/no-unsafe-assignment
 			const yAttr = Reflect.get(y, property); // eslint-disable-line @typescript-eslint/no-unsafe-assignment
 			const value = xAttr > yAttr ? 1 : (xAttr < yAttr ? -1 : 0);
-			if (value) return order == SortOrder.Ascending ? value : -value;
+			if (value) return direction == SortDirection.Ascending ? value : -value;
 		}
 
 		return 0;
@@ -131,12 +131,12 @@ export class Sort implements Iterable<SortProperty> {
 	}
 
 	/**
-	 * Gets the order associated with the specified property.
+	 * Gets the direction associated with the specified property.
 	 * @param property The property name.
-	 * @returns The order associated with the specified property, or `null` if the property doesn't exist.
+	 * @returns The direction associated with the specified property, or `null` if the property doesn't exist.
 	 */
-	get(property: string): SortOrder|null {
-		for (const [key, order] of this.#properties) if (key == property) return order;
+	get(property: string): SortDirection|null {
+		for (const [key, direction] of this.#properties) if (key == property) return direction;
 		return null;
 	}
 
@@ -156,8 +156,8 @@ export class Sort implements Iterable<SortProperty> {
 	 */
 	getIcon(property: string): string {
 		switch (this.get(property)) {
-			case SortOrder.Ascending: return "arrow_upward";
-			case SortOrder.Descending: return "arrow_downward";
+			case SortDirection.Ascending: return "arrow_upward";
+			case SortDirection.Descending: return "arrow_downward";
 			default: return "swap_vert";
 		}
 	}
@@ -176,10 +176,10 @@ export class Sort implements Iterable<SortProperty> {
 	 * Inserts the specified property into this sort at the specified index.
 	 * @param index The position in this sort.
 	 * @param property The property name.
-	 * @param order The sort order.
+	 * @param direction The sort direction.
 	 */
-	insert(index: number, property: string, order: SortOrder): void {
-		this.#properties.splice(index, 0, [property, order]);
+	insert(index: number, property: string, direction: SortDirection): void {
+		this.#properties.splice(index, 0, [property, direction]);
 	}
 
 	/**
@@ -199,30 +199,30 @@ export class Sort implements Iterable<SortProperty> {
 	}
 
 	/**
-	 * Sets the order of the specified property.
+	 * Sets the direction of the specified property.
 	 * @param property The property name.
-	 * @param order The sort order.
+	 * @param direction The sort direction.
 	 */
-	set(property: string, order: SortOrder): void {
+	set(property: string, direction: SortDirection): void {
 		for (const [index, [key]] of this.#properties.entries()) if (key == property) {
-			this.#properties[index] = [key, order];
+			this.#properties[index] = [key, direction];
 			return;
 		}
 
-		this.add(property, order);
+		this.add(property, direction);
 	}
 
 	/**
 	 * Sets the sort property at the specified index.
 	 * @param index The position in this sort.
 	 * @param property The property name.
-	 * @param order The sort order.
+	 * @param direction The sort direction.
 	 * @throws `Error` when a property with the same name already exists at a different index.
 	 */
-	setAt(index: number, property: string, order: SortOrder): void {
+	setAt(index: number, property: string, direction: SortDirection): void {
 		const existingIndex = this.indexOf(property);
 		if (existingIndex >= 0 && existingIndex != index) throw new Error("A property with the same name already exists at a different index.");
-		this.#properties[index] = [property, order];
+		this.#properties[index] = [property, direction];
 	}
 
 	/**
@@ -238,6 +238,6 @@ export class Sort implements Iterable<SortProperty> {
 	 * @returns The string representation of this object.
 	 */
 	toString(): string {
-		return this.#properties.map(([property, order]) => `${order == SortOrder.Descending ? "-" : ""}${property}`).join(",");
+		return this.#properties.map(([property, direction]) => `${direction == SortDirection.Descending ? "-" : ""}${property}`).join(",");
 	}
 }

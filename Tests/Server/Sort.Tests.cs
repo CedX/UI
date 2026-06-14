@@ -10,9 +10,9 @@ public sealed class SortTests {
 
 	[TestMethod]
 	public void GetIcon() {
-		// It should return the icon corresponding to the sort order.
+		// It should return the icon corresponding to the sort direction.
 		AreEqual("arrow_upward", Sort.Of("foo").GetIcon("foo"));
-		AreEqual("arrow_downward", Sort.Of("foo", SortOrder.Descending).GetIcon("foo"));
+		AreEqual("arrow_downward", Sort.Of("foo", SortDirection.Descending).GetIcon("foo"));
 		AreEqual("swap_vert", new Sort().GetIcon("foo"));
 	}
 
@@ -21,8 +21,8 @@ public sealed class SortTests {
 		// It should return an empty sort for an empty string.
 		IsEmpty(Sort.Parse(""));
 
-		// It should return an ascending order for a property without prefix, a descending order for a property with a "-" prefix.
-		var expected = new KeyValuePair<string, SortOrder>[] { new("foo", SortOrder.Ascending), new("bar", SortOrder.Descending) };
+		// It should return an ascending direction for a property without prefix, a descending direction for a property with a "-" prefix.
+		var expected = new KeyValuePair<string, SortDirection>[] { new("foo", SortDirection.Ascending), new("bar", SortDirection.Descending) };
 		CollectionAssert.AreEqual(expected, Sort.Parse("foo,-bar"));
 	}
 
@@ -31,10 +31,10 @@ public sealed class SortTests {
 		// It should return an empty string for an empty sort.
 		IsEmpty(new Sort().ToString());
 
-		// It should return the property for an ascending order.
+		// It should return the property for an ascending direction.
 		AreEqual("foo", Sort.Of("foo").ToString());
 
-		// It should return the property with a "-" prefix for a descending order.
+		// It should return the property with a "-" prefix for a descending direction.
 		AreEqual("foo,-bar", Sort.Parse("foo,-bar").ToString());
 	}
 }
