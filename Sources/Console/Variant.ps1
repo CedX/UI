@@ -1,4 +1,4 @@
-using module ./Variant.psm1
+using namespace Belin.UI
 
 <#
 .SYNOPSIS

@@ -1,4 +1,4 @@
-using module ../KeyboardModifiers.psm1
+using namespace Belin.UI
 
 <#
 .SYNOPSIS

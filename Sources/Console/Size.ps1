@@ -1,4 +1,4 @@
-using module ./Size.psm1
+using namespace Belin.UI
 
 <#
 .SYNOPSIS

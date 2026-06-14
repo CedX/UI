@@ -1,6 +1,5 @@
-﻿using namespace System.Collections.Generic
-using module ../Alignment.psm1
-using module ../AppTheme.psm1
+﻿using namespace Belin.UI
+using namespace System.Collections.Generic
 
 <#
 .SYNOPSIS
