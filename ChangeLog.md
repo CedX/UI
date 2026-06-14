@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [0.5.0](https://github.com/CedX/UI/compare/v0.4.1...v0.5.0)
+- Replaced the [PowerShell](https://learn.microsoft.com/en-us/powershell) enums by [C#](https://learn.microsoft.com/en-us/dotnet/csharp) enums.
+
 ## Version [0.4.1](https://github.com/CedX/UI/compare/v0.4.0...v0.4.1)
 - Fixed the spacing of the theme dropdown label.
 - Updated the font weight of the toaster headers.
