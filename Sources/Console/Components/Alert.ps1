@@ -1,4 +1,5 @@
 using namespace Belin.UI
+using namespace System.Diagnostics.CodeAnalysis
 
 <#
 .SYNOPSIS
@@ -12,6 +13,8 @@ function New-Alert {
 	[Alias("Alert")]
 	[CmdletBinding()]
 	[OutputType([string])]
+	[SuppressMessage("PSReviewUnusedParameter", "Content")]
+	[SuppressMessage("PSReviewUnusedParameter", "Icon")]
 	param (
 		# The child content.
 		[Parameter(Position = 0, ValueFromPipeline)]

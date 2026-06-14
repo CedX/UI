@@ -1,4 +1,5 @@
 using namespace Belin.UI
+using namespace System.Diagnostics.CodeAnalysis
 
 <#
 .SYNOPSIS
@@ -12,6 +13,7 @@ function New-Toaster {
 	[Alias("Toaster")]
 	[CmdletBinding()]
 	[OutputType([string])]
+	[SuppressMessage("PSReviewUnusedParameter", "Content")]
 	param (
 		# The child content.
 		[Parameter(Position = 0, ValueFromPipeline)]

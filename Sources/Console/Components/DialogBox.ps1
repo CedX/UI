@@ -1,3 +1,5 @@
+using namespace System.Diagnostics.CodeAnalysis
+
 <#
 .SYNOPSIS
 	Renders a dialog box.
@@ -10,6 +12,10 @@ function New-DialogBox {
 	[Alias("DialogBox")]
 	[CmdletBinding(DefaultParameterSetName = "Content")]
 	[OutputType([string])]
+	[SuppressMessage("PSReviewUnusedParameter", "Body")]
+	[SuppressMessage("PSReviewUnusedParameter", "Content")]
+	[SuppressMessage("PSReviewUnusedParameter", "Footer")]
+	[SuppressMessage("PSReviewUnusedParameter", "Scrollable")]
 	param (
 		# The child content.
 		[Parameter(ParameterSetName = "Content", Position = 0, ValueFromPipeline)]
