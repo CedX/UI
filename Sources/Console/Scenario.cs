@@ -1,4 +1,4 @@
-namespace Belin.UI.Data;
+namespace Belin.UI;
 
 /// <summary>
 /// Defines the scenario used in data validation.
