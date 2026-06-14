@@ -7,7 +7,7 @@
 	"name": "@cedx/ui",
 	"repository": "CedX/UI",
 	"type": "module",
-	"version": "0.5.0",
+	"version": "0.6.0",
 	"allowScripts": {
 		"esbuild": true,
 		"playwright-chromium": true
