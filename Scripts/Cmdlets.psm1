@@ -46,10 +46,14 @@ function Invoke-DotNetTest {
 	param (
 		# The path to the settings file to use for running the tests.
 		[ValidateScript({ Test-Path $_ -PathType Leaf }, ErrorMessage = "The specified settings file does not exist.")]
-		[string] $Settings
+		[string] $Settings,
+
+		# Value indicating whether to not build the solution before running the tests.
+		[switch] $NoBuild
 	)
 
 	$argumentList = $Settings ? "--settings", $Settings : @()
+	if ($NoBuild) { $argumentList += "--no-build" }
 	dotnet test @argumentList
 }
 

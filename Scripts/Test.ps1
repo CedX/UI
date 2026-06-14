@@ -1,8 +1,8 @@
 using module ./Cmdlets.psm1
+& "$PSScriptRoot/Build.ps1"
 
 "Running the test suite..."
-Invoke-DotNetTest -Settings .runsettings
-Invoke-TypeScript Sources/Client/tsconfig.json -SourceMap
+Invoke-DotNetTest -NoBuild -Settings .runsettings
 Invoke-NodeTest
 
 pwsh -Command {
