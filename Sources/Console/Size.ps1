@@ -14,7 +14,7 @@ function Get-Size {
 	param (
 		# The size.
 		[Parameter(Mandatory, Position = 0, ValueFromPipeline)]
-		[Size] $Size,
+		[Size] $InputObject,
 
 		# Value indicating whether to return the corresponding CSS class.
 		[Parameter(ParameterSetName = "CssClass")]
@@ -22,15 +22,6 @@ function Get-Size {
 	)
 
 	process {
-		if ($CssClass) {
-			switch ($Size) {
-				([Size]::ExtraSmall) { return "xs" }
-				([Size]::Small) { return "sm" }
-				([Size]::Large) { return "lg" }
-				([Size]::ExtraLarge) { return "xl" }
-				([Size]::ExtraExtraLarge) { return "xxl" }
-				default { return "md" }
-			}
-		}
+		if ($CssClass) { return [SizeExtensions]::get_CssClass($InputObject) }
 	}
 }

@@ -14,7 +14,7 @@ function Get-AppTheme {
 	param (
 		# The application theme.
 		[Parameter(Mandatory, Position = 0, ValueFromPipeline)]
-		[AppTheme] $AppTheme,
+		[AppTheme] $InputObject,
 
 		# Value indicating whether to return the corresponding icon name.
 		[Parameter(ParameterSetName = "Icon")]
@@ -26,20 +26,7 @@ function Get-AppTheme {
 	)
 
 	process {
-		if ($Icon) {
-			switch ($AppTheme) {
-				([AppTheme]::Dark) { return "dark_mode" }
-				([AppTheme]::Light) { return "light_mode" }
-				default { return "contrast" }
-			}
-		}
-
-		if ($Text) {
-			switch ($AppTheme) {
-				([AppTheme]::Dark) { return "Sombre" }
-				([AppTheme]::Light) { return "Clair" }
-				default { return "Auto" }
-			}
-		}
+		if ($Icon) { return [AppThemeExtensions]::get_Icon($InputObject) }
+		if ($Text) { return [AppThemeExtensions]::get_Text($InputObject) }
 	}
 }

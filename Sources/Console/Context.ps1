@@ -14,7 +14,7 @@ function Get-Context {
 	param (
 		# The context.
 		[Parameter(Mandatory, Position = 0, ValueFromPipeline)]
-		[Context] $Context,
+		[Context] $InputObject,
 
 		# Value indicating whether to return the corresponding CSS class.
 		[Parameter(ParameterSetName = "CssClass")]
@@ -26,17 +26,7 @@ function Get-Context {
 	)
 
 	process {
-		if ($CssClass) {
-			return $Context.ToString().ToLowerInvariant()
-		}
-
-		if ($Icon) {
-			switch ($Context) {
-				([Context]::Danger) { return "error" }
-				([Context]::Success) { return "check_circle" }
-				([Context]::Warning) { return "warning" }
-				default { return "info" }
-			}
-		}
+		if ($CssClass) { return [ContextExtensions]::get_CssClass($InputObject) }
+		if ($Icon) { return [ContextExtensions]::get_Icon($InputObject) }
 	}
 }

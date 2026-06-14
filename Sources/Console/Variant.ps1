@@ -14,7 +14,7 @@ function Get-Variant {
 	param (
 		# The variant.
 		[Parameter(Mandatory, Position = 0, ValueFromPipeline)]
-		[Variant] $Variant,
+		[Variant] $InputObject,
 
 		# Value indicating whether to return the corresponding CSS class.
 		[Parameter(ParameterSetName = "CssClass")]
@@ -22,8 +22,6 @@ function Get-Variant {
 	)
 
 	process {
-		if ($CssClass) {
-			return $Variant.ToString().ToLowerInvariant()
-		}
+		if ($CssClass) { return [VariantExtensions]::get_CssClass($InputObject) }
 	}
 }
