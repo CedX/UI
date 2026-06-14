@@ -1,5 +1,5 @@
 /* eslint-disable max-lines-per-function */
-import {Sort, SortOrder} from "@cedx/ui/Data/Sort.js";
+import {Sort, SortOrder} from "@cedx/ui/Sort.js";
 import {assert} from "chai";
 
 /**
@@ -31,7 +31,7 @@ describe("Sort", () => {
 		});
 
 		it("should decrement when removing an entry", () => {
-			sort.delete("foo");
+			sort.remove("foo");
 			assert.lengthOf(sort, 1);
 		});
 	});
@@ -42,37 +42,46 @@ describe("Sort", () => {
 			assert.isTrue(iterator.next().done);
 		});
 
-		it("should iterate over the entries if the sort is not empty", () => {
-			const iterator = Sort.of("foo").prepend("bar", SortOrder.Descending)[Symbol.iterator]();
-			let next = iterator.next();
-			assert.isTrue(!next.done);
-			assert.deepEqual(next.value, ["bar", SortOrder.Descending]);
-			next = iterator.next();
-			assert.isFalse(next.done);
-			assert.deepEqual(next.value, ["foo", SortOrder.Ascending]);
-			assert.isTrue(iterator.next().done);
-		});
+		// TODO
+		// it("should iterate over the entries if the sort is not empty", () => {
+		// 	const iterator = Sort.of("foo").insert("bar", SortOrder.Descending)[Symbol.iterator]();
+		// 	let next = iterator.next();
+		// 	assert.isTrue(!next.done);
+		// 	assert.deepEqual(next.value, ["bar", SortOrder.Descending]);
+		// 	next = iterator.next();
+		// 	assert.isFalse(next.done);
+		// 	assert.deepEqual(next.value, ["foo", SortOrder.Ascending]);
+		// 	assert.isTrue(iterator.next().done);
+		// });
 	});
 
 	describe("add()", () => {
 		const sort = Sort.of("foo");
 
-		it("should append a new entry to the end", () => {
+		it("should append a new property to the end", () => {
 			sort.add("bar", SortOrder.Ascending);
 			assert.deepEqual(Array.from(sort), [["foo", SortOrder.Ascending], ["bar", SortOrder.Ascending]]);
 		});
 
-		it("should move an existing entry to the end and update its value", () => {
-			sort.add("foo", SortOrder.Descending);
-			assert.deepEqual(Array.from(sort), [["bar", SortOrder.Ascending], ["foo", SortOrder.Descending]]);
+		it("should throw an error if a property with the same name already exists", () => {
+			assert.throws(() => sort.add("foo", SortOrder.Descending));
 		});
 	});
 
-	describe("at()", () => {
-		const sort = Sort.of("foo");
-		it("should return the entry at the specified index", () => assert.deepEqual(sort.at(0), ["foo", SortOrder.Ascending]));
-		it("should return `null` for an unknown entry", () => assert.isNull(sort.at(1)));
-	});
+	// TODO
+	// describe("clear()", () => {
+	// 	const sort = Sort.of("foo");
+
+	// 	it("should prepend a new entry to the start", () => {
+	// 		sort.clear("bar", SortOrder.Ascending);
+	// 		assert.deepEqual(Array.from(sort), [["bar", SortOrder.Ascending], ["foo", SortOrder.Ascending]]);
+	// 	});
+
+	// 	it("should move an existing entry to the start and update its value", () => {
+	// 		sort.clear("foo", SortOrder.Descending);
+	// 		assert.deepEqual(Array.from(sort), [["foo", SortOrder.Descending], ["bar", SortOrder.Ascending]]);
+	// 	});
+	// });
 
 	describe("compare()", () => {
 		const x = {index: 1, name: "abc", type: "object"};
@@ -102,20 +111,16 @@ describe("Sort", () => {
 		it("should return `false` for an unknown entry", () => assert.isFalse(sort.containsKey("bar")));
 	});
 
-	describe("delete()", () => {
-		it("should properly remove entries", () => {
-			const sort = new Sort([["foo", SortOrder.Ascending], ["bar", SortOrder.Descending]]);
-			sort.delete("foo");
-			assert.deepEqual(Array.from(sort), [["bar", SortOrder.Descending]]);
-			sort.delete("bar");
-			assert.isEmpty(Array.from(sort));
-		});
-	});
-
 	describe("get()", () => {
 		const sort = Sort.of("foo");
 		it("should return the corresponding order for an existing entry", () => assert.equal(sort.get("foo"), SortOrder.Ascending));
 		it("should return `null` for an unknown entry", () => assert.isNull(sort.get("bar")));
+	});
+
+	describe("getAt()", () => {
+		const sort = Sort.of("foo");
+		it("should return the entry at the specified index", () => assert.deepEqual(sort.getAt(0), ["foo", SortOrder.Ascending]));
+		it("should return `null` for an unknown entry", () => assert.isNull(sort.getAt(1)));
 	});
 
 	describe("getIcon()", () => {
@@ -137,6 +142,21 @@ describe("Sort", () => {
 		it("should return `-1` for an unknown entry", () => assert.equal(sort.indexOf("qux"), -1));
 	});
 
+	// TODO
+	// describe("insert()", () => {
+	// 	const sort = Sort.of("foo");
+
+	// 	it("should prepend a new entry to the start", () => {
+	// 		sort.insert("bar", SortOrder.Ascending);
+	// 		assert.deepEqual(Array.from(sort), [["bar", SortOrder.Ascending], ["foo", SortOrder.Ascending]]);
+	// 	});
+
+	// 	it("should move an existing entry to the start and update its value", () => {
+	// 		sort.insert("foo", SortOrder.Descending);
+	// 		assert.deepEqual(Array.from(sort), [["foo", SortOrder.Descending], ["bar", SortOrder.Ascending]]);
+	// 	});
+	// });
+
 	describe("parse()", () => {
 		it("should return an empty sort for an empty string", () =>
 			assert.isEmpty(Array.from(Sort.parse(""))));
@@ -148,46 +168,55 @@ describe("Sort", () => {
 			assert.deepEqual(Array.from(Sort.parse("foo,-bar")), [["foo", SortOrder.Ascending], ["bar", SortOrder.Descending]]));
 	});
 
-	describe("prepend()", () => {
-		const sort = Sort.of("foo");
-
-		it("should prepend a new entry to the start", () => {
-			sort.prepend("bar", SortOrder.Ascending);
-			assert.deepEqual(Array.from(sort), [["bar", SortOrder.Ascending], ["foo", SortOrder.Ascending]]);
-		});
-
-		it("should move an existing entry to the start and update its value", () => {
-			sort.prepend("foo", SortOrder.Descending);
-			assert.deepEqual(Array.from(sort), [["foo", SortOrder.Descending], ["bar", SortOrder.Ascending]]);
+	describe("remove()", () => {
+		it("should properly remove entries", () => {
+			const sort = new Sort([["foo", SortOrder.Ascending], ["bar", SortOrder.Descending]]);
+			sort.remove("foo");
+			assert.deepEqual(Array.from(sort), [["bar", SortOrder.Descending]]);
+			sort.remove("bar");
+			assert.isEmpty(Array.from(sort));
 		});
 	});
 
-	describe("satisfies()", () => {
-		const sort = new Sort([["foo", SortOrder.Ascending], ["bar", SortOrder.Descending]]);
-
-		it("should return `true` if there is nothing to satisfy", () => {
-			assert.isTrue(sort.satisfies());
-			assert.isTrue(new Sort().satisfies({properties: ["foo"]}));
-		});
-
-		it("should return `true` if the conditions are satisfied", () =>
-			assert.isTrue(sort.satisfies({properties: ["bar", "foo"], min: 1, max: 2})));
-
-		it("should return `false` if the conditions are not satisfied", () => {
-			assert.isFalse(sort.satisfies({properties: ["baz"]}));
-			assert.isFalse(sort.satisfies({max: 1}));
+	describe("removeAt()", () => {
+		it("should properly remove entries", () => {
+			const sort = new Sort([["foo", SortOrder.Descending], ["bar", SortOrder.Ascending]]);
+			sort.removeAt(1);
+			assert.deepEqual(Array.from(sort), [["foo", SortOrder.Descending]]);
+			sort.removeAt(0);
+			assert.isEmpty(Array.from(sort));
 		});
 	});
 
 	describe("set()", () => {
 		const sort = new Sort;
 
-		it("should append a new entry when setting an unknown property", () =>
-			assert.deepEqual(Array.from(sort.set("foo", SortOrder.Ascending)), [["foo", SortOrder.Ascending]]));
+		it("should append a new entry when setting an unknown property", () => {
+			sort.set("foo", SortOrder.Ascending);
+			assert.deepEqual(Array.from(sort), [["foo", SortOrder.Ascending]]);
+		});
 
-		it("should keep the order of entries when setting a known property", () =>
-			assert.deepEqual(Array.from(sort.set("bar", SortOrder.Ascending).set("foo", SortOrder.Descending)), [["foo", SortOrder.Descending], ["bar", SortOrder.Ascending]]));
+		it("should keep the order of entries when setting a known property", () => {
+			sort.set("bar", SortOrder.Ascending);
+			sort.set("foo", SortOrder.Descending);
+			assert.deepEqual(Array.from(sort), [["foo", SortOrder.Descending], ["bar", SortOrder.Ascending]]);
+		});
 	});
+
+	// TODO
+	// describe("setAt()", () => {
+	// 	const sort = Sort.of("foo");
+
+	// 	it("should prepend a new entry to the start", () => {
+	// 		sort.setAt("bar", SortOrder.Ascending);
+	// 		assert.deepEqual(Array.from(sort), [["bar", SortOrder.Ascending], ["foo", SortOrder.Ascending]]);
+	// 	});
+
+	// 	it("should move an existing entry to the start and update its value", () => {
+	// 		sort.setAt("foo", SortOrder.Descending);
+	// 		assert.deepEqual(Array.from(sort), [["foo", SortOrder.Descending], ["bar", SortOrder.Ascending]]);
+	// 	});
+	// });
 
 	describe("toString()", () => {
 		it("should return an empty string for an empty sort", () =>

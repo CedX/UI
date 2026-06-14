@@ -90,10 +90,10 @@ export class Sort implements Iterable<SortProperty> {
 	 * Appends the specified property to this sort.
 	 * @param property The property name.
 	 * @param order The sort order.
-	 * @throws `Error` when an element with the same property name already exists.
+	 * @throws `Error` when a property with the same name already exists.
 	 */
 	add(property: string, order: SortOrder): void {
-		if (this.containsKey(property)) throw new Error("An element with the same property name already exists.");
+		if (this.containsKey(property)) throw new Error("A property with the same name already exists.");
 		this.#properties.push([property, order]);
 	}
 
@@ -217,8 +217,11 @@ export class Sort implements Iterable<SortProperty> {
 	 * @param index The position in this sort.
 	 * @param property The property name.
 	 * @param order The sort order.
+	 * @throws `Error` when a property with the same name already exists at a different index.
 	 */
 	setAt(index: number, property: string, order: SortOrder): void {
+		const existingIndex = this.indexOf(property);
+		if (existingIndex >= 0 && existingIndex != index) throw new Error("A property with the same name already exists at a different index.");
 		this.#properties[index] = [property, order];
 	}
 

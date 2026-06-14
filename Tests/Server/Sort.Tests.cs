@@ -9,6 +9,14 @@ using System.ComponentModel;
 public sealed class SortTests {
 
 	[TestMethod]
+	public void GetIcon() {
+		// It should return the icon corresponding to the sort order.
+		AreEqual("arrow_upward", Sort.Of("foo").GetIcon("foo"));
+		AreEqual("arrow_downward", Sort.Of("foo", SortOrder.Descending).GetIcon("foo"));
+		AreEqual("swap_vert", new Sort().GetIcon("foo"));
+	}
+
+	[TestMethod]
 	public void Parse() {
 		// It should return an empty sort for an empty string.
 		IsEmpty(Sort.Parse(""));
