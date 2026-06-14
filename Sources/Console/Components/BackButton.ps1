@@ -6,8 +6,8 @@
 .OUTPUTS
 	The rendered component.
 #>
-function New-UIBackButton {
-	[Alias("uiBackButton")]
+function New-BackButton {
+	[Alias("BackButton")]
 	[CmdletBinding()]
 	[OutputType([string])]
 	param (

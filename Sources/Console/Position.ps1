@@ -8,7 +8,7 @@ using namespace Belin.UI
 .OUTPUTS
 	The custom property of the specified position.
 #>
-function Get-UIPosition {
+function Get-Position {
 	[CmdletBinding()]
 	[OutputType([string])]
 	param (

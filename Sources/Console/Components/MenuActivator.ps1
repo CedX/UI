@@ -6,8 +6,8 @@
 .OUTPUTS
 	The rendered component.
 #>
-function New-UIMenuActivator {
-	[Alias("uiMenuActivator")]
+function New-MenuActivator {
+	[Alias("MenuActivator")]
 	[CmdletBinding()]
 	[OutputType([string])]
 	param (

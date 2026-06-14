@@ -8,8 +8,8 @@ using namespace Belin.UI
 .OUTPUTS
 	The rendered component.
 #>
-function New-UITabActivator {
-	[Alias("uiTabActivator")]
+function New-TabActivator {
+	[Alias("TabActivator")]
 	[CmdletBinding()]
 	[OutputType([string])]
 	param (

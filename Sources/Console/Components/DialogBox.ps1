@@ -6,8 +6,8 @@
 .OUTPUTS
 	The rendered component.
 #>
-function New-UIDialogBox {
-	[Alias("uiDialogBox")]
+function New-DialogBox {
+	[Alias("DialogBox")]
 	[CmdletBinding(DefaultParameterSetName = "Content")]
 	[OutputType([string])]
 	param (

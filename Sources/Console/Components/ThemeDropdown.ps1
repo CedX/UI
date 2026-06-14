@@ -1,5 +1,4 @@
 ﻿using namespace Belin.UI
-using namespace System.Collections.Generic
 
 <#
 .SYNOPSIS
@@ -9,8 +8,8 @@ using namespace System.Collections.Generic
 .OUTPUTS
 	The rendered component.
 #>
-function New-UIThemeDropdown {
-	[Alias("uiThemeDropdown")]
+function New-ThemeDropdown {
+	[Alias("ThemeDropdown")]
 	[CmdletBinding()]
 	[OutputType([string])]
 	param (
@@ -49,7 +48,7 @@ function New-UIThemeDropdown {
 		tag theme-dropdown -Attributes $attributes {
 			li -Class nav-item, dropdown {
 				button -Class dropdown-toggle, nav-link -DataSet @{ BsToggle = "dropdown" } -Type button {
-					i -Class icon, icon-fill (Get-UIAppTheme $AppTheme -Icon)
+					i -Class icon, icon-fill (Get-AppTheme $AppTheme -Icon)
 					span -Class ms-2 $Text
 				}
 				ul -Class dropdown-menu, ($Alignment -eq [Alignment]::End ? "dropdown-menu-end" : "") {
@@ -57,8 +56,8 @@ function New-UIThemeDropdown {
 						li {
 							button -Class dropdown-item, d-flex, align-items-center, justify-content-between -Type button -Value $theme {
 								span {
-									i -Class icon, icon-fill, me-2 (Get-UIAppTheme $theme -Icon)
-									Get-UIAppTheme $theme -Text
+									i -Class icon, icon-fill, me-2 (Get-AppTheme $theme -Icon)
+									Get-AppTheme $theme -Text
 								}
 								if ($theme -eq $AppTheme) { i -Class icon, ms-3 "check" }
 							}

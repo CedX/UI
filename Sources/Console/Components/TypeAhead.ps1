@@ -6,8 +6,8 @@
 .OUTPUTS
 	The rendered component.
 #>
-function New-UITypeAhead {
-	[Alias("uiTypeAhead")]
+function New-TypeAhead {
+	[Alias("TypeAhead")]
 	[CmdletBinding()]
 	[OutputType([string])]
 	param (

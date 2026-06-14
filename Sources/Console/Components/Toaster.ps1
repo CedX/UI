@@ -8,8 +8,8 @@ using namespace Belin.UI
 .OUTPUTS
 	The rendered component.
 #>
-function New-UIToaster {
-	[Alias("uiToaster")]
+function New-Toaster {
+	[Alias("Toaster")]
 	[CmdletBinding()]
 	[OutputType([string])]
 	param (
@@ -52,8 +52,8 @@ function New-UIToaster {
 		}
 
 		tag toaster-container -Attributes $attributes {
-			div -Class toast-container, p-3, (Get-UIPosition $Position -CssClass) $Content
-			template (New-UIToast)
+			div -Class toast-container, p-3, (Get-Position $Position -CssClass) $Content
+			template (New-Toast)
 		}
 	}
 }

@@ -8,7 +8,7 @@ using namespace Belin.UI
 .OUTPUTS
 	The custom property of the specified variant.
 #>
-function Get-UIVariant {
+function Get-Variant {
 	[CmdletBinding()]
 	[OutputType([string])]
 	param (

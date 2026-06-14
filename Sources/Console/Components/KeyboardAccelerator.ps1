@@ -8,8 +8,8 @@ using namespace Belin.UI
 .OUTPUTS
 	The rendered component.
 #>
-function New-UIKeyboardAccelerator {
-	[Alias("uiKeyboardAccelerator")]
+function New-KeyboardAccelerator {
+	[Alias("KeyboardAccelerator")]
 	[CmdletBinding()]
 	[OutputType([string])]
 	param (

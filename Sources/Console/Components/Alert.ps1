@@ -8,8 +8,8 @@ using namespace Belin.UI
 .OUTPUTS
 	The rendered component.
 #>
-function New-UIAlert {
-	[Alias("uiAlert")]
+function New-Alert {
+	[Alias("Alert")]
 	[CmdletBinding()]
 	[OutputType([string])]
 	param (
@@ -35,9 +35,9 @@ function New-UIAlert {
 	)
 
 	process {
-		div -Class alert, "alert-$(Get-UIContext $Context -CssClass)", ($Dismissible ? "alert-dismissible" : ""), ($Fade ? "fade show" : ""), ($Class -join " ") {
+		div -Class alert, "alert-$(Get-Context $Context -CssClass)", ($Dismissible ? "alert-dismissible" : ""), ($Fade ? "fade show" : ""), ($Class -join " ") {
 			div -Class d-flex, align-items-center {
-				i -Class icon, flex-shrink-0, me-2 ($Icon ? $Icon : (Get-UIContext $Context -Icon))
+				i -Class icon, flex-shrink-0, me-2 ($Icon ? $Icon : (Get-Context $Context -Icon))
 				div $Content
 			}
 

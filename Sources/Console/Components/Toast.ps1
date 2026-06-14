@@ -8,8 +8,8 @@ using namespace Belin.UI
 .OUTPUTS
 	The rendered component.
 #>
-function New-UIToast {
-	[Alias("uiToast")]
+function New-Toast {
+	[Alias("Toast")]
 	[CmdletBinding()]
 	[OutputType([string])]
 	param (
@@ -55,11 +55,11 @@ function New-UIToast {
 			open = $Open
 		}
 
-		$contextCssClass = Get-UIContext $Context -CssClass
+		$contextCssClass = Get-Context $Context -CssClass
 		tag toaster-item -Attributes $attributes {
 			div -Class toast -DataSet @{ BsAnimation = $Fade ? "true" : "false"; BsAutohide = $AutoHide ? "true" : "false"; BsDelay = $Delay } {
 				div -Class toast-header, "toast-header-$contextCssClass" {
-					i -Class icon, me-2, "text-$contextCssClass", transform-scale-110 ([string]::IsNullOrWhiteSpace($Icon) ? (Get-UIContext $Context -Icon) : $Icon)
+					i -Class icon, me-2, "text-$contextCssClass", transform-scale-110 ([string]::IsNullOrWhiteSpace($Icon) ? (Get-Context $Context -Icon) : $Icon)
 					b -Class fw-semibold, me-auto $Caption
 					small -Class text-secondary # Toast.ElapsedTime
 					button -Class btn-close -DataSet @{ BsDismiss = "toast" } -Type button

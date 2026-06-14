@@ -6,8 +6,8 @@
 .OUTPUTS
 	The rendered component.
 #>
-function New-UIActionBar {
-	[Alias("uiActionBar")]
+function New-ActionBar {
+	[Alias("ActionBar")]
 	[CmdletBinding()]
 	[OutputType([string])]
 	param (
