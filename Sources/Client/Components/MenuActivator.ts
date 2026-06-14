@@ -37,7 +37,10 @@ export class MenuActivator extends HTMLElement {
 	 */
 	#update(): void {
 		for (const element of this.querySelectorAll(".active")) element.classList.remove("active");
-		for (const anchor of this.querySelectorAll("a")) if (anchor.href == location.href) {
+
+		const {origin, pathname} = new URL(location.href);
+		const href = `${origin}${pathname}`;
+		for (const anchor of this.querySelectorAll("a")) if (anchor.href == href) {
 			anchor.classList.add("active");
 			anchor.closest(".dropdown")?.querySelector(".dropdown-toggle")?.classList.add("active");
 		}
