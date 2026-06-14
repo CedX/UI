@@ -72,9 +72,9 @@ export class Sort implements Iterable<SortProperty> {
 	 * @returns The sort corresponding to the specified string.
 	 */
 	static parse(value: string): Sort {
-		return new this((value ? value.split(",") : []).map(item => {
-			const order = item.startsWith("-") ? SortOrder.Descending : SortOrder.Ascending;
-			return [order == SortOrder.Ascending ? item : item.slice(1), order];
+		return new this((value ? value.split(",") : []).map(token => {
+			const order = token.startsWith("-") ? SortOrder.Descending : SortOrder.Ascending;
+			return [order == SortOrder.Ascending ? token : token.slice(1), order];
 		}));
 	}
 
@@ -90,20 +90,11 @@ export class Sort implements Iterable<SortProperty> {
 	 * Appends the specified property to this sort.
 	 * @param property The property name.
 	 * @param order The sort order.
-	 * @throws `Error` when an item with the property name already exists.
+	 * @throws `Error` when an element with the same property name already exists.
 	 */
 	add(property: string, order: SortOrder): void {
-		if (this.containsKey(property)) throw new Error("An item with the property name has already been added.");
+		if (this.containsKey(property)) throw new Error("An element with the same property name already exists.");
 		this.#properties.push([property, order]);
-	}
-
-	/**
-	 * Gets the sort property at the specified index.
-	 * @param index The position in this sort.
-	 * @returns The sort property at the specified index, or `null` if it doesn't exist.
-	 */
-	at(index: number): SortProperty|null {
-		return this.#properties.at(index) ?? null;
 	}
 
 	/**
@@ -140,14 +131,6 @@ export class Sort implements Iterable<SortProperty> {
 	}
 
 	/**
-	 * Removes the specified property from this sort.
-	 * @param property The property name.
-	 */
-	delete(property: string): void {
-		this.#properties = this.#properties.filter(([key]) => key != property);
-	}
-
-	/**
 	 * Gets the order associated with the specified property.
 	 * @param property The property name.
 	 * @returns The order associated with the specified property, or `null` if the property doesn't exist.
@@ -155,6 +138,15 @@ export class Sort implements Iterable<SortProperty> {
 	get(property: string): SortOrder|null {
 		for (const [key, order] of this.#properties) if (key == property) return order;
 		return null;
+	}
+
+	/**
+	 * Gets the sort property at the specified index.
+	 * @param index The position in this sort.
+	 * @returns The sort property at the specified index, or `null` if it doesn't exist.
+	 */
+	getAt(index: number): SortProperty|null {
+		return this.#properties.at(index) ?? null;
 	}
 
 	/**
@@ -181,47 +173,53 @@ export class Sort implements Iterable<SortProperty> {
 	}
 
 	/**
-	 * Prepends the specified property to this sort.
+	 * Inserts the specified property into this sort at the specified index.
+	 * @param index The position in this sort.
 	 * @param property The property name.
 	 * @param order The sort order.
-	 * @returns This instance.
 	 */
-	prepend(property: string, order: SortOrder): this {
-		this.delete(property);
-		this.#properties.unshift([property, order]);
-		return this;
+	insert(index: number, property: string, order: SortOrder): void {
+		this.#properties.splice(index, 0, [property, order]);
 	}
 
 	/**
-	 * Returns a value indicating whether the current sort satisfies the specified conditions.
-	 * @param conditions The conditions to satisfy.
-	 * @returns `true` if the current sort satisfies the specified conditions, otherwise `false`.
+	 * Removes the specified property from this sort.
+	 * @param property The property name.
 	 */
-	satisfies(conditions: Partial<{min: number, max: number, properties: string[]}> = {}): boolean {
-		const min = conditions.min ?? -1;
-		if (min >= 0) return this.length >= min;
+	remove(property: string): void {
+		this.#properties = this.#properties.filter(([key]) => key != property);
+	}
 
-		const max = conditions.max ?? -1;
-		if (max >= 0) return this.length <= max;
-
-		const properties = conditions.properties ?? [];
-		return properties.length ? this.#properties.every(([key]) => properties.includes(key)) : true;
+	/**
+	 * Removes the sort property at the specified index.
+	 * @param index The position in this sort.
+	 */
+	removeAt(index: number): void {
+		this.#properties.splice(index, 1);
 	}
 
 	/**
 	 * Sets the order of the specified property.
 	 * @param property The property name.
 	 * @param order The sort order.
-	 * @returns This instance.
 	 */
-	set(property: string, order: SortOrder): this {
+	set(property: string, order: SortOrder): void {
 		for (const [index, [key]] of this.#properties.entries()) if (key == property) {
 			this.#properties[index] = [key, order];
-			return this;
+			return;
 		}
 
 		this.add(property, order);
-		return this;
+	}
+
+	/**
+	 * Sets the sort property at the specified index.
+	 * @param index The position in this sort.
+	 * @param property The property name.
+	 * @param order The sort order.
+	 */
+	setAt(index: number, property: string, order: SortOrder): void {
+		this.#properties[index] = [property, order];
 	}
 
 	/**

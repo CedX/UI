@@ -1,4 +1,4 @@
-namespace Belin.UI.Data;
+namespace Belin.UI;
 
 using System.ComponentModel;
 

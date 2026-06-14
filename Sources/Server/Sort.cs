@@ -1,4 +1,4 @@
-namespace Belin.UI.Data;
+namespace Belin.UI;
 
 using System.Text.Json.Serialization;
 
@@ -27,6 +27,17 @@ public sealed class Sort(IEnumerable<KeyValuePair<string, SortOrder>>? propertie
 		var order = token.StartsWith('-') ? SortOrder.Descending : SortOrder.Ascending;
 		return new KeyValuePair<string, SortOrder>(order == SortOrder.Ascending ? token : token[1..], order);
 	}));
+
+	/// <summary>
+	/// Gets the icon corresponding to the specified property.
+	/// </summary>
+	/// <param name="property">The property name.</param>
+	/// <returns>The icon corresponding to the specified property.</returns>
+	public string GetIcon(string property) => this[property] switch {
+		SortOrder.Ascending => "arrow_upward",
+		SortOrder.Descending => "arrow_downward",
+		_ => "swap_vert"
+	};
 
 	/// <summary>
 	/// Returns a string representation of this object.
