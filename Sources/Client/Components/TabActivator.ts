@@ -77,6 +77,13 @@ export class TabActivator extends HTMLElement {
 	connectedCallback(): void {
 		Tab.getOrCreateInstance(this.tabs.item(this.activeTabIndex)).show();
 	}
+
+	/**
+	 * Method invoked when this component is disconnected.
+	 */
+	disconnectedCallback(): void {
+		for (const tab of this.tabs) Tab.getInstance(tab)?.dispose();
+	}
 }
 
 /**
