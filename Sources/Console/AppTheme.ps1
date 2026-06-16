@@ -8,7 +8,7 @@ using namespace Belin.UI
 .OUTPUTS
 	The custom property of the specified theme.
 #>
-function Get-AppTheme {
+function Format-AppTheme {
 	[CmdletBinding()]
 	[OutputType([string])]
 	param (

@@ -32,11 +32,11 @@
 	)
 
 	FunctionsToExport = @(
-		"Get-AppTheme"
-		"Get-Context"
-		"Get-Position"
-		"Get-Size"
-		"Get-Variant"
+		"Format-AppTheme"
+		"Format-Context"
+		"Format-Position"
+		"Format-Size"
+		"Format-Variant"
 		"New-ActionBar"
 		"New-Alert"
 		"New-BackButton"

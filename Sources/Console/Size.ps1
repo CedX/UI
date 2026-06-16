@@ -8,7 +8,7 @@ using namespace Belin.UI
 .OUTPUTS
 	The custom property of the specified size.
 #>
-function Get-Size {
+function Format-Size {
 	[CmdletBinding()]
 	[OutputType([string])]
 	param (

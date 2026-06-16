@@ -8,7 +8,7 @@ using namespace Belin.UI
 .OUTPUTS
 	The custom property of the specified context.
 #>
-function Get-Context {
+function Format-Context {
 	[CmdletBinding()]
 	[OutputType([string])]
 	param (
