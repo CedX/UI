@@ -15,9 +15,9 @@ export interface IDialogButton {
 	icon?: string;
 
 	/**
-	 * The button label.
+	 * The button text.
 	 */
-	label?: string;
+	text?: string;
 
 	/**
 	 * The button value.
@@ -211,10 +211,10 @@ export class DialogBox extends HTMLElement {
 				</div>
 			`,
 			footer: html`
-				${(buttons.length ? buttons : [{label: "OK", value: DialogResult.OK, variant: Variant.Primary}]).map(button => html`
+				${(buttons.length ? buttons : [{text: "OK", value: DialogResult.OK, variant: Variant.Primary}]).map(button => html`
 					<button class="btn btn-${variantCssClass(button.variant ?? Variant.Primary)}" type="button" value="${button.value ?? DialogResult.None}">
-						${button.icon ? html`<i class="icon ${button.label ? "me-1" : ""}">${button.icon}</i>` : ""}
-						${button.label}
+						${button.icon ? html`<i class="icon ${button.text ? "me-1" : ""}">${button.icon}</i>` : ""}
+						${button.text}
 					</button>
 				`)}
 			`
@@ -239,8 +239,8 @@ export class DialogBox extends HTMLElement {
 	 */
 	confirm(context: Context, caption: string, message: DocumentFragment): Promise<string> {
 		return this.alert(context, caption, message, [
-			{label: "OK", value: DialogResult.OK, variant: Variant.Primary},
-			{label: "Annuler", value: DialogResult.Cancel, variant: Variant.Secondary}
+			{text: "OK", value: DialogResult.OK, variant: Variant.Primary},
+			{text: "Annuler", value: DialogResult.Cancel, variant: Variant.Secondary}
 		]);
 	}
 
