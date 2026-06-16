@@ -54,7 +54,7 @@ function New-Toaster {
 		}
 
 		tag toaster-container -Attributes $attributes {
-			div -Class toast-container, p-3, (Get-Position $Position -CssClass) $Content
+			div -Class toast-container, p-3, (Format-Position $Position -CssClass) $Content
 			template (New-Toast)
 		}
 	}

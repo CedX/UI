@@ -2,15 +2,15 @@ using module ../../UI.psd1
 
 <#
 .SYNOPSIS
-	Tests the features of the `Get-AppTheme` cmdlet.
+	Tests the features of the `Format-AppTheme` cmdlet.
 #>
-Describe "Get-AppTheme" {
+Describe "Format-AppTheme" {
 	Context "Icon" {
 		It "should return the corresponding icon name" -ForEach @(
 			@{ Value = "Dark"; Expected = "dark_mode" }
 			@{ Value = "Light"; Expected = "light_mode" }
 		) {
-			Get-UIAppTheme $value -Icon | Should -BeExactly $expected
+			Format-UIAppTheme $value -Icon | Should -BeExactly $expected
 		}
 	}
 
@@ -19,7 +19,7 @@ Describe "Get-AppTheme" {
 			@{ Value = "Dark"; Expected = "Sombre" }
 			@{ Value = "Light"; Expected = "Clair" }
 		) {
-			Get-UIAppTheme $value -Text | Should -BeExactly $expected
+			Format-UIAppTheme $value -Text | Should -BeExactly $expected
 		}
 	}
 }

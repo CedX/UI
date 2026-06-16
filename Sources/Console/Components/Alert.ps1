@@ -38,9 +38,9 @@ function New-Alert {
 	)
 
 	process {
-		div -Class alert, "alert-$(Get-Context $Context -CssClass)", ($Dismissible ? "alert-dismissible" : ""), ($Fade ? "fade show" : ""), ($Class -join " ") {
+		div -Class alert, "alert-$(Format-Context $Context -CssClass)", ($Dismissible ? "alert-dismissible" : ""), ($Fade ? "fade show" : ""), ($Class -join " ") {
 			div -Class d-flex, align-items-center {
-				i -Class icon, flex-shrink-0, me-2 ($Icon ? $Icon : (Get-Context $Context -Icon))
+				i -Class icon, flex-shrink-0, me-2 ($Icon ? $Icon : (Format-Context $Context -Icon))
 				div $Content
 			}
 
