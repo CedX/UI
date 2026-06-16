@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [0.9.0](https://github.com/CedX/UI/compare/v0.8.0...v0.9.0)
+- Replaced the `Get-` cmdlet prefix by the `Format-` prefix.
+
 ## Version [0.8.0](https://github.com/CedX/UI/compare/v0.7.0...v0.8.0)
 - Added the `Scenario.Deletion` property.
 - Renamed the `IDialogButton.label` property to `text`.
