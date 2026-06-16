@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [0.8.0](https://github.com/CedX/UI/compare/v0.7.0...v0.8.0)
+- Renamed the `IDialogButton.label` property to `text`.
+
 ## Version [0.7.0](https://github.com/CedX/UI/compare/v0.6.0...v0.7.0)
 - Added the `disposePopovers()` and `disposeTooltips()` functions for [Bootstrap](https://getbootstrap.com) components.
 
