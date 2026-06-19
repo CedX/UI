@@ -11,7 +11,7 @@ Describe "Format-String" {
 			@{ Value = $null; Expected = "" }
 			@{ Value = "foo bAr baZ"; Expected = "Foo bAr baZ" }
 		) {
-			Format-String $value -Capitalize -Culture fr-FR | Should -BeExactly $expected
+			Format-UIString $value -Capitalize -Culture fr-FR | Should -BeExactly $expected
 		}
 	}
 
@@ -22,14 +22,14 @@ Describe "Format-String" {
 			@{ Value = "foo bar"; Length = 0; Expected = "..." }
 			@{ Value = "foo bar"; Length = 4; Expected = "foo ..." }
 		) {
-			Format-String $value -Truncate -Length $length | Should -BeExactly $expected
+			Format-UIString $value -Truncate -Length $length | Should -BeExactly $expected
 		}
 
 		It "should append the specified ellipsis to the truncated string" -ForEach @(
 			@{ Length = 0; Expected = "--" }
 			@{ Length = 4; Expected = "foo --" }
 		) {
-			Format-String "foo bar" -Truncate -Length $length -Ellipsis "--" | Should -BeExactly $expected
+			Format-UIString "foo bar" -Truncate -Length $length -Ellipsis "--" | Should -BeExactly $expected
 		}
 	}
 }
