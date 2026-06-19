@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<Company>Cedric-Belin.fr</Company>
 		<Copyright>© Cédric Belin</Copyright>
@@ -19,21 +19,15 @@
 
 	<PropertyGroup>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-		<AssemblyName>Belin.UI.AspNet</AssemblyName>
+		<AssemblyName>Belin.UI</AssemblyName>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<OutDir>../../Binaries</OutDir>
 		<RootNamespace>Belin.UI</RootNamespace>
 		<TargetFramework>net10.0</TargetFramework>
-		<WarningsAsErrors>RZ2012</WarningsAsErrors>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<None Include="../../ReadMe.md" Pack="true" PackagePath="/" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<FrameworkReference Include="Microsoft.AspNetCore.App" />
-		<ProjectReference Include="../Base/Base.csproj" />
 	</ItemGroup>
 </Project>
