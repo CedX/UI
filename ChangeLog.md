@@ -1,5 +1,11 @@
 # Changelog
 
+## Version [0.11.0](https://github.com/CedX/UI/compare/v0.10.0...v0.11.0)
+- Added the `StringExtensions` class.
+- Added the `Format-UIString` cmdlet.
+- Added the `capitalize()` and `truncate()` functions.
+- Extracted the [ASP.NET](https://learn.microsoft.com/en-us/aspnet/core) components into a separate assembly.
+
 ## Version [0.10.0](https://github.com/CedX/UI/compare/v0.9.0...v0.10.0)
 - Added explicit conversions to the `Sort` class.
 - Added the `Pagination` class.
