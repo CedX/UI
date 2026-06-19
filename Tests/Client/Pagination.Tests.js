@@ -1,4 +1,4 @@
-import {Pagination} from "@cedx/ui/Data/Pagination.js";
+import {Pagination} from "@cedx/ui/Pagination.js";
 import {assert} from "chai";
 
 /**
@@ -49,38 +49,10 @@ describe("Pagination", () => {
 		});
 	});
 
-	describe("searchParams", () => {
-		it("should include a `page` parameter", () => {
-			assert.equal(new Pagination().searchParams.get("page"), "1");
-			assert.equal(new Pagination({currentPageIndex: -5}).searchParams.get("page"), "1");
-			assert.equal(new Pagination({currentPageIndex: 122}).searchParams.get("page"), "123");
-		});
-
-		it("should include a `perPage` parameter", () => {
-			assert.equal(new Pagination().searchParams.get("perPage"), "25");
-			assert.equal(new Pagination({itemsPerPage: 66}).searchParams.get("perPage"), "66");
-			assert.equal(new Pagination({itemsPerPage: 123456}).searchParams.get("perPage"), "1000");
-		});
-	});
-
 	describe("totalItemCount", () => {
 		it("should always be greater than or equal to zero", () => {
 			assert.equal(new Pagination({totalItemCount: -1}).totalItemCount, 0);
 			assert.equal(new Pagination({totalItemCount: 123}).totalItemCount, 123);
-		});
-	});
-
-	describe("fromResponse()", () => {
-		it("should create an instance initialized from the response headers", () => {
-			const pagination = Pagination.fromResponse(new Response(null, {headers: {
-				"X-Pagination-Current-Page": "123",
-				"X-Pagination-Per-Page": "33",
-				"X-Pagination-Total-Count": "666"
-			}}));
-
-			assert.equal(pagination.currentPageIndex, 122);
-			assert.equal(pagination.itemsPerPage, 33);
-			assert.equal(pagination.totalItemCount, 666);
 		});
 	});
 });

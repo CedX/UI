@@ -35,7 +35,7 @@ public sealed class Sort(IEnumerable<KeyValuePair<string, SortDirection>>? prope
 	/// </summary>
 	/// <param name="columns">The array whose elements are copied to the order hint collection.</param>
 	/// <returns>The order hint collection corresponding to the specified array of column names.</returns>
-	public static implicit operator Sort(object?[] columns) =>
+	public static explicit operator Sort(object?[] columns) =>
 		new(columns.Select(value => new KeyValuePair<string, SortDirection>(value?.ToString() ?? "", SortDirection.Ascending)));
 
 	/// <summary>
@@ -43,7 +43,7 @@ public sealed class Sort(IEnumerable<KeyValuePair<string, SortDirection>>? prope
 	/// </summary>
 	/// <param name="columns">The array whose elements are copied to the order hint collection.</param>
 	/// <returns>The order hint collection corresponding to the specified array of column names.</returns>
-	public static implicit operator Sort(string[] columns) =>
+	public static explicit operator Sort(string[] columns) =>
 		new(columns.Select(value => new KeyValuePair<string, SortDirection>(value, SortDirection.Ascending)));
 
 	/// <summary>
@@ -51,7 +51,7 @@ public sealed class Sort(IEnumerable<KeyValuePair<string, SortDirection>>? prope
 	/// </summary>
 	/// <param name="columns">The array whose elements are copied to the order hint collection.</param>
 	/// <returns>The order hint collection corresponding to the specified array of column names.</returns>
-	public static implicit operator Sort(List<string> columns) =>
+	public static explicit operator Sort(List<string> columns) =>
 		new(columns.Select(value => new KeyValuePair<string, SortDirection>(value, SortDirection.Ascending)));
 
 	/// <summary>
@@ -59,8 +59,8 @@ public sealed class Sort(IEnumerable<KeyValuePair<string, SortDirection>>? prope
 	/// </summary>
 	/// <param name="orderHints">The dictionary whose elements are copied to the order hint collection.</param>
 	/// <returns>The order hint collection corresponding to the specified dictionary of column names and sort orders.</returns>
-	public static implicit operator Sort(OrderedDictionary orderHints) => new(orderHints.Cast<DictionaryEntry>().Select(entry => {
-		var value = entry.Value is SortDirection sortOrder ? sortOrder : Enum.Parse<SortDirection>(entry.Value?.ToString() ?? "", ignoreCase: true);
+	public static explicit operator Sort(OrderedDictionary orderHints) => new(orderHints.Cast<DictionaryEntry>().Select(entry => {
+		var value = entry.Value is SortDirection sortDirection ? sortDirection : Enum.Parse<SortDirection>(entry.Value?.ToString() ?? "", ignoreCase: true);
 		return new KeyValuePair<string, SortDirection>(entry.Key.ToString() ?? "", value);
 	}));
 

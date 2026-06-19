@@ -84,13 +84,6 @@ export class Pagination {
 	}
 
 	/**
-	 * The search parameters corresponding to this object.
-	 */
-	get searchParams(): URLSearchParams {
-		return new URLSearchParams({page: (this.#currentPageIndex + 1).toString(), perPage: this.#itemsPerPage.toString()});
-	}
-
-	/**
 	 * The total number of items.
 	 */
 	get totalItemCount(): number {
@@ -98,19 +91,6 @@ export class Pagination {
 	}
 	set totalItemCount(value: number) {
 		this.#totalItemCount = Math.max(0, value);
-	}
-
-	/**
-	 * Creates a new pagination from the HTTP headers of the specified response.
-	 * @param response A server response.
-	 * @returns The pagination corresponding to the HTTP headers of the specified response.
-	 */
-	static fromResponse(response: Response): Pagination {
-		return new this({
-			currentPageIndex: Number(response.headers.get("X-Pagination-Current-Page") ?? "1") - 1,
-			itemsPerPage: Number(response.headers.get("X-Pagination-Per-Page") ?? "25"),
-			totalItemCount: Number(response.headers.get("X-Pagination-Total-Count") ?? "0")
-		});
 	}
 }
 
