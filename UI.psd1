@@ -36,6 +36,7 @@
 		"Format-Context"
 		"Format-Position"
 		"Format-Size"
+		"Format-String"
 		"Format-Variant"
 		"New-ActionBar"
 		"New-Alert"
