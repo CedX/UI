@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [0.10.0](https://github.com/CedX/UI/compare/v0.9.0...v0.10.0)
+- Added explicit conversions to the `Sort` class.
+- Added the `Pagination` class.
+
 ## Version [0.9.0](https://github.com/CedX/UI/compare/v0.8.0...v0.9.0)
 - Replaced the `Get-` cmdlet prefix by the `Format-` prefix.
 
