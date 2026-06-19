@@ -1,4 +1,4 @@
-package core.html;
+package Belin.UI;
 
 import coconut.ui.View;
 import js.Browser;
