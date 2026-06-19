@@ -1,4 +1,4 @@
-namespace Belin.UI.Components;
+namespace Belin.UI;
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
