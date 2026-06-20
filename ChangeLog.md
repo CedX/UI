@@ -1,5 +1,10 @@
 # Changelog
 
+## Version [0.12.0](https://github.com/CedX/UI/compare/v0.11.0...v0.12.0)
+- Added the `PaginatedList` class.
+- Added the `New-UIPagination` and `New-UIPaginatedList` cmdlets.
+- Replaced the explicit conversions of the `Sort` class by implicit conversions.
+
 ## Version [0.11.0](https://github.com/CedX/UI/compare/v0.10.0...v0.11.0)
 - Added the `StringExtensions` class.
 - Added the `Format-UIString` cmdlet.
