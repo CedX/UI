@@ -34,7 +34,7 @@ describe("Pagination", () => {
 	});
 
 	describe("lastPageIndex", () => {
-		it("should return the total count divided by the page size rounded up", () => {
+		it("should return the total count divided by the page size rounded up, minus one", () => {
 			assert.equal(new Pagination({totalItemCount: 0}).lastPageIndex, 0);
 			assert.equal(new Pagination({itemsPerPage: 1, totalItemCount: 123}).lastPageIndex, 122);
 			assert.equal(new Pagination({itemsPerPage: 10, totalItemCount: 25}).lastPageIndex, 2);
@@ -53,6 +53,20 @@ describe("Pagination", () => {
 		it("should always be greater than or equal to zero", () => {
 			assert.equal(new Pagination({totalItemCount: -1}).totalItemCount, 0);
 			assert.equal(new Pagination({totalItemCount: 123}).totalItemCount, 123);
+		});
+	});
+
+	describe("fromQuery()", () => {
+		it("should create a new pagination from the specified query", () => {
+			const pagination = Pagination.fromQuery(new URLSearchParams({Page: "100", PerPage: "50"}));
+			assert.equal(pagination.currentPageIndex, 99);
+			assert.equal(pagination.itemsPerPage, 50);
+		});
+
+		it("should allow setting a maximum allowed value for the `itemsPerPage` property", () => {
+			const pagination = Pagination.fromQuery(new URLSearchParams({PerPage: "666"}), 100);
+			assert.equal(pagination.currentPageIndex, 0);
+			assert.equal(pagination.itemsPerPage, 100);
 		});
 	});
 });

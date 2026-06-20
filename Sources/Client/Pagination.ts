@@ -92,6 +92,21 @@ export class Pagination {
 	set totalItemCount(value: number) {
 		this.#totalItemCount = Math.max(0, value);
 	}
+
+	/**
+	 * Creates a new pagination from the specified query.
+	 * @param query The search parameters providing the query.
+	 * @param maxItemsPerPage The maximum number of items allowed per page.
+	 * @returns The pagination corresponding to the specified query.
+	 */
+	static fromQuery(query: URLSearchParams, maxItemsPerPage = 1000): Pagination {
+		const currentPage = Number(query.get("Page") ?? "1");
+		const itemsPerPage = Number(query.get("PerPage") ?? "25");
+		return new this({
+			currentPageIndex: (Number.isNaN(currentPage) ? 1 : currentPage) - 1,
+			itemsPerPage: Math.min(maxItemsPerPage, Number.isNaN(itemsPerPage) ? 25 : itemsPerPage)
+		});
+	}
 }
 
 /**
