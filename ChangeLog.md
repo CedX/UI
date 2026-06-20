@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [0.13.0](https://github.com/CedX/UI/compare/v0.12.0...v0.13.0)
+- Added the `Pagination.FromQuery()` method.
+- Added the `Query` parameter set to the `New-UIPagination` cmdlet.
+
 ## Version [0.12.0](https://github.com/CedX/UI/compare/v0.11.0...v0.12.0)
 - Added the `PaginatedList` class.
 - Added the `New-UIPagination` and `New-UIPaginatedList` cmdlets.
