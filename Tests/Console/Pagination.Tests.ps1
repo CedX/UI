@@ -40,7 +40,7 @@ Describe "New-Pagination" {
 	}
 
 	Context "LastPageIndex" {
-		It "should return the total count divided by the page size rounded up" {
+		It "should return the total count divided by the page size rounded up, minus one" {
 			(New-UIPagination -TotalItemCount 0).LastPageIndex | Should -Be 0
 			(New-UIPagination -ItemsPerPage 1 -TotalItemCount 123).LastPageIndex | Should -Be 122
 			(New-UIPagination -ItemsPerPage 10 -TotalItemCount 25).LastPageIndex | Should -Be 2
@@ -59,6 +59,20 @@ Describe "New-Pagination" {
 		It "should always be greater than or equal to zero" {
 			([Pagination]@{ TotalItemCount = -1 }).TotalItemCount | Should -Be 0
 			(New-UIPagination -TotalItemCount 123).TotalItemCount | Should -Be 123
+		}
+	}
+
+	Context "FromQuery" {
+		It "should create a new pagination from the specified query" {
+			$pagination = New-UIPagination -Query @{ Page = 100; PerPage = 50 }
+			$pagination.CurrentPageIndex | Should -Be 99
+			$pagination.ItemsPerPage | Should -Be 50
+		}
+
+		It "should allow setting a maximum allowed value for the `ItemsPerPage` property" {
+			$pagination = New-UIPagination -Query @{ PerPage = 666 } -MaxItemsPerPage 100
+			$pagination.CurrentPageIndex | Should -Be 0
+			$pagination.ItemsPerPage | Should -Be 100
 		}
 	}
 }

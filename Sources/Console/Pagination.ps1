@@ -7,28 +7,36 @@ using namespace Belin.UI
 	The newly created pagination.
 #>
 function New-Pagination {
-	[CmdletBinding()]
+	[CmdletBinding(DefaultParameterSetName = "ItemsPerPage")]
 	[OutputType([Belin.UI.Pagination])]
 	param (
 		# The number of items per page.
-		[Parameter(Position = 0)]
+		[Parameter(ParameterSetName = "ItemsPerPage", Position = 0)]
 		[ValidateRange(1, 1000)]
 		[int] $ItemsPerPage = 25,
 
 		# The current page index.
+		[Parameter(ParameterSetName = "ItemsPerPage")]
 		[ValidateRange("NonNegative")]
 		[int] $CurrentPageIndex,
 
 		# The total number of items.
+		[Parameter(ParameterSetName = "ItemsPerPage")]
 		[ValidateRange("NonNegative")]
-		[int] $TotalItemCount
+		[int] $TotalItemCount,
+
+		# The hash table providing the query.
+		[Parameter(Mandatory, ParameterSetName = "Query")]
+		[hashtable] $Query,
+
+		# The maximum number of items allowed per page.
+		[Parameter(ParameterSetName = "Query")]
+		[ValidateRange(1, 1000)]
+		[int] $MaxItemsPerPage = 1000
 	)
 
-	return [Pagination]@{
-		CurrentPageIndex = $CurrentPageIndex
-		ItemsPerPage = $ItemsPerPage
-		TotalItemCount = $TotalItemCount
-	}
+	if ($PSCmdlet.ParameterSetName -eq "Query") { return [Pagination]::FromQuery($Query, $MaxItemsPerPage) }
+	return [Pagination]@{ CurrentPageIndex = $CurrentPageIndex; ItemsPerPage = $ItemsPerPage; TotalItemCount = $TotalItemCount }
 }
 
 <#
