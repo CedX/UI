@@ -8,7 +8,7 @@ using System.Text.Json.Serialization;
 /// Represents information relevant to the sorting of data items.
 /// </summary>
 /// <param name="properties">The list of properties to be sorted.</param>
-public sealed class Sort(params IEnumerable<KeyValuePair<string, SortDirection>> properties): OrderedDictionary<string, SortDirection>(properties) {
+public sealed class Sort(IEnumerable<KeyValuePair<string, SortDirection>>? properties = null): OrderedDictionary<string, SortDirection>(properties ?? []) {
 
 	/// <summary>
 	/// Creates a new sort from the specified property and direction.
