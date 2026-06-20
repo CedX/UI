@@ -24,7 +24,7 @@ function New-Pagination {
 		[int] $TotalItemCount
 	)
 
-	[Pagination]@{
+	return [Pagination]@{
 		CurrentPageIndex = $CurrentPageIndex
 		ItemsPerPage = $ItemsPerPage
 		TotalItemCount = $TotalItemCount
@@ -39,7 +39,7 @@ function New-Pagination {
 #>
 function New-PaginatedList {
 	[CmdletBinding(DefaultParameterSetName = "Items")]
-	[OutputType([Belin.UI.PaginatedList])]
+	[OutputType([Belin.UI.PaginatedList[object]])]
 	param (
 		# The list items.
 		[Parameter(ParameterSetName = "Items")]
@@ -52,15 +52,17 @@ function New-PaginatedList {
 		[Pagination] $Pagination = [Pagination]::new(),
 
 		# The number of items per page.
-		[Parameter(ParameterSetName = "ItemsPerPage", Position = 0)]
+		[Parameter(Mandatory, ParameterSetName = "ItemsPerPage", Position = 0)]
 		[ValidateRange(1, 1000)]
 		[int] $ItemsPerPage
 	)
 
-	if ($ItemsPerPage) { [PaginatedList[object]]::Empty($ItemsPerPage) }
-	else {
-		$paginatedList = [PaginatedList[object]]::new($Items)
-		$paginatedList.Pagination = $Pagination
-		$paginatedList
+	if ($PSCmdlet.ParameterSetName -eq "ItemsPerPage") {
+		Write-Output ([PaginatedList[object]]::Empty($ItemsPerPage)) -NoEnumerate
+		return
 	}
+
+	$paginatedList = [PaginatedList[object]]::new($Items)
+	$paginatedList.Pagination = $Pagination
+	Write-Output $paginatedList -NoEnumerate
 }

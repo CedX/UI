@@ -3,9 +3,9 @@ using module ../../UI.psd1
 
 <#
 .SYNOPSIS
-	Tests the features of the `Pagination` class.
+	Tests the features of the `New-Pagination` cmdlet.
 #>
-Describe "Pagination" {
+Describe "New-Pagination" {
 	Context "CurrentPageIndex" {
 		It "should always be greater than or equal to zero" {
 			([Pagination]@{ CurrentPageIndex = -1 }).CurrentPageIndex | Should -Be 0
@@ -14,21 +14,21 @@ Describe "Pagination" {
 
 	Context "HasNextPage" {
 		It "should return `$false if there is no next page" {
-			[Pagination]::new().HasNextPage | Should -BeFalse
+			(New-UIPagination).HasNextPage | Should -BeFalse
 		}
 
 		It "should return `$true if a next page exists" {
-			([Pagination]@{ CurrentPageIndex = 2; TotalItemCount = 123 }).HasNextPage | Should -BeTrue
+			(New-UIPagination -CurrentPageIndex 2 -TotalItemCount 123).HasNextPage | Should -BeTrue
 		}
 	}
 
 	Context "HasPreviousPage" {
 		It "should return `$false if there is no previous page" {
-			[Pagination]::new().HasPreviousPage | Should -BeFalse
+			(New-UIPagination).HasPreviousPage | Should -BeFalse
 		}
 
 		It "should return `$true if a previous page exists" {
-			([Pagination]@{ CurrentPageIndex = 5 }).HasPreviousPage | Should -BeTrue
+			(New-UIPagination -CurrentPageIndex 5).HasPreviousPage | Should -BeTrue
 		}
 	}
 
@@ -41,24 +41,47 @@ Describe "Pagination" {
 
 	Context "LastPageIndex" {
 		It "should return the total count divided by the page size rounded up" {
-			([Pagination]@{ TotalItemCount = 0 }).LastPageIndex | Should -Be 0
-			([Pagination]@{ ItemsPerPage = 1; TotalItemCount = 123 }).LastPageIndex | Should -Be 122
-			([Pagination]@{ ItemsPerPage = 10; TotalItemCount = 25 }).LastPageIndex | Should -Be 2
+			(New-UIPagination -TotalItemCount 0).LastPageIndex | Should -Be 0
+			(New-UIPagination -ItemsPerPage 1 -TotalItemCount 123).LastPageIndex | Should -Be 122
+			(New-UIPagination -ItemsPerPage 10 -TotalItemCount 25).LastPageIndex | Should -Be 2
 		}
 	}
 
 	Context "Offset" {
 		It "should return the page size multiplied by the page index" {
-			[Pagination]::new().Offset | Should -Be 0
-			([Pagination]@{ CurrentPageIndex = 4 }).Offset | Should -Be 100
-			([Pagination]@{ CurrentPageIndex = 122; ItemsPerPage = 5 }).Offset | Should -Be 610
+			(New-UIPagination).Offset | Should -Be 0
+			(New-UIPagination -CurrentPageIndex 4).Offset | Should -Be 100
+			(New-UIPagination -CurrentPageIndex 122 -ItemsPerPage 5).Offset | Should -Be 610
 		}
 	}
 
 	Context "TotalItemCount" {
 		It "should always be greater than or equal to zero" {
 			([Pagination]@{ TotalItemCount = -1 }).TotalItemCount | Should -Be 0
-			([Pagination]@{ TotalItemCount = 123 }).TotalItemCount | Should -Be 123
+			(New-UIPagination -TotalItemCount 123).TotalItemCount | Should -Be 123
+		}
+	}
+}
+
+<#
+.SYNOPSIS
+	Tests the features of the `New-PaginatedList` cmdlet.
+#>
+Describe "New-PaginatedList" {
+	Context "Items" {
+		It "should return a paginated list having the specified items" {
+			$paginatedList = New-UIPaginatedList -Items 2, 4, 8, 16, 32, 64
+			$paginatedList | Should -HaveCount 6
+			$paginatedList[0] | Should -Be 2
+			$paginatedList[5] | Should -Be 64
+		}
+	}
+
+	Context "ItemsPerPage" {
+		It "should return an empty paginated list with the specified number of items per page" {
+			$paginatedList = New-UIPaginatedList 666
+			$paginatedList | Should -HaveCount 0
+			$paginatedList.Pagination.ItemsPerPage | Should -Be 666
 		}
 	}
 }
