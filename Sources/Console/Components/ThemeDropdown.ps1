@@ -28,7 +28,7 @@ function New-ThemeDropdown {
 		[switch] $Cookie,
 
 		# The URI for which the associated cookie is valid.
-		[string] $CookieDomain = "",
+		[string] $CookieDomain,
 
 		# The key of the storage entry providing the saved application theme.
 		[ValidateNotNullOrWhiteSpace()]
