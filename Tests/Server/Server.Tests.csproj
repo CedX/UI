@@ -2,6 +2,7 @@
 	<PropertyGroup>
 		<Company>Cedric-Belin.fr</Company>
 		<Copyright>© Cédric Belin</Copyright>
+		<Description>Component library by Cédric Belin, full stack developer.</Description>
 		<Product>Belin UI</Product>
 		<Version>0.13.0</Version>
 	</PropertyGroup>
