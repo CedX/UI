@@ -14,21 +14,21 @@ Describe "New-Pagination" {
 
 	Context "HasNextPage" {
 		It "should return `$false if there is no next page" {
-			(New-UIPagination).HasNextPage | Should -BeFalse
+			(New-UIPagination).HasNextPage | Should-BeFalse
 		}
 
 		It "should return `$true if a next page exists" {
-			(New-UIPagination -CurrentPageIndex 2 -TotalItemCount 123).HasNextPage | Should -BeTrue
+			(New-UIPagination -CurrentPageIndex 2 -TotalItemCount 123).HasNextPage | Should-BeTrue
 		}
 	}
 
 	Context "HasPreviousPage" {
 		It "should return `$false if there is no previous page" {
-			(New-UIPagination).HasPreviousPage | Should -BeFalse
+			(New-UIPagination).HasPreviousPage | Should-BeFalse
 		}
 
 		It "should return `$true if a previous page exists" {
-			(New-UIPagination -CurrentPageIndex 5).HasPreviousPage | Should -BeTrue
+			(New-UIPagination -CurrentPageIndex 5).HasPreviousPage | Should-BeTrue
 		}
 	}
 
