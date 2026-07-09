@@ -13,7 +13,7 @@ function Format-Position {
 	[OutputType([string])]
 	param (
 		# The position.
-		[Parameter(Mandatory, Position = 0, ValueFromPipeline)]
+		[Parameter(Mandatory, Position = 1, ValueFromPipeline)]
 		[Position] $InputObject,
 
 		# Value indicating whether to return the corresponding CSS class.

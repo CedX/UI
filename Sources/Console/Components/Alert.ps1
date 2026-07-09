@@ -17,7 +17,7 @@ function New-Alert {
 	[SuppressMessage("PSReviewUnusedParameter", "Icon")]
 	param (
 		# The child content.
-		[Parameter(Position = 0, ValueFromPipeline)]
+		[Parameter(Position = 1, ValueFromPipeline)]
 		[object] $Content,
 
 		# The CSS class names to apply to the underlying element.

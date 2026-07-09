@@ -13,7 +13,7 @@ function Format-AppTheme {
 	[OutputType([string])]
 	param (
 		# The application theme.
-		[Parameter(Mandatory, Position = 0, ValueFromPipeline)]
+		[Parameter(Mandatory, Position = 1, ValueFromPipeline)]
 		[AppTheme] $InputObject,
 
 		# Value indicating whether to return the corresponding icon name.

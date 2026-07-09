@@ -13,7 +13,7 @@ function Format-Size {
 	[OutputType([string])]
 	param (
 		# The size.
-		[Parameter(Mandatory, Position = 0, ValueFromPipeline)]
+		[Parameter(Mandatory, Position = 1, ValueFromPipeline)]
 		[Size] $InputObject,
 
 		# Value indicating whether to return the corresponding CSS class.

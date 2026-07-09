@@ -16,7 +16,7 @@ function New-Toast {
 	[SuppressMessage("PSReviewUnusedParameter", "Content")]
 	param (
 		# The child content.
-		[Parameter(Position = 0, ValueFromPipeline)]
+		[Parameter(Position = 1, ValueFromPipeline)]
 		[object] $Content,
 
 		# Value indicating whether to automatically hide this toast.

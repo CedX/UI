@@ -12,7 +12,7 @@ function New-TypeAhead {
 	[OutputType([string])]
 	param (
 		# The data list identifier.
-		[Parameter(Mandatory, Position = 0)]
+		[Parameter(Mandatory, Position = 1)]
 		[string] $List,
 
 		# The delay in milliseconds to wait before triggering autocomplete suggestions.

@@ -18,7 +18,7 @@ function New-DialogBox {
 	[SuppressMessage("PSReviewUnusedParameter", "Scrollable")]
 	param (
 		# The child content.
-		[Parameter(ParameterSetName = "Content", Position = 0, ValueFromPipeline)]
+		[Parameter(ParameterSetName = "Content", Position = 1, ValueFromPipeline)]
 		[object] $Content,
 
 		# The child content displayed in the body.

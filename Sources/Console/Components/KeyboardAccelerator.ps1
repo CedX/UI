@@ -14,7 +14,7 @@ function New-KeyboardAccelerator {
 	[OutputType([string])]
 	param (
 		# The child content.
-		[Parameter(Position = 0, ValueFromPipeline)]
+		[Parameter(Position = 1, ValueFromPipeline)]
 		[object] $Content,
 
 		# Identifies the key for the keyboard accelerator.

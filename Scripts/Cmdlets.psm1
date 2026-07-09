@@ -7,7 +7,7 @@ using namespace System.Diagnostics.CodeAnalysis
 function Build-DotNetSolution {
 	param (
 		# The configuration to use for generating the project.
-		[Parameter(Position = 0)]
+		[Parameter(Position = 1)]
 		[string] $Configuration
 	)
 
@@ -30,7 +30,7 @@ function Format-DotNetSolution {
 function Install-NpmPackage {
 	param (
 		# The package to install.
-		[Parameter(Position = 0)]
+		[Parameter(Position = 1)]
 		[string] $Package
 	)
 
@@ -64,7 +64,7 @@ function Invoke-DotNetTest {
 function Invoke-ESLint {
 	param (
 		# The path to the file or directory to be analyzed.
-		[Parameter(Mandatory, Position = 0)]
+		[Parameter(Mandatory, Position = 1)]
 		[string[]] $Path,
 
 		# The path to the configuration file.
@@ -94,7 +94,7 @@ function Invoke-NodeTest {
 function Invoke-TypeScript {
 	param (
 		# The path to the configuration file.
-		[Parameter(Mandatory, Position = 0)]
+		[Parameter(Mandatory, Position = 1)]
 		[ValidateScript({ Test-Path $_ -PathType Leaf }, ErrorMessage = "The specified configuration file does not exist.")]
 		[string] $Configuration,
 
@@ -123,7 +123,7 @@ function New-GitTag {
 	[SuppressMessage("PSUseShouldProcessForStateChangingFunctions", "")]
 	param (
 		# The tag name.
-		[Parameter(Mandatory, Position = 0)]
+		[Parameter(Mandatory, Position = 1)]
 		[string] $Name
 	)
 
@@ -208,7 +208,7 @@ function Test-PSResourceUpdate {
 	[OutputType([psobject])]
 	param (
 		# The PowerShell module to be checked.
-		[Parameter(Mandatory, Position = 0, ValueFromPipeline)]
+		[Parameter(Mandatory, Position = 1, ValueFromPipeline)]
 		[Microsoft.PowerShell.PSResourceGet.UtilClasses.PSResourceInfo] $InputObject
 	)
 
@@ -231,7 +231,7 @@ function Test-PSResourceUpdate {
 function Update-NpmPackage {
 	param (
 		# The package to update.
-		[Parameter(Position = 0)]
+		[Parameter(Position = 1)]
 		[string] $Package
 	)
 

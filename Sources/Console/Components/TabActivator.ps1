@@ -14,7 +14,7 @@ function New-TabActivator {
 	[OutputType([string])]
 	param (
 		# The child content.
-		[Parameter(Position = 0, ValueFromPipeline)]
+		[Parameter(Position = 1, ValueFromPipeline)]
 		[object] $Content,
 
 		# The storage area to use.

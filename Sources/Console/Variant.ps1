@@ -13,7 +13,7 @@ function Format-Variant {
 	[OutputType([string])]
 	param (
 		# The variant.
-		[Parameter(Mandatory, Position = 0, ValueFromPipeline)]
+		[Parameter(Mandatory, Position = 1, ValueFromPipeline)]
 		[Variant] $InputObject,
 
 		# Value indicating whether to return the corresponding CSS class.

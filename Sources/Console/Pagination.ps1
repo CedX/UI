@@ -11,7 +11,7 @@ function New-Pagination {
 	[OutputType([Belin.UI.Pagination])]
 	param (
 		# The number of items per page.
-		[Parameter(ParameterSetName = "ItemsPerPage", Position = 0)]
+		[Parameter(ParameterSetName = "ItemsPerPage", Position = 1)]
 		[ValidateRange(1, 1000)]
 		[int] $ItemsPerPage = 25,
 
@@ -60,7 +60,7 @@ function New-PaginatedList {
 		[Pagination] $Pagination = [Pagination]::new(),
 
 		# The number of items per page.
-		[Parameter(Mandatory, ParameterSetName = "ItemsPerPage", Position = 0)]
+		[Parameter(Mandatory, ParameterSetName = "ItemsPerPage", Position = 1)]
 		[ValidateRange(1, 1000)]
 		[int] $ItemsPerPage
 	)

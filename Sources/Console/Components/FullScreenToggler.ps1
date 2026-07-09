@@ -12,7 +12,7 @@ function New-FullScreenToggler {
 	[OutputType([string])]
 	param (
 		# The child content.
-		[Parameter(Position = 0, ValueFromPipeline)]
+		[Parameter(Position = 1, ValueFromPipeline)]
 		[object] $Content,
 
 		# The CSS selector used to target the element.

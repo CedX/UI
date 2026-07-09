@@ -14,7 +14,7 @@ function New-ThemeDropdown {
 	[OutputType([string])]
 	param (
 		# The text of the dropdown menu.
-		[Parameter(Position = 0)]
+		[Parameter(Position = 1)]
 		[ValidateNotNullOrWhiteSpace()]
 		[string] $Text = "Thème",
 

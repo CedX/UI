@@ -13,7 +13,7 @@ function Format-String {
 	[OutputType([string])]
 	param (
 		# The string to format.
-		[Parameter(Mandatory, Position = 0, ValueFromPipeline)]
+		[Parameter(Mandatory, Position = 1, ValueFromPipeline)]
 		[AllowEmptyString()]
 		[AllowNull()]
 		[string] $Value,

@@ -13,7 +13,7 @@ function Format-Context {
 	[OutputType([string])]
 	param (
 		# The context.
-		[Parameter(Mandatory, Position = 0, ValueFromPipeline)]
+		[Parameter(Mandatory, Position = 1, ValueFromPipeline)]
 		[Context] $InputObject,
 
 		# Value indicating whether to return the corresponding CSS class.
