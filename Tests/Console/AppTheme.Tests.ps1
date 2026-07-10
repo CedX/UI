@@ -10,7 +10,7 @@ Describe "Format-AppTheme" {
 			@{ Value = "Dark"; Expected = "dark_mode" }
 			@{ Value = "Light"; Expected = "light_mode" }
 		) {
-			Format-UIAppTheme $value -Icon | Should -BeExactly $expected
+			Should-BeString $expected (Format-UIAppTheme $value -Icon) -CaseSensitive
 		}
 	}
 
@@ -19,7 +19,7 @@ Describe "Format-AppTheme" {
 			@{ Value = "Dark"; Expected = "Sombre" }
 			@{ Value = "Light"; Expected = "Clair" }
 		) {
-			Format-UIAppTheme $value -Text | Should -BeExactly $expected
+			Should-BeString $expected (Format-UIAppTheme $value -Text) -CaseSensitive
 		}
 	}
 }

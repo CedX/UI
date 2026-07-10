@@ -9,36 +9,36 @@ using module ../../UI.psd1
 Describe "Sort" {
 	Context "GetIcon()" {
 		It "should return the icon corresponding to the sort direction" {
-			[Sort]::Of("foo").GetIcon("foo") | Should -BeExactly arrow_upward
-			[Sort]::Of("foo", "Descending").GetIcon("foo") | Should -BeExactly arrow_downward
-			[Sort]::new().GetIcon("foo") | Should -BeExactly swap_vert
+			Should-BeString arrow_upward ([Sort]::Of("foo").GetIcon("foo")) -CaseSensitive
+			Should-BeString arrow_downward ([Sort]::Of("foo", "Descending").GetIcon("foo")) -CaseSensitive
+			Should-BeString swap_vert ([Sort]::new().GetIcon("foo")) -CaseSensitive
 		}
 	}
 
 	Context "Parse()" {
 		It "should return an empty sort for an empty string" {
-			[Sort]::Parse("") | Should -BeNullOrEmpty
+			Should-Be 0 ([Sort]::Parse("").Count)
 		}
 
 		It "should return an ascending direction for a property without prefix, a descending direction for a property with a '-' prefix" {
 			$sort = [Sort]::Parse("foo,-bar")
-			$sort.Keys | Should -HaveCount 2
-			$sort.GetAt(0) | Should -Be ([KeyValuePair[string, SortDirection]]::new("foo", "Ascending"))
-			$sort.GetAt(1) | Should -Be ([KeyValuePair[string, SortDirection]]::new("bar", "Descending"))
+			Should-Be 2 $sort.Count
+			Should-Be ([KeyValuePair[string, SortDirection]]::new("foo", "Ascending")) $sort.GetAt(0)
+			Should-Be ([KeyValuePair[string, SortDirection]]::new("bar", "Descending")) $sort.GetAt(1)
 		}
 	}
 
 	Context "ToString()" {
 		It "should return an empty string for an empty sort" {
-			[Sort]::new().ToString() | Should -BeNullOrEmpty
+			Should-BeEmptyString ([Sort]::new().ToString())
 		}
 
 		It "should return the property for an ascending direction" {
-			[Sort]::Of("foo") | Should -BeExactly "foo"
+			Should-BeString "foo" ([Sort]::Of("foo").ToString()) -CaseSensitive
 		}
 
 		It "should return the property with a '-' prefix for a descending direction" {
-			[Sort]::Parse("foo,-bar") | Should -BeExactly "foo,-bar"
+			Should-BeString "foo,-bar" ([Sort]::Parse("foo,-bar").ToString()) -CaseSensitive
 		}
 	}
 }
