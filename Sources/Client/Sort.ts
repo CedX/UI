@@ -1,23 +1,4 @@
-/**
- * Specifies the direction of a sorted property.
- */
-export const SortDirection = Object.freeze({
-
-	/**
-	 * The sort is ascending.
-	 */
-	Ascending: "Ascending",
-
-	/**
-	 * The sort is descending.
-	 */
-	Descending: "Descending"
-});
-
-/**
- * Specifies the direction of a sorted property.
- */
-export type SortDirection = typeof SortDirection[keyof typeof SortDirection];
+import {SortDirection} from "./SortDirection.js";
 
 /**
  * Holds the name of a property and the direction to sort by.
