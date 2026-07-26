@@ -26,8 +26,8 @@
 		"globals": "^17.7.0",
 		"htmx.org": "^2.0.10",
 		"mocha": "^11.7.6",
-		"playwright": "^1.61.1",
-		"playwright-firefox": "^1.61.1",
+		"playwright": "^1.62.0",
+		"playwright-firefox": "^1.62.0",
 		"serve-handler": "^6.1.7",
 		"typescript": "npm:@typescript/typescript6@^6.0.2",
 		"typescript-eslint": "^8.65.0"
