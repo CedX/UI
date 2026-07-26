@@ -65,7 +65,7 @@ function New-DialogBox {
 							button -Class btn-close -Type button
 						}
 						div -Class modal-body ($Body ?? $Content)
-						div -Class modal-footer -Hidden:$(-not $Footer) $Footer
+						div -Class modal-footer -Hidden:(-not $Footer) $Footer
 					}
 				}
 			}
