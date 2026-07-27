@@ -23,7 +23,7 @@ public sealed class SortTests {
 
 		// It should return an ascending direction for a property without prefix, a descending direction for a property with a "-" prefix.
 		var expected = new KeyValuePair<string, SortDirection>[] { new("foo", SortDirection.Ascending), new("bar", SortDirection.Descending) };
-		CollectionAssert.AreEqual(expected, Sort.Parse("foo,-bar"));
+		AreSequenceEqual(expected, Sort.Parse("foo,-bar"));
 	}
 
 	[TestMethod, DisplayName("ToString")]
