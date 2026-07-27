@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 /// <summary>
 /// Defines the alignment of a component.
 /// </summary>
-[JsonConverter(typeof(JsonStringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter<Alignment>))]
 public enum Alignment {
 
 	/// <summary>

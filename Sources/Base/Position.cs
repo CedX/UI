@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 /// <summary>
 /// Defines the position of an element.
 /// </summary>
-[JsonConverter(typeof(JsonStringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter<Position>))]
 public enum Position {
 
 	/// <summary>

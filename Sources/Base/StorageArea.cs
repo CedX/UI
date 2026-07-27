@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 /// <summary>
 /// Identifies the web storage area.
 /// </summary>
-[JsonConverter(typeof(JsonStringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter<StorageArea>))]
 public enum StorageArea {
 
 	/// <summary>

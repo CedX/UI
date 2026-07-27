@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 /// <summary>
 /// Enumerates different themes an operating system or application can show.
 /// </summary>
-[JsonConverter(typeof(JsonStringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter<AppTheme>))]
 public enum AppTheme {
 
 	/// <summary>

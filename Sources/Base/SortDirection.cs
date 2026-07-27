@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 /// <summary>
 /// Specifies the direction of a sorted property.
 /// </summary>
-[JsonConverter(typeof(JsonStringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter<SortDirection>))]
 public enum SortDirection {
 
 	/// <summary>

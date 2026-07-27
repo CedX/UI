@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 /// <summary>
 /// Defines the size of an element.
 /// </summary>
-[JsonConverter(typeof(JsonStringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter<Size>))]
 public enum Size {
 
 	/// <summary>

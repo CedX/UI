@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 /// <summary>
 /// Defines tone variants.
 /// </summary>
-[JsonConverter(typeof(JsonStringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter<Variant>))]
 public enum Variant {
 
 	/// <summary>
