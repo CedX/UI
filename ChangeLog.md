@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [0.14.0](https://github.com/CedX/UI/compare/v0.13.0...v0.14.0)
+- Added the `failed()` and `successful()` functions to the `Htmx` module.
+
 ## Version [0.13.0](https://github.com/CedX/UI/compare/v0.12.0...v0.13.0)
 - Added the `Pagination.FromQuery()` method.
 - Added the `Query` parameter set to the `New-UIPagination` cmdlet.
