@@ -12,8 +12,7 @@ Describe "Format-String" {
 			@{ Value = "foo bAr baZ"; Expected = "Foo bAr baZ" }
 		) {
 			$actual = Format-UIString $value -Capitalize -Culture fr-FR
-			if ($expected) { Should-BeString $expected $actual -CaseSensitive }
-			else { Should-BeEmptyString $actual }
+			Should-BeString $expected $actual -CaseSensitive
 		}
 	}
 
@@ -25,8 +24,7 @@ Describe "Format-String" {
 			@{ Value = "foo bar"; Length = 4; Expected = "foo ..." }
 		) {
 			$actual = Format-UIString $value -Truncate -Length $length
-			if ($expected) { Should-BeString $expected $actual -CaseSensitive }
-			else { Should-BeEmptyString $actual }
+			Should-BeString $expected $actual -CaseSensitive
 		}
 
 		It "should append the specified ellipsis to the truncated string" -ForEach @(
