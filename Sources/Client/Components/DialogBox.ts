@@ -266,7 +266,7 @@ export class DialogBox extends HTMLElement {
 	 */
 	show(message: IDialogMessage|null = null): Promise<string> {
 		if (message) {
-			const footer = message.footer ?? document.createDocumentFragment();
+			const footer = message.footer ?? new DocumentFragment;
 			for (const button of footer.querySelectorAll("button")) button.addEventListener("click", this.#close);
 			this.body = message.body;
 			this.caption = message.caption;
