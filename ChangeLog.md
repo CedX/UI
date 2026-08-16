@@ -1,5 +1,10 @@
 # Changelog
 
+## Version [0.16.0](https://github.com/CedX/UI/compare/v0.15.0...v0.16.0)
+- Added the `HtmxConfirmEventDetail.triggeringEvent` property.
+- Removed the dependency on [tsyringe](https://github.com/microsoft/tsyringe).
+- Replaced the `DialogBox.confirmHandler` property by the `registerAsHtmxConfirmHandler()` method.
+
 ## Version [0.15.0](https://github.com/CedX/UI/compare/v0.14.0...v0.15.0)
 - Added the `DialogBox.confirmHandler` property.
 - Added the `HtmxConfirmEventDetail` type.
