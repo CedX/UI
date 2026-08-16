@@ -13,6 +13,23 @@ export type HtmxEventDetail = HtmxResponseInfo & {
 };
 
 /**
+ * Provides details about the `htmx:confirm` event.
+ */
+export type HtmxConfirmEventDetail = HtmxEventDetail & {
+
+	/**
+	 * Issues the actual AJAX request.
+	 * @param skipConfirmation Value indicating whether to skip the built-in confirmation dialog.
+	 */
+	issueRequest: (skipConfirmation?: boolean) => void;
+
+	/**
+	 * The question passed to the `hx-confirm` attribute.
+	 */
+	question?: string;
+};
+
+/**
  * Returns a value indicating whether the specified response failed.
  * @param response The `htmx` response.
  * @returns `true` if the specified response failed, otherwise `false`.
