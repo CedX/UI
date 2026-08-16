@@ -13,5 +13,5 @@ Component library by [Cédric Belin](https://cedric-belin.fr), full stack develo
 - [Git repository](https://github.com/CedX/UI)
 - [Submit an issue](https://github.com/CedX/UI/issues)
 
-## Licence
+## License
 [Belin UI](https://github.com/CedX/UI) is distributed under the MIT License.
