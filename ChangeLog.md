@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [0.15.0](https://github.com/CedX/UI/compare/v0.14.0...v0.15.0)
+- Added the `DialogBox.confirmHandler` property.
+- Added the `HtmxConfirmEventDetail` type.
+
 ## Version [0.14.0](https://github.com/CedX/UI/compare/v0.13.0...v0.14.0)
 - Added the `failed()` and `successful()` functions to the `Htmx` module.
 

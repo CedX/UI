@@ -69,7 +69,7 @@ export class DialogBox extends HTMLElement {
 		const dialogBox = container.resolve(DialogBox);
 		const parts = (event.detail.question as string).split("|");
 
-		let promise = Promise.resolve<string>(DialogResult.Cancel);
+		let promise = Promise.resolve<string>(DialogResult.None);
 		switch (parts.length) {
 			case 1: promise = dialogBox.confirm(Context.Warning, "", html`${parts[0]}`); break;
 			case 2: promise = dialogBox.confirm(Context.Warning, parts[0], html`${parts[1]}`); break;
