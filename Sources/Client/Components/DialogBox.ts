@@ -1,6 +1,8 @@
 import {Modal} from "bootstrap";
-import {type Context, cssClass as contextCssClass, icon as contextIcon} from "../Context.js";
+import {container} from "tsyringe";
+import {Context, cssClass as contextCssClass, icon as contextIcon} from "../Context.js";
 import {DialogResult} from "../DialogResult.js";
+import type {HtmxConfirmEventDetail} from "../Htmx.js";
 import {html} from "../Tags.js";
 import {Variant, cssClass as variantCssClass} from "../Variant.js";
 
@@ -55,6 +57,27 @@ export interface IDialogMessage {
  * Displays a dialog box, which presents a message to the user.
  */
 export class DialogBox extends HTMLElement {
+
+	/**
+	 * The handler to use to register the dialog box as a listener for the `htmx:confirm` event.
+	 * @param event The dispatched event.
+	 */
+	static readonly confirmHandler = function htmxConfirmHandler(event: CustomEvent<HtmxConfirmEventDetail>): void {
+		if (!event.detail.question) return;
+		event.preventDefault();
+
+		const dialogBox = container.resolve(DialogBox);
+		const parts = (event.detail.question as string).split("|");
+
+		let promise = Promise.resolve<string>(DialogResult.Cancel);
+		switch (parts.length) {
+			case 1: promise = dialogBox.confirm(Context.Warning, "", html`${parts[0]}`); break;
+			case 2: promise = dialogBox.confirm(Context.Warning, parts[0], html`${parts[1]}`); break;
+			default: promise = dialogBox.confirm(parts[0] as Context, parts[1], html`${parts.slice(2).join("|")}`);
+		}
+
+		promise.then(dialogResult => { if (dialogResult == DialogResult.OK) event.detail.issueRequest(true); })
+	} as EventListener;
 
 	/**
 	 * The list of observed attributes.
