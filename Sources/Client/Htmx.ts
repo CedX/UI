@@ -27,6 +27,11 @@ export type HtmxConfirmEventDetail = HtmxEventDetail & {
 	 * The question passed to the `hx-confirm` attribute.
 	 */
 	question?: string;
+
+	/**
+	 * The event that triggered the original request.
+	 */
+	triggeringEvent: Event;
 };
 
 /**

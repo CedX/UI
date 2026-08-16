@@ -50,7 +50,7 @@ export function print(file: File): void {
 	frame.hidden = true;
 	frame.src = url;
 
-	window.addEventListener("focus", () => {
+	addEventListener("focus", () => {
 		document.body.removeChild(frame);
 		URL.revokeObjectURL(url);
 	}, {once: true});
