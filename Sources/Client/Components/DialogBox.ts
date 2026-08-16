@@ -67,16 +67,16 @@ export class DialogBox extends HTMLElement {
 		event.preventDefault();
 
 		const dialogBox = container.resolve(DialogBox);
-		const parts = (event.detail.question as string).split("|");
+		const parts = event.detail.question.split("|");
 
-		let promise = Promise.resolve<string>(DialogResult.None);
+		let promise: Promise<string>;
 		switch (parts.length) {
 			case 1: promise = dialogBox.confirm(Context.Warning, "", html`${parts[0]}`); break;
 			case 2: promise = dialogBox.confirm(Context.Warning, parts[0], html`${parts[1]}`); break;
 			default: promise = dialogBox.confirm(parts[0] as Context, parts[1], html`${parts.slice(2).join("|")}`);
 		}
 
-		promise.then(dialogResult => { if (dialogResult == DialogResult.OK) event.detail.issueRequest(true); })
+		void promise.then(dialogResult => { if (dialogResult == DialogResult.OK) event.detail.issueRequest(true); });
 	} as EventListener;
 
 	/**
