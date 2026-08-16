@@ -3,8 +3,6 @@
 <#
 .SYNOPSIS
 	A dropdown menu for switching the application theme.
-.INPUTS
-	The child content.
 .OUTPUTS
 	The rendered component.
 #>
