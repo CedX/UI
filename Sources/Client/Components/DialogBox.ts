@@ -1,5 +1,4 @@
 import {Modal} from "bootstrap";
-import {container} from "tsyringe";
 import {Context, cssClass as contextCssClass, icon as contextIcon} from "../Context.js";
 import {DialogResult} from "../DialogResult.js";
 import type {HtmxConfirmEventDetail} from "../Htmx.js";
@@ -57,27 +56,6 @@ export interface IDialogMessage {
  * Displays a dialog box, which presents a message to the user.
  */
 export class DialogBox extends HTMLElement {
-
-	/**
-	 * The handler to use to register the dialog box as a listener for the `htmx:confirm` event.
-	 * @param event The dispatched event.
-	 */
-	static readonly confirmHandler = function htmxConfirmHandler(event: CustomEvent<HtmxConfirmEventDetail>): void {
-		if (!event.detail.question) return;
-		event.preventDefault();
-
-		const dialogBox = container.resolve(DialogBox);
-		const parts = event.detail.question.split("|");
-
-		let promise: Promise<string>;
-		switch (parts.length) {
-			case 1: promise = dialogBox.confirm(Context.Warning, "", html`${parts[0]}`); break;
-			case 2: promise = dialogBox.confirm(Context.Warning, parts[0], html`${parts[1]}`); break;
-			default: promise = dialogBox.confirm(parts[0] as Context, parts[1], html`${parts.slice(2).join("|")}`);
-		}
-
-		void promise.then(dialogResult => { if (dialogResult == DialogResult.OK) event.detail.issueRequest(true); });
-	} as EventListener;
 
 	/**
 	 * The list of observed attributes.
@@ -280,6 +258,31 @@ export class DialogBox extends HTMLElement {
 	 */
 	disconnectedCallback(): void {
 		this.#modal.dispose();
+	}
+
+	/**
+	 * Registers this dialog box as a listener for the `htmx:confirm` event.
+	 * @returns An abort controller used to cancel the subscription to the `htmx:confirm` event.
+	 */
+	registerAsHtmxConfirmHandler(): AbortController {
+		const listener = (event: CustomEvent<HtmxConfirmEventDetail>): void => {
+			if (!event.detail.question) return;
+			event.preventDefault();
+
+			const parts = event.detail.question.split("|");
+			let promise: Promise<string>;
+			switch (parts.length) {
+				case 1: promise = this.confirm(Context.Warning, "", html`${parts[0]}`); break;
+				case 2: promise = this.confirm(Context.Warning, parts[0], html`${parts[1]}`); break;
+				default: promise = this.confirm(parts[0] as Context, parts[1], html`${parts.slice(2).join("|")}`);
+			}
+
+			void promise.then(dialogResult => { if (dialogResult == DialogResult.OK) event.detail.issueRequest(true); });
+		};
+
+		const abortController = new AbortController;
+		document.body.addEventListener("htmx:confirm", listener as EventListener, {signal: abortController.signal});
+		return abortController;
 	}
 
 	/**
