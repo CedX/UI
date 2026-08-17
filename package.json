@@ -7,7 +7,7 @@
 	"name": "@cedx/ui",
 	"repository": "CedX/UI",
 	"type": "module",
-	"version": "0.16.0",
+	"version": "0.16.1",
 	"allowScripts": {
 		"esbuild": true,
 		"playwright-firefox": true
