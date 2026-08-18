@@ -1,6 +1,6 @@
 ﻿@{
 	DefaultCommandPrefix = "UI"
-	ModuleVersion = "0.16.2"
+	ModuleVersion = "0.17.0"
 	PowerShellVersion = "7.6"
 	RootModule = "Sources/Console/Main.psm1"
 
@@ -54,6 +54,8 @@
 		"New-Toast"
 		"New-Toaster"
 		"New-TypeAhead"
+		"Show-DialogBox"
+		"Show-Toast"
 	)
 
 	RequiredModules = @(
