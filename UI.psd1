@@ -1,6 +1,6 @@
 ﻿@{
 	DefaultCommandPrefix = "UI"
-	ModuleVersion = "0.18.0"
+	ModuleVersion = "0.19.0"
 	PowerShellVersion = "7.6"
 	RootModule = "Sources/Console/Main.psm1"
 
@@ -28,7 +28,6 @@
 		"ThemeDropdown"
 		"Toast"
 		"Toaster"
-		"TypeAhead"
 	)
 
 	FunctionsToExport = @(
@@ -53,7 +52,6 @@
 		"New-ThemeDropdown"
 		"New-Toast"
 		"New-Toaster"
-		"New-TypeAhead"
 		"Show-DialogBox"
 		"Show-Toast"
 	)
