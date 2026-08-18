@@ -153,7 +153,7 @@ function Publish-NuGetPackage {
 	$output = "$PSScriptRoot/../Temp/NuGet"
 	$argumentList = "--output", $output
 	if ($NoBuild) { $argumentList += "--no-build" }
-	foreach ($module in "Base", "Server") { dotnet pack "$PSScriptRoot/../Sources/$module" @argumentList }
+	dotnet pack "$PSScriptRoot/../Sources/Server" @argumentList
 	foreach ($package in Get-Item $output/*.nupkg) { dotnet nuget push $package --api-key $Env:NUGET_API_KEY --source NuGet }
 }
 
