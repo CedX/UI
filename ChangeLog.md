@@ -1,6 +1,7 @@
 # Changelog
 
 ## Version [0.19.0](https://github.com/CedX/UI/compare/v0.18.0...v0.19.0)
+- Merged the `Belin.UI.AspNet` assembly into the `Belin.UI` assembly.
 - Removed the `TypeAhead` component.
 
 ## Version [0.18.0](https://github.com/CedX/UI/compare/v0.17.0...v0.18.0)
