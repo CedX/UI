@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [0.16.1](https://github.com/CedX/UI/compare/v0.16.1...v0.16.2)
+- Allows strings for the `message` parameter of the `alert()` and `confirm()` methods of the `DialogBox` component.
+- Allows strings for the `message` parameter of the `Toaster.notify()` method.
+
 ## Version [0.16.1](https://github.com/CedX/UI/compare/v0.16.0...v0.16.1)
 - The `Toast` component is automatically imported when using the `Toaster` component.
 
