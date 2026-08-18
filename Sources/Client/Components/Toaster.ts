@@ -147,11 +147,11 @@ export class Toaster extends HTMLElement {
 	/**
 	 * Shows a toast.
 	 * @param context The contextual modifier.
-	 * @param caption The title displayed in the toast header.
-	 * @param message The child content displayed in the toast body.
+	 * @param caption The title displayed in the header.
+	 * @param message The child content displayed in the body.
 	 */
-	notify(context: Context, caption: string, message: DocumentFragment|string): void {
-		return this.show({body: typeof message == "string" ? html`${message}` : message, caption, context});
+	notify(context: Context, caption: string, message: DocumentFragment): void {
+		return this.show({body: message, caption, context});
 	}
 
 	/**
@@ -184,7 +184,7 @@ export class Toaster extends HTMLElement {
 	useNotifyEventHandler(): AbortController {
 		const listener = (event: CustomEvent<IToasterEventArgs>): void => {
 			const {caption, context, message} = event.detail;
-			this.notify(context ?? Context.Info, caption ?? "", message);
+			this.notify(context ?? Context.Info, caption ?? "", html`${message}`);
 		};
 
 		const abortController = new AbortController;

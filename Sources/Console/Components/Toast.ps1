@@ -80,11 +80,11 @@ function Show-Toast {
 	[CmdletBinding()]
 	[OutputType([void])]
 	param (
-		# The child content displayed in the toast body.
+		# The child content displayed in the body.
 		[Parameter(Mandatory, Position = 1)]
 		[string] $Message,
 
-		# The title displayed in the toast header.
+		# The title displayed in the header.
 		[string] $Caption = "",
 
 		# The contextual modifier.

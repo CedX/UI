@@ -37,6 +37,11 @@ export interface IDialogButton {
 export interface IDialogEventArgs {
 
 	/**
+	 * The label of the close button.
+	 */
+	button?: string;
+
+	/**
 	 * The title displayed in the header.
 	 */
 	caption?: string;
@@ -223,7 +228,7 @@ export class DialogBox extends HTMLElement {
 	 * @param buttons The buttons displayed in the footer.
 	 * @returns The dialog result.
 	 */
-	alert(context: Context, caption: string, message: DocumentFragment|string, buttons: IDialogButton[] = []): Promise<string> {
+	alert(context: Context, caption: string, message: DocumentFragment, buttons: IDialogButton[] = []): Promise<string> {
 		return this.show({
 			caption,
 			body: html`
@@ -259,7 +264,7 @@ export class DialogBox extends HTMLElement {
 	 * @param message The child content displayed in the body.
 	 * @returns The dialog result.
 	 */
-	confirm(context: Context, caption: string, message: DocumentFragment|string): Promise<string> {
+	confirm(context: Context, caption: string, message: DocumentFragment): Promise<string> {
 		return this.alert(context, caption, message, [
 			{text: "OK", value: DialogResult.OK, variant: Variant.Primary},
 			{text: "Annuler", value: DialogResult.Cancel, variant: Variant.Secondary}
@@ -308,8 +313,9 @@ export class DialogBox extends HTMLElement {
 	 */
 	useAlertEventHandler(): AbortController {
 		const listener = (event: CustomEvent<IDialogEventArgs>): void => {
-			const {caption, context, message} = event.detail;
-			void this.alert(context ?? Context.Info, caption ?? "", message);
+			const {button, caption, context, message} = event.detail;
+			const buttons = [{text: button ?? "OK", value: DialogResult.OK, variant: Variant.Primary}];
+			void this.alert(context ?? Context.Info, caption ?? "", html`${message}`, buttons);
 		};
 
 		const abortController = new AbortController;
@@ -326,14 +332,16 @@ export class DialogBox extends HTMLElement {
 			if (!event.detail.question) return;
 			event.preventDefault();
 
+			let eventArgs: [Context, string, string];
 			const parts = event.detail.question.split("|");
-			let promise: Promise<string>;
 			switch (parts.length) {
-				case 1: promise = this.confirm(Context.Warning, "", html`${parts[0]}`); break;
-				case 2: promise = this.confirm(Context.Warning, parts[0], html`${parts[1]}`); break;
-				default: promise = this.confirm(parts[0] as Context, parts[1], html`${parts.slice(2).join("|")}`);
+				case 1: eventArgs = [Context.Warning, "", parts[0]]; break;
+				case 2: eventArgs = [Context.Warning, parts[0], parts[1]]; break;
+				default: eventArgs = [parts[0] as Context, parts[1], parts.slice(2).join("|")]; break;
 			}
 
+			const [context, caption, message] = eventArgs;
+			const promise = this.confirm(context, caption, html`${message}`);
 			void promise.then(dialogResult => { if (dialogResult == DialogResult.OK) event.detail.issueRequest(true); });
 		};
 
