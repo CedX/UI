@@ -4,7 +4,7 @@ export const Htmx = htmx as unknown as typeof htmx.default;
 /**
  * Provides details about an `htmx` event.
  */
-export type HtmxEventDetail = HtmxResponseInfo & {
+export type HtmxEventArgs = HtmxResponseInfo & {
 
 	/**
 	 * The element involved in the operation that just occurred.
