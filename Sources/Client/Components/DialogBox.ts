@@ -202,7 +202,7 @@ export class DialogBox extends HTMLElement {
 	 * @param buttons The buttons displayed in the footer.
 	 * @returns The dialog result.
 	 */
-	alert(context: Context, caption: string, message: DocumentFragment, buttons: IDialogButton[] = []): Promise<string> {
+	alert(context: Context, caption: string, message: DocumentFragment|string, buttons: IDialogButton[] = []): Promise<string> {
 		return this.show({
 			caption,
 			body: html`
@@ -238,7 +238,7 @@ export class DialogBox extends HTMLElement {
 	 * @param message The child content displayed in the body.
 	 * @returns The dialog result.
 	 */
-	confirm(context: Context, caption: string, message: DocumentFragment): Promise<string> {
+	confirm(context: Context, caption: string, message: DocumentFragment|string): Promise<string> {
 		return this.alert(context, caption, message, [
 			{text: "OK", value: DialogResult.OK, variant: Variant.Primary},
 			{text: "Annuler", value: DialogResult.Cancel, variant: Variant.Secondary}
