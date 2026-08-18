@@ -91,7 +91,7 @@ function Show-Toast {
 		[Context] $Context = [Context]::Info
 	)
 
-	$toastEvent = @{
+	$trigger = @{
 		"toaster-container:notify" = @{
 			context = $Context
 			caption = $Caption
@@ -99,5 +99,5 @@ function Show-Toast {
 		}
 	}
 
-	Set-PodeHeader "HX-Trigger" ($toastEvent | ConvertTo-Json -Compress -EnumsAsStrings -EscapeHandling EscapeNonAscii)
+	Set-PodeHeader "HX-Trigger" ($trigger | ConvertTo-Json -Compress -EnumsAsStrings -EscapeHandling EscapeNonAscii)
 }

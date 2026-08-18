@@ -72,3 +72,33 @@ function New-DialogBox {
 		}
 	}
 }
+
+<#
+.SYNOPSIS
+	Sets an `HX-Trigger` header on the HTTP response, triggering the display of a message box in the browser.
+#>
+function Show-DialogBox {
+	[CmdletBinding()]
+	[OutputType([void])]
+	param (
+		# The child content displayed in the toast body.
+		[Parameter(Mandatory, Position = 1)]
+		[string] $Message,
+
+		# The title displayed in the toast header.
+		[string] $Caption = "",
+
+		# The contextual modifier.
+		[Context] $Context = [Context]::Info
+	)
+
+	$trigger = @{
+		"dialog-box:alert" = @{
+			context = $Context
+			caption = $Caption
+			message = $Message
+		}
+	}
+
+	Set-PodeHeader "HX-Trigger" ($trigger | ConvertTo-Json -Compress -EnumsAsStrings -EscapeHandling EscapeNonAscii)
+}
