@@ -81,11 +81,14 @@ function Show-DialogBox {
 	[CmdletBinding()]
 	[OutputType([void])]
 	param (
-		# The child content displayed in the toast body.
+		# The child content displayed in the body.
 		[Parameter(Mandatory, Position = 1)]
 		[string] $Message,
 
-		# The title displayed in the toast header.
+		# The label of the close button.
+		[string] $Button = "",
+
+		# The title displayed in the header.
 		[string] $Caption = "",
 
 		# The contextual modifier.
@@ -94,6 +97,7 @@ function Show-DialogBox {
 
 	$trigger = @{
 		"dialog-box:alert" = @{
+			button = $Button
 			context = $Context
 			caption = $Caption
 			message = $Message
