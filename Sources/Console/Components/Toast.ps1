@@ -71,3 +71,33 @@ function New-Toast {
 		}
 	}
 }
+
+<#
+.SYNOPSIS
+	Sets an `HX-Trigger` header on the HTTP response, triggering the display of a notification in the browser.
+#>
+function Show-Toast {
+	[CmdletBinding()]
+	[OutputType([void])]
+	param (
+		# The child content displayed in the toast body.
+		[Parameter(Mandatory, Position = 1)]
+		[string] $Message,
+
+		# The title displayed in the toast header.
+		[string] $Caption = "",
+
+		# The contextual modifier.
+		[Context] $Context = [Context]::Info
+	)
+
+	$toastEvent = @{
+		"toaster-container:notify" = @{
+			context = $Context
+			caption = $Caption
+			message = $Message
+		}
+	}
+
+	Set-PodeHeader "HX-Trigger" ($toastEvent | ConvertTo-Json -Compress -EnumsAsStrings -EscapeHandling EscapeNonAscii)
+}
