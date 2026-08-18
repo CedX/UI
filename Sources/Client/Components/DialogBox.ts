@@ -264,8 +264,8 @@ export class DialogBox extends HTMLElement {
 	 * Registers this dialog box as a listener for the `htmx:confirm` event.
 	 * @returns An abort controller used to cancel the subscription to the `htmx:confirm` event.
 	 */
-	registerAsHtmxConfirmHandler(): AbortController {
-		const listener = (event: CustomEvent<HtmxConfirmEventDetail>): void => {
+	registerAsConfirmEventHandler(): AbortController {
+		const listener = (event: CustomEvent<HtmxConfirmEventArgs>): void => {
 			if (!event.detail.question) return;
 			event.preventDefault();
 
