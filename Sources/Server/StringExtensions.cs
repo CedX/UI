@@ -14,7 +14,7 @@ public static class StringExtensions {
 		/// <param name="culture">An object that supplies culture-specific formatting information.</param>
 		/// <returns>The processed string.</returns>
 		public string Capitalize(CultureInfo? culture = null) =>
-			value.Length == 0 ? "" : char.ToUpper(value[0], culture ?? CultureInfo.CurrentCulture) + value[1..];
+			value.Length == 0 ? "" : $"{char.ToUpper(value[0], culture ?? CultureInfo.CurrentCulture)}{value[1..]}";
 
 		/// <summary>
 		/// Truncates the specified string to the given number of characters.

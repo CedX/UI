@@ -45,9 +45,9 @@ public static class ContextExtensions {
 		/// </summary>
 		public string Icon => context switch {
 			Context.Danger => "error",
-			Context.Warning => "warning",
 			Context.Info => "info",
-			Context.Success => "check_circle"
+			Context.Success => "check_circle",
+			Context.Warning => "warning"
 		};
 	}
 }
