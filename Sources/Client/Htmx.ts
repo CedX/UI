@@ -15,7 +15,7 @@ export type HtmxEventArgs = HtmxResponseInfo & {
 /**
  * Provides details about the `htmx:confirm` event.
  */
-export type HtmxConfirmEventDetail = HtmxEventDetail & {
+export type HtmxConfirmEventArgs = HtmxEventArgs & {
 
 	/**
 	 * Issues the actual AJAX request.

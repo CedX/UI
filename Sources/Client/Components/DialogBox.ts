@@ -1,7 +1,7 @@
 import {Modal} from "bootstrap";
 import {Context, cssClass as contextCssClass, icon as contextIcon} from "../Context.js";
 import {DialogResult} from "../DialogResult.js";
-import type {HtmxConfirmEventDetail} from "../Htmx.js";
+import type {HtmxConfirmEventArgs} from "../Htmx.js";
 import {html} from "../Tags.js";
 import {Variant, cssClass as variantCssClass} from "../Variant.js";
 
