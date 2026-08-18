@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [0.18.0](https://github.com/CedX/UI/compare/v0.17.0...v0.18.0)
+- Added the `IDialogEventArgs.button` property.
+- Added the `-Button` parameter to the `Show-DialogBox` cmdlet.
+
 ## Version [0.17.0](https://github.com/CedX/UI/compare/v0.16.2...v0.17.0)
 - Added the `Show-DialogBox` and `Show-Toast` cmdlets.
 - Added the `DialogBox.useAlertEventHandler()` method.
