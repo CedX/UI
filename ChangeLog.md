@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [0.19.0](https://github.com/CedX/UI/compare/v0.18.0...v0.19.0)
+- Removed the `TypeAhead` component.
+
 ## Version [0.18.0](https://github.com/CedX/UI/compare/v0.17.0...v0.18.0)
 - Added the `IDialogEventArgs.button` property.
 - Added the `-Button` parameter to the `Show-DialogBox` cmdlet.
