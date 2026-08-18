@@ -5,6 +5,27 @@ import "./Toast.js";
 import type {IToast} from "./Toast.js"; // eslint-disable-line no-duplicate-imports
 
 /**
+ * Provides details about the `toaster-container:notify` event.
+ */
+export interface IToasterEventArgs {
+
+	/**
+	 * The title displayed in the header.
+	 */
+	caption?: string;
+
+	/**
+	 * The contextual modifier.
+	 */
+	context?: Context;
+
+	/**
+	 * The child content displayed in the body.
+	 */
+	message: string;
+}
+
+/**
  * Manages the notifications.
  */
 export class Toaster extends HTMLElement {
@@ -131,6 +152,21 @@ export class Toaster extends HTMLElement {
 	 */
 	notify(context: Context, caption: string, message: DocumentFragment|string): void {
 		return this.show({body: typeof message == "string" ? html`${message}` : message, caption, context});
+	}
+
+	/**
+	 * Registers this toaster as a listener for the `toaster-container:notify` event.
+	 * @returns An abort controller used to cancel the subscription to the `toaster-container:notify` event.
+	 */
+	registerAsNotifyEventHandler(): AbortController {
+		const listener = (event: CustomEvent<IToasterEventArgs>): void => {
+			const {caption, context, message} = event.detail;
+			this.notify(context ?? Context.Info, caption ?? "", message);
+		};
+
+		const abortController = new AbortController;
+		document.body.addEventListener("toaster-container:notify", listener as EventListener, {signal: abortController.signal});
+		return abortController;
 	}
 
 	/**

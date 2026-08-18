@@ -99,5 +99,5 @@ function Show-Toast {
 		}
 	}
 
-	Set-PodeHeader "HX-Trigger" ($trigger | ConvertTo-Json -Compress -EnumsAsStrings -EscapeHandling EscapeNonAscii)
+	Set-PodeHeader "HX-Trigger" (ConvertTo-Json $trigger -Compress -EnumsAsStrings -EscapeHandling EscapeNonAscii)
 }
