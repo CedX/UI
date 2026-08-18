@@ -86,7 +86,7 @@ function Show-DialogBox {
 		[string] $Message,
 
 		# The label of the close button.
-		[string] $Button = "",
+		[string] $Button = "OK",
 
 		# The title displayed in the header.
 		[string] $Caption = "",
