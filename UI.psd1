@@ -11,7 +11,7 @@
 	GUID = "13e38ea8-3ddf-4d0d-8440-eeb8d0e8f9fa"
 
 	CmdletsToExport = @()
-	RequiredAssemblies = , "Binaries/Belin.UI.dll"
+	RequiredAssemblies = , "Binaries/Belin.UI.PowerShell.dll"
 	VariablesToExport = @()
 
 	AliasesToExport = @(

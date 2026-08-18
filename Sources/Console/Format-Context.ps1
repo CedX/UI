@@ -26,7 +26,17 @@ function Format-Context {
 	)
 
 	process {
-		if ($CssClass) { return [ContextExtensions]::get_CssClass($InputObject) }
-		if ($Icon) { return [ContextExtensions]::get_Icon($InputObject) }
+		if ($CssClass) {
+			return $InputObject.ToString().ToLowerInvariant()
+		}
+
+		if ($Icon) {
+			switch ($InputObject) {
+				([Context]::Danger) { return "error" }
+				([Context]::Success) { return "check_circle" }
+				([Context]::Warning) { return "warning" }
+				default { return "info" }
+			}
+		}
 	}
 }

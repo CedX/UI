@@ -18,8 +18,4 @@
 		<RootNamespace>Belin.UI</RootNamespace>
 		<TargetFramework>net10.0</TargetFramework>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="../Base/Base.csproj" />
-	</ItemGroup>
 </Project>

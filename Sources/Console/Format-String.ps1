@@ -44,7 +44,12 @@ function Format-String {
 
 
 	process {
-		if ($Capitalize) { return [StringExtensions]::Capitalize($Value ?? "", $Culture) }
-		if ($Truncate) { return [StringExtensions]::Truncate($Value ?? "", $Length, $Ellipsis) }
+		if ($Capitalize) {
+			return -not $Value.Length ? "" : "$([char]::ToUpper($Value[0], $Culture))$($Value.Substring(1))"
+		}
+
+		if ($Truncate) {
+			return $Value.Length -gt $Length ? "$($Value.Substring(0, $Length))$Ellipsis" : $Value
+		}
 	}
 }
