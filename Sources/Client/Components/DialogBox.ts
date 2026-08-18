@@ -32,6 +32,27 @@ export interface IDialogButton {
 }
 
 /**
+ * Provides details about the `dialog-box:alert` event.
+ */
+export interface IDialogEventArgs {
+
+	/**
+	 * The title displayed in the header.
+	 */
+	caption?: string;
+
+	/**
+	 * The contextual modifier.
+	 */
+	context?: Context;
+
+	/**
+	 * The child content displayed in the body.
+	 */
+	message: string;
+}
+
+/**
  * Represents a message to display in a dialog box.
  */
 export interface IDialogMessage {
@@ -258,6 +279,21 @@ export class DialogBox extends HTMLElement {
 	 */
 	disconnectedCallback(): void {
 		this.#modal.dispose();
+	}
+
+	/**
+	 * Registers this dialog box as a listener for the `dialog-box:alert` event.
+	 * @returns An abort controller used to cancel the subscription to the `dialog-box:alert` event.
+	 */
+	registerAsAlertEventHandler(): AbortController {
+		const listener = (event: CustomEvent<IDialogEventArgs>): void => {
+			const {caption, context, message} = event.detail;
+			this.alert(context ?? Context.Info, caption ?? "", message);
+		};
+
+		const abortController = new AbortController;
+		document.body.addEventListener("dialog-box:alert", listener as EventListener, {signal: abortController.signal});
+		return abortController;
 	}
 
 	/**
