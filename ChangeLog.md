@@ -2,6 +2,8 @@
 
 ## Version [0.17.0](https://github.com/CedX/UI/compare/v0.16.2...v0.17.0)
 - Added the `Show-DialogBox` and `Show-Toast` cmdlets.
+- Added the `DialogBox.registerAsAlertEventHandler()` method.
+- Added the `Toaster.registerAsNotifyEventHandler()` method.
 - Renamed the `HtmxEventDetail` interface to `HtmxEventArgs`.
 - Renamed the `HtmxConfirmEventDetail` interface to `HtmxConfirmEventArgs`.
 - Renamed the `DialogBox.registerAsHtmxConfirmHandler()` to `registerAsConfirmEventHandler()`.
