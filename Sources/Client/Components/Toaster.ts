@@ -155,21 +155,6 @@ export class Toaster extends HTMLElement {
 	}
 
 	/**
-	 * Registers this toaster as a listener for the `toaster-container:notify` event.
-	 * @returns An abort controller used to cancel the subscription to the `toaster-container:notify` event.
-	 */
-	registerAsNotifyEventHandler(): AbortController {
-		const listener = (event: CustomEvent<IToasterEventArgs>): void => {
-			const {caption, context, message} = event.detail;
-			this.notify(context ?? Context.Info, caption ?? "", message);
-		};
-
-		const abortController = new AbortController;
-		document.body.addEventListener("toaster-container:notify", listener as EventListener, {signal: abortController.signal});
-		return abortController;
-	}
-
-	/**
 	 * Shows a toast.
 	 * @param toast The toast to show.
 	 */
@@ -190,6 +175,21 @@ export class Toaster extends HTMLElement {
 
 		this.firstElementChild!.appendChild(item);
 		item.show();
+	}
+
+	/**
+	 * Registers this toaster as a listener for the `toaster-container:notify` event.
+	 * @returns An abort controller used to cancel the subscription to the `toaster-container:notify` event.
+	 */
+	useNotifyEventHandler(): AbortController {
+		const listener = (event: CustomEvent<IToasterEventArgs>): void => {
+			const {caption, context, message} = event.detail;
+			this.notify(context ?? Context.Info, caption ?? "", message);
+		};
+
+		const abortController = new AbortController;
+		document.body.addEventListener("toaster-container:notify", listener as EventListener, {signal: abortController.signal});
+		return abortController;
 	}
 
 	/**
