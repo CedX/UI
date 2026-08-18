@@ -4,9 +4,9 @@
 - Added the `Show-DialogBox` and `Show-Toast` cmdlets.
 - Added the `DialogBox.useAlertEventHandler()` method.
 - Added the `Toaster.useNotifyEventHandler()` method.
+- Renamed the `DialogBox.registerAsHtmxConfirmHandler()` method to `useConfirmEventHandler()`.
 - Renamed the `HtmxEventDetail` interface to `HtmxEventArgs`.
 - Renamed the `HtmxConfirmEventDetail` interface to `HtmxConfirmEventArgs`.
-- Renamed the `DialogBox.registerAsHtmxConfirmHandler()` to `useConfirmEventHandler()`.
 
 ## Version [0.16.2](https://github.com/CedX/UI/compare/v0.16.1...v0.16.2)
 - Allows strings for the `message` parameter of the `alert()` and `confirm()` methods of the `DialogBox` component.
