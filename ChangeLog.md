@@ -1,6 +1,12 @@
 # Changelog
 
-## Version [0.16.1](https://github.com/CedX/UI/compare/v0.16.1...v0.16.2)
+## Version [0.17.0](https://github.com/CedX/UI/compare/v0.16.2...v0.17.0)
+- Added the `Show-DialogBox` and `Show-Toast` cmdlets.
+- Renamed the `HtmxEventDetail` interface to `HtmxEventArgs`.
+- Renamed the `HtmxConfirmEventDetail` interface to `HtmxConfirmEventArgs`.
+- Renamed the `DialogBox.registerAsHtmxConfirmHandler()` to `registerAsConfirmEventHandler()`.
+
+## Version [0.16.2](https://github.com/CedX/UI/compare/v0.16.1...v0.16.2)
 - Allows strings for the `message` parameter of the `alert()` and `confirm()` methods of the `DialogBox` component.
 - Allows strings for the `message` parameter of the `Toaster.notify()` method.
 
@@ -21,16 +27,16 @@
 
 ## Version [0.13.0](https://github.com/CedX/UI/compare/v0.12.0...v0.13.0)
 - Added the `Pagination.FromQuery()` method.
-- Added the `Query` parameter set to the `New-UIPagination` cmdlet.
+- Added the `Query` parameter set to the `New-Pagination` cmdlet.
 
 ## Version [0.12.0](https://github.com/CedX/UI/compare/v0.11.0...v0.12.0)
 - Added the `PaginatedList` class.
-- Added the `New-UIPagination` and `New-UIPaginatedList` cmdlets.
+- Added the `New-Pagination` and `New-PaginatedList` cmdlets.
 - Replaced the explicit conversions of the `Sort` class by implicit conversions.
 
 ## Version [0.11.0](https://github.com/CedX/UI/compare/v0.10.0...v0.11.0)
 - Added the `StringExtensions` class.
-- Added the `Format-UIString` cmdlet.
+- Added the `Format-String` cmdlet.
 - Added the `capitalize()` and `truncate()` functions.
 - Extracted the [ASP.NET](https://learn.microsoft.com/en-us/aspnet/core) components into a separate assembly.
 
@@ -61,7 +67,7 @@
 - Updated the font weight of the toaster headers.
 
 ## Version [0.4.0](https://github.com/CedX/UI/compare/v0.3.0...v0.4.0)
-- Added the `New-UIDialogBox`, `New-UIToast` and `New-UIToaster` cmdlets.
+- Added the `New-DialogBox`, `New-Toast` and `New-Toaster` cmdlets.
 - Added the `uiDialogBox`, `uiToast` and `uiToaster` aliases.
 
 ## Version [0.3.0](https://github.com/CedX/UI/compare/v0.2.0...v0.3.0)
