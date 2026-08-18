@@ -1,5 +1,6 @@
 import {Context} from "../Context.js";
 import {Position, cssClass} from "../Position.js";
+import {html} from "../Tags.js";
 import "./Toast.js";
 import type {IToast} from "./Toast.js"; // eslint-disable-line no-duplicate-imports
 
@@ -128,8 +129,8 @@ export class Toaster extends HTMLElement {
 	 * @param caption The title displayed in the toast header.
 	 * @param message The child content displayed in the toast body.
 	 */
-	notify(context: Context, caption: string, message: DocumentFragment): void {
-		return this.show({body: message, caption, context});
+	notify(context: Context, caption: string, message: DocumentFragment|string): void {
+		return this.show({body: typeof message == "string" ? html`${message}` : message, caption, context});
 	}
 
 	/**
