@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [0.20.0](https://github.com/CedX/UI/compare/v0.19.0...v0.20.0)
+- Added the `Set-Trigger` cmdlet.
+
 ## Version [0.19.0](https://github.com/CedX/UI/compare/v0.18.0...v0.19.0)
 - Merged the `Belin.UI.AspNet` assembly into the `Belin.UI` assembly.
 - Removed the `TypeAhead` component.
