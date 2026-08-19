@@ -17,6 +17,6 @@ function New-MenuActivator {
 	)
 
 	process {
-		tag menu-activator $Content
+		New-HtmlCustomElement menu-activator $Content
 	}
 }

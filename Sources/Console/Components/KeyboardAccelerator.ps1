@@ -27,6 +27,6 @@ function New-KeyboardAccelerator {
 
 	process {
 		$attributes = @{ key = $Key; modifiers = $Modifiers }
-		tag keyboard-accelerator -Attributes $attributes $Content
+		New-HtmlCustomElement keyboard-accelerator -Attributes $attributes $Content
 	}
 }

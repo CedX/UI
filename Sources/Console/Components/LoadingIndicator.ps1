@@ -25,6 +25,6 @@ function New-LoadingIndicator {
 	process {
 		$attributes = @{ fade = $Fade ; open = $Open }
 		$cssClass = ($Fade ? "fade" : ""), ($Open ? "show" : "hide")
-		tag loading-indicator -Attributes $attributes -Class $cssClass $Content
+		New-HtmlCustomElement loading-indicator -Attributes $attributes -Class $cssClass $Content
 	}
 }

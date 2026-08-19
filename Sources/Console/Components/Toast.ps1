@@ -58,7 +58,7 @@ function New-Toast {
 		}
 
 		$contextCssClass = Format-Context $Context -CssClass
-		tag toaster-item -Attributes $attributes {
+		New-HtmlCustomElement toaster-item -Attributes $attributes {
 			div -Class toast -DataSet @{ BsAnimation = $Fade ? "true" : "false"; BsAutohide = $AutoHide ? "true" : "false"; BsDelay = $Delay } {
 				div -Class toast-header, "toast-header-$contextCssClass" {
 					i -Class icon, me-2, "text-$contextCssClass", transform-scale-110 ([string]::IsNullOrWhiteSpace($Icon) ? (Format-Context $Context -Icon) : $Icon)

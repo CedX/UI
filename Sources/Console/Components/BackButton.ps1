@@ -22,6 +22,6 @@ function New-BackButton {
 
 	process {
 		$attributes = @{ steps = $Steps }
-		tag back-button -Attributes $attributes -On @{ Click = "this.goBack(event)" } $Content
+		New-HtmlCustomElement back-button -Attributes $attributes -On @{ Click = "this.goBack(event)" } $Content
 	}
 }

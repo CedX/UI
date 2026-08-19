@@ -25,6 +25,6 @@ function New-FullScreenToggler {
 
 	process {
 		$attributes = @{ target = $Target; wakeLock = $WakeLock }
-		tag fullscreen-toggler -Attributes $attributes -On @{ Click = "this.toggleFullScreen(event)" } $Content
+		New-HtmlCustomElement fullscreen-toggler -Attributes $attributes -On @{ Click = "this.toggleFullScreen(event)" } $Content
 	}
 }

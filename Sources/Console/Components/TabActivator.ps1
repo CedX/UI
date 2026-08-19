@@ -27,6 +27,6 @@ function New-TabActivator {
 
 	process {
 		$attributes = @{ storageArea = $StorageArea; storageKey = $StorageKey }
-		tag tab-activator -Attributes $attributes $Content
+		New-HtmlCustomElement tab-activator -Attributes $attributes $Content
 	}
 }

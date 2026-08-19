@@ -17,6 +17,6 @@ function New-ActionBar {
 	)
 
 	process {
-		tag action-bar $Content
+		New-HtmlCustomElement action-bar $Content
 	}
 }
