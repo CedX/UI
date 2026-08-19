@@ -333,8 +333,8 @@ export class DialogBox extends HTMLElement {
 			event.preventDefault();
 
 			const element = event.target as HTMLElement;
-			const caption = element.getAttribute("hx-confirm-caption");
-			const context = element.getAttribute("hx-confirm-context") as Context;
+			const caption = element.closest("[hx-confirm-caption]")?.getAttribute("hx-confirm-caption");
+			const context = element.closest("[hx-confirm-context]")?.getAttribute("hx-confirm-context") as Context;
 
 			void this
 				.confirm(Object.values(Context).includes(context) ? context : Context.Warning, caption ?? "", html`${event.detail.question}`)
