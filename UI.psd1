@@ -52,6 +52,7 @@
 		"New-ThemeDropdown"
 		"New-Toast"
 		"New-Toaster"
+		"Set-Trigger"
 		"Show-DialogBox"
 		"Show-Toast"
 	)

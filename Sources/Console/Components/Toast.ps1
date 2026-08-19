@@ -74,7 +74,7 @@ function New-Toast {
 
 <#
 .SYNOPSIS
-	Sets an `HX-Trigger` header on the HTTP response, triggering the display of a notification in the browser.
+	Sets an HTTP header on the response, triggering the display of a notification in the browser.
 #>
 function Show-Toast {
 	[CmdletBinding()]
@@ -91,13 +91,11 @@ function Show-Toast {
 		[Context] $Context = [Context]::Info
 	)
 
-	$trigger = @{
-		"toaster-container:notify" = @{
+	Set-Trigger -EnumsAsStrings @{
+		"ui:toaster:notify" = @{
 			context = $Context
 			caption = $Caption
 			message = $Message
 		}
 	}
-
-	Set-PodeHeader "HX-Trigger" (ConvertTo-Json $trigger -Compress -EnumsAsStrings -EscapeHandling EscapeNonAscii)
 }

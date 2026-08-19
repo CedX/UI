@@ -5,7 +5,7 @@ import "./Toast.js";
 import type {IToast} from "./Toast.js"; // eslint-disable-line no-duplicate-imports
 
 /**
- * Provides details about the `toaster-container:notify` event.
+ * Provides details about the `ui:toaster:notify` event.
  */
 export interface IToasterEventArgs {
 
@@ -178,8 +178,8 @@ export class Toaster extends HTMLElement {
 	}
 
 	/**
-	 * Registers this toaster as a listener for the `toaster-container:notify` event.
-	 * @returns An abort controller used to cancel the subscription to the `toaster-container:notify` event.
+	 * Registers this toaster as a listener for the `ui:toaster:notify` event.
+	 * @returns An abort controller used to cancel the subscription to the `ui:toaster:notify` event.
 	 */
 	useNotifyEventHandler(): AbortController {
 		const listener = (event: CustomEvent<IToasterEventArgs>): void => {
@@ -188,7 +188,7 @@ export class Toaster extends HTMLElement {
 		};
 
 		const abortController = new AbortController;
-		document.body.addEventListener("toaster-container:notify", listener as EventListener, {signal: abortController.signal});
+		document.body.addEventListener("ui:toaster:notify", listener as EventListener, {signal: abortController.signal});
 		return abortController;
 	}
 

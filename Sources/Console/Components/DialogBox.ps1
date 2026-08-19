@@ -75,7 +75,7 @@ function New-DialogBox {
 
 <#
 .SYNOPSIS
-	Sets an `HX-Trigger` header on the HTTP response, triggering the display of a message box in the browser.
+	Sets an HTTP header on the response, triggering the display of a message box in the browser.
 #>
 function Show-DialogBox {
 	[CmdletBinding()]
@@ -95,14 +95,12 @@ function Show-DialogBox {
 		[Context] $Context = [Context]::Info
 	)
 
-	$trigger = @{
-		"dialog-box:alert" = @{
+	Set-Trigger -EnumsAsStrings @{
+		"ui:dialogbox:alert" = @{
 			button = $Button
 			context = $Context
 			caption = $Caption
 			message = $Message
 		}
 	}
-
-	Set-PodeHeader "HX-Trigger" (ConvertTo-Json $trigger -Compress -EnumsAsStrings -EscapeHandling EscapeNonAscii)
 }

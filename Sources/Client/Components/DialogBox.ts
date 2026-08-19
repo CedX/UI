@@ -32,7 +32,7 @@ export interface IDialogButton {
 }
 
 /**
- * Provides details about the `dialog-box:alert` event.
+ * Provides details about the `ui:dialogbox:alert` event.
  */
 export interface IDialogEventArgs {
 
@@ -308,8 +308,8 @@ export class DialogBox extends HTMLElement {
 	}
 
 	/**
-	 * Registers this dialog box as a listener for the `dialog-box:alert` event.
-	 * @returns An abort controller used to cancel the subscription to the `dialog-box:alert` event.
+	 * Registers this dialog box as a listener for the `ui:dialogbox:alert` event.
+	 * @returns An abort controller used to cancel the subscription to the `ui:dialogbox:alert` event.
 	 */
 	useAlertEventHandler(): AbortController {
 		const listener = (event: CustomEvent<IDialogEventArgs>): void => {
@@ -319,7 +319,7 @@ export class DialogBox extends HTMLElement {
 		};
 
 		const abortController = new AbortController;
-		document.body.addEventListener("dialog-box:alert", listener as EventListener, {signal: abortController.signal});
+		document.body.addEventListener("ui:dialogbox:alert", listener as EventListener, {signal: abortController.signal});
 		return abortController;
 	}
 
