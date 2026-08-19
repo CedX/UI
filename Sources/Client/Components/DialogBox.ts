@@ -332,17 +332,13 @@ export class DialogBox extends HTMLElement {
 			if (!event.detail.question) return;
 			event.preventDefault();
 
-			let eventArgs: [Context, string, string];
-			const parts = event.detail.question.split("|");
-			switch (parts.length) {
-				case 1: eventArgs = [Context.Warning, "", parts[0]]; break;
-				case 2: eventArgs = [Context.Warning, parts[0], parts[1]]; break;
-				default: eventArgs = [parts[0] as Context, parts[1], parts.slice(2).join("|")]; break;
-			}
+			const element = event.target as HTMLElement;
+			const caption = element.getAttribute("hx-confirm-caption");
+			const context = element.getAttribute("hx-confirm-context") as Context;
 
-			const [context, caption, message] = eventArgs;
-			const promise = this.confirm(context, caption, html`${message}`);
-			void promise.then(dialogResult => { if (dialogResult == DialogResult.OK) event.detail.issueRequest(true); });
+			void this
+				.confirm(Object.values(Context).includes(context) ? context : Context.Warning, caption ?? "", html`${event.detail.question}`)
+				.then(dialogResult => { if (dialogResult == DialogResult.OK) event.detail.issueRequest(true); });
 		};
 
 		const abortController = new AbortController;
