@@ -55,6 +55,7 @@
 		"Send-Trigger"
 		"Show-DialogBox"
 		"Show-Toast"
+		"Test-Request"
 	)
 
 	RequiredModules = @(
