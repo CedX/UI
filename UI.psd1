@@ -1,6 +1,6 @@
 ﻿@{
 	DefaultCommandPrefix = "UI"
-	ModuleVersion = "0.21.0"
+	ModuleVersion = "0.22.0"
 	PowerShellVersion = "7.6"
 	RootModule = "Sources/Console/Main.psm1"
 
@@ -52,7 +52,7 @@
 		"New-ThemeDropdown"
 		"New-Toast"
 		"New-Toaster"
-		"Set-Trigger"
+		"Send-Trigger"
 		"Show-DialogBox"
 		"Show-Toast"
 	)
