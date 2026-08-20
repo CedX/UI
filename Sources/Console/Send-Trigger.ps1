@@ -4,7 +4,7 @@
 .INPUTS
 	The client-side events to trigger.
 #>
-function Set-Trigger {
+function Send-Trigger {
 	[CmdletBinding(DefaultParameterSetName = "InputObject")]
 	[OutputType([void])]
 	param (
@@ -23,12 +23,13 @@ function Set-Trigger {
 		[switch] $AfterSwap,
 
 		# Value indicating whether to convert all enumerations to their string representation.
+		[Parameter(ParameterSetName = "InputObject")]
 		[switch] $EnumsAsStrings
 	)
 
 	process {
 		$header = $AfterSettle ? "HX-Trigger-After-Settle" : ($AfterSwap ? "HX-Trigger-After-Swap" : "HX-Trigger")
-		$trigger = $InputObject ? $InputObject : ($Name -join ", ")
-		Set-PodeHeader $header (ConvertTo-Json $trigger -Compress -Depth 5 -EnumsAsStrings:$EnumsAsStrings -EscapeHandling EscapeNonAscii)
+		$trigger = $InputObject ? (ConvertTo-Json $InputObject -Compress -Depth 5 -EnumsAsStrings:$EnumsAsStrings -EscapeHandling EscapeNonAscii) : ($Name -join ", ")
+		Set-PodeHeader $header $trigger
 	}
 }

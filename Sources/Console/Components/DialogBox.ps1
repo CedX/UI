@@ -95,7 +95,7 @@ function Show-DialogBox {
 		[Context] $Context = [Context]::Info
 	)
 
-	Set-Trigger -EnumsAsStrings @{
+	Send-Trigger -EnumsAsStrings @{
 		"ui:dialogbox:alert" = @{
 			button = $Button
 			context = $Context

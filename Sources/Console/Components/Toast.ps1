@@ -91,7 +91,7 @@ function Show-Toast {
 		[Context] $Context = [Context]::Info
 	)
 
-	Set-Trigger -EnumsAsStrings @{
+	Send-Trigger -EnumsAsStrings @{
 		"ui:toaster:notify" = @{
 			context = $Context
 			caption = $Caption
