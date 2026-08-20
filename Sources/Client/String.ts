@@ -9,16 +9,6 @@ export function capitalize(value: string, culture: Intl.Locale|string = navigato
 }
 
 /**
- * Splits the characters of a string into chunks of size at most {@link size}.
- * @param value The string to chunk.
- * @param size The maximum size of each chunk.
- * @returns An array that contains the characters the input string split into chunks of size {@link size}.
- */
-export function chunk(value: string, size = 1): string[] {
-	return size == 1 ? Array.from(value) : (value.match(new RegExp(`.{1,${size}}`, "gsy")) ?? []);
-}
-
-/**
  * Truncates the specified string to the given number of characters.
  * @param value The string to be truncated.
  * @param length The maximum length.
