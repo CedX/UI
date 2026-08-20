@@ -1,5 +1,3 @@
-using namespace Belin.UI
-
 <#
 .SYNOPSIS
 	Formats the specified string.

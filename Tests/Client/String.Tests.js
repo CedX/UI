@@ -14,6 +14,16 @@ describe("String", () => {
 		});
 	});
 
+	describe("chunk()", () => {
+		it("should split the string into chunks of the specified length", () => {
+			assert.deepEqual(chunk(""), []);
+			assert.deepEqual(chunk("héhé", 1), ["h", "é", "h", "é"]);
+			assert.deepEqual(chunk("foo", 2), ["fo", "o"]);
+			assert.deepEqual(chunk("foobar", 3), ["foo", "bar"]);
+			assert.deepEqual(chunk("foo", 4), ["foo"]);
+		});
+	});
+
 	describe("truncate()", () => {
 		it("should truncate the string to the specified length", () => {
 			assert.equal(truncate("", 0), "");
