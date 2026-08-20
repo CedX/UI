@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [0.22.0](https://github.com/CedX/UI/compare/v0.21.0...v0.22.0)
+- Added the `Send-Location` and `Test-Request` cmdlets.
+- Renamed the `Set-Trigger` cmdlet to `Send-Trigger`.
+
 ## Version [0.21.0](https://github.com/CedX/UI/compare/v0.20.0...v0.21.0)
 - Added the `DateTimeExtensions` class.
 - Added the `Format-Date` cmdlet.
