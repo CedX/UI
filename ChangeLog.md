@@ -1,5 +1,12 @@
 # Changelog
 
+## Version [0.21.0](https://github.com/CedX/UI/compare/v0.20.0...v0.21.0)
+- Added the `DateTimeExtensions` class.
+- Added the `Format-Date` cmdlet.
+- Added the `TimeSpan` enumeration.
+- Added the `atMidnight()`, `daysInMonth()`, `getQuarter()`, `getWeekOfYear()` and `today()` functions.
+- The `hx-confirm-caption` and `hx-confirm-context` attributes, used by the `DialogBox.useConfirmEventHandler()`, are inherited.
+
 ## Version [0.20.0](https://github.com/CedX/UI/compare/v0.19.0...v0.20.0)
 - Added the `Set-Trigger` cmdlet.
 
