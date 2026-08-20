@@ -1,3 +1,4 @@
+import "./Date.Tests.js";
 import "./File.Tests.js";
 import "./Form.Tests.js";
 import "./Pagination.Tests.js";
