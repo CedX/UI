@@ -1,6 +1,6 @@
 ﻿@{
 	DefaultCommandPrefix = "UI"
-	ModuleVersion = "0.23.0"
+	ModuleVersion = "0.24.0"
 	PowerShellVersion = "7.6"
 	RootModule = "Sources/Console/Main.psm1"
 
@@ -48,6 +48,7 @@
 		"New-OfflineIndicator"
 		"New-PaginatedList"
 		"New-Pagination"
+		"New-Sort"
 		"New-TabActivator"
 		"New-ThemeDropdown"
 		"New-Toast"
