@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [0.23.0](https://github.com/CedX/UI/compare/v0.22.0...v0.23.0)
+- Added the `-QueryString` parameter to the `New-Pagination` cmdlet.
+- Added an overload to the `Pagination.FromQuery()` method.
+
 ## Version [0.22.0](https://github.com/CedX/UI/compare/v0.21.0...v0.22.0)
 - Added the `Send-Location` and `Test-Request` cmdlets.
 - Renamed the `Set-Trigger` cmdlet to `Send-Trigger`.
