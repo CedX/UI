@@ -99,9 +99,11 @@ export class Pagination {
 	 * @param maxItemsPerPage The maximum number of items allowed per page.
 	 * @returns The pagination corresponding to the specified query.
 	 */
-	static fromQuery(query: URLSearchParams, maxItemsPerPage = 1000): Pagination {
+	static fromQuery(query: string|URLSearchParams, maxItemsPerPage = 1000): Pagination {
+		if (typeof query == "string") query = new URLSearchParams(query);
 		const currentPage = Number(query.get("Page") ?? "1");
 		const itemsPerPage = Number(query.get("PerPage") ?? "25");
+
 		return new this({
 			currentPageIndex: (Number.isNaN(currentPage) ? 1 : currentPage) - 1,
 			itemsPerPage: Math.min(maxItemsPerPage, Number.isNaN(itemsPerPage) ? 25 : itemsPerPage)

@@ -44,7 +44,7 @@ function New-Pagination {
 
 	switch ($PSCmdlet.ParameterSetName) {
 		"Query" { return [Pagination]::FromQuery($Query, $MaxItemsPerPage) }
-		"QueryString" { return [Pagination]::FromQuery([HttpUtility]::ParseQueryString($QueryString), $MaxItemsPerPage) }
+		"QueryString" { return [Pagination]::FromQuery($QueryString, $MaxItemsPerPage) }
 		default { return [Pagination]@{ CurrentPageIndex = $CurrentPageIndex; ItemsPerPage = $ItemsPerPage; TotalItemCount = $TotalItemCount } }
 	}
 }

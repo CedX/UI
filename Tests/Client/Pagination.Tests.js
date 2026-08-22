@@ -58,13 +58,13 @@ describe("Pagination", () => {
 
 	describe("fromQuery()", () => {
 		it("should create a new pagination from the specified query", () => {
-			const pagination = Pagination.fromQuery(new URLSearchParams({Page: "100", PerPage: "50"}));
+			const pagination = Pagination.fromQuery("Page=100&PerPage=50");
 			assert.equal(pagination.currentPageIndex, 99);
 			assert.equal(pagination.itemsPerPage, 50);
 		});
 
 		it("should allow setting a maximum allowed value for the `itemsPerPage` property", () => {
-			const pagination = Pagination.fromQuery(new URLSearchParams({PerPage: "666"}), 100);
+			const pagination = Pagination.fromQuery("PerPage=666", 100);
 			assert.equal(pagination.currentPageIndex, 0);
 			assert.equal(pagination.itemsPerPage, 100);
 		});

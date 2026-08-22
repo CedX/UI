@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Specialized;
 using System.Globalization;
 using System.Text.Json.Serialization;
+using System.Web;
 
 /// <summary>
 /// Represents information relevant to the pagination of data items.
@@ -61,8 +62,8 @@ public sealed class Pagination {
 	/// <param name="query">The hash table providing the query.</param>
 	/// <param name="maxItemsPerPage">The maximum number of items allowed per page.</param>
 	/// <returns>The pagination corresponding to the specified query.</returns>
-	public static Pagination FromQuery(Hashtable query, int maxItemsPerPage = 25) {
-		var collection = new NameValueCollection();
+	public static Pagination FromQuery(Hashtable query, int maxItemsPerPage = 1000) {
+		var collection = HttpUtility.ParseQueryString("");
 		foreach (DictionaryEntry entry in query) collection.Add(entry.Key.ToString(), entry.Value?.ToString());
 		return FromQuery(collection, maxItemsPerPage);
 	}
@@ -80,4 +81,12 @@ public sealed class Pagination {
 			ItemsPerPage = Math.Min(maxItemsPerPage, tryParseInt(query["PerPage"] ?? "25", out var perPage) ? perPage : 25)
 		};
 	}
+
+	/// <summary>
+	/// Creates a new pagination from the specified query.
+	/// </summary>
+	/// <param name="query">The string providing the query.</param>
+	/// <param name="maxItemsPerPage">The maximum number of items allowed per page.</param>
+	/// <returns>The pagination corresponding to the specified query.</returns>
+	public static Pagination FromQuery(string query, int maxItemsPerPage = 1000) => FromQuery(HttpUtility.ParseQueryString(query), maxItemsPerPage);
 }
