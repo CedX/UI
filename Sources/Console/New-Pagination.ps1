@@ -27,11 +27,11 @@ function New-Pagination {
 		[int] $TotalItemCount,
 
 		# The hash table providing the query.
-		[Parameter(Mandatory, ParameterSetName = "Query")]
+		[Parameter(Mandatory, ParameterSetName = "Query", Position = 1)]
 		[hashtable] $Query,
 
 		# The string providing the query.
-		[Parameter(Mandatory, ParameterSetName = "QueryString")]
+		[Parameter(Mandatory, ParameterSetName = "QueryString", Position = 1)]
 		[AllowEmptyString()]
 		[string] $QueryString,
 
