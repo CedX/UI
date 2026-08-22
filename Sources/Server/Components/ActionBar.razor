@@ -1,6 +1,6 @@
 @namespace Belin.UI.Components
 
-<action-bar hidden="@Hidden">
+<action-bar>
 	@ChildContent
 </action-bar>
 
@@ -10,10 +10,4 @@
 	/// </summary>
 	[Parameter]
 	public RenderFragment? ChildContent { get; set; }
-
-	/// <summary>
-	/// Value indicating whether the browser should not render the contents of this element.
-	/// </summary>
-	[Parameter]
-	public bool Hidden { get; set; }
 }
