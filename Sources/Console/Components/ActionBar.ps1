@@ -13,13 +13,10 @@ function New-ActionBar {
 	param (
 		# The child content.
 		[Parameter(Position = 1, ValueFromPipeline)]
-		[object] $Content,
-
-		# Value indicating whether the browser should not render the contents of this element.
-		[switch] $Hidden
+		[object] $Content
 	)
 
 	process {
-		New-HtmlCustomElement action-bar -Hidden:$Hidden $Content
+		New-HtmlCustomElement action-bar $Content
 	}
 }
