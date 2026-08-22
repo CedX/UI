@@ -1,7 +1,5 @@
 namespace Belin.UI.Data;
 
-using System.Web;
-
 /// <summary>
 /// Tests the features of the <see cref="Pagination"/> class.
 /// </summary>
@@ -65,12 +63,12 @@ public sealed class PaginationTests {
 	[TestMethod]
 	public void FromQuery() {
 		// It should create a new pagination from the specified query.
-		var pagination = Pagination.FromQuery(HttpUtility.ParseQueryString("Page=100&PerPage=50"));
+		var pagination = Pagination.FromQuery("Page=100&PerPage=50");
 		AreEqual(99, pagination.CurrentPageIndex);
 		AreEqual(50, pagination.ItemsPerPage);
 
 		// It should allow setting a maximum allowed value for the `ItemsPerPage` property.
-		pagination = Pagination.FromQuery(HttpUtility.ParseQueryString("PerPage=666"), maxItemsPerPage: 100);
+		pagination = Pagination.FromQuery("PerPage=666", maxItemsPerPage: 100);
 		AreEqual(0, pagination.CurrentPageIndex);
 		AreEqual(100, pagination.ItemsPerPage);
 	}
