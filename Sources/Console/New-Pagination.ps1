@@ -1,4 +1,5 @@
 using namespace Belin.UI
+using namespace System.Web
 
 <#
 .SYNOPSIS
@@ -29,12 +30,21 @@ function New-Pagination {
 		[Parameter(Mandatory, ParameterSetName = "Query")]
 		[hashtable] $Query,
 
+		# The string providing the query.
+		[Parameter(Mandatory, ParameterSetName = "QueryString")]
+		[AllowEmptyString()]
+		[string] $QueryString,
+
 		# The maximum number of items allowed per page.
 		[Parameter(ParameterSetName = "Query")]
+		[Parameter(ParameterSetName = "QueryString")]
 		[ValidateRange(1, 1000)]
 		[int] $MaxItemsPerPage = 1000
 	)
 
-	if ($PSCmdlet.ParameterSetName -eq "Query") { return [Pagination]::FromQuery($Query, $MaxItemsPerPage) }
-	return [Pagination]@{ CurrentPageIndex = $CurrentPageIndex; ItemsPerPage = $ItemsPerPage; TotalItemCount = $TotalItemCount }
+	switch ($PSCmdlet.ParameterSetName) {
+		"Query" { return [Pagination]::FromQuery($Query, $MaxItemsPerPage) }
+		"QueryString" { return [Pagination]::FromQuery([HttpUtility]::ParseQueryString($QueryString), $MaxItemsPerPage) }
+		default { return [Pagination]@{ CurrentPageIndex = $CurrentPageIndex; ItemsPerPage = $ItemsPerPage; TotalItemCount = $TotalItemCount } }
+	}
 }

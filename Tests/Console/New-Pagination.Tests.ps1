@@ -42,14 +42,20 @@ Describe "New-Pagination" {
 	}
 
 	Context "FromQuery" {
-		It "should create a new pagination from the specified query" {
-			$pagination = New-UIPagination -Query @{ Page = 100; PerPage = 50 }
+		It "should create a new pagination from the specified query" -ForEach @(
+			@{ Query = @{ Page = 100; PerPage = 50 } }
+			@{ QueryString = "Page=100&PerPage=50" }
+		 ) {
+			$pagination = New-UIPagination @PSItem
 			Should-Be 99 $pagination.CurrentPageIndex
 			Should-Be 50 $pagination.ItemsPerPage
 		}
 
-		It "should allow setting a maximum allowed value for the `ItemsPerPage` property" {
-			$pagination = New-UIPagination -MaxItemsPerPage 100 -Query @{ PerPage = 666 }
+		It "should allow setting a maximum allowed value for the `ItemsPerPage` property" -ForEach @(
+			@{ Query = @{ PerPage = 666 } }
+			@{ QueryString = "PerPage=666" }
+		 ) {
+			$pagination = New-UIPagination -MaxItemsPerPage 100 @PSItem
 			Should-Be 0 $pagination.CurrentPageIndex
 			Should-Be 100 $pagination.ItemsPerPage
 		}
