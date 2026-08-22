@@ -6,7 +6,7 @@ using namespace System.Collections.Specialized
 .SYNOPSIS
 	Creates a new sort.
 .INPUTS
-	The property names and sort directions.
+	The names and directions of the sorted properties.
 .OUTPUTS
 	The newly created sort.
 #>
@@ -14,14 +14,13 @@ function New-Sort {
 	[CmdletBinding(DefaultParameterSetName = "InputObject")]
 	[OutputType([Belin.UI.Sort])]
 	param (
-		# The property names and sort directions.
-		[Parameter(Mandatory, ParameterSetName = "InputObject", Position = 1, ValueFromPipeline)]
+		# The names and directions of the sorted properties.
+		[Parameter(ParameterSetName = "InputObject", Position = 1, ValueFromPipeline)]
 		[OrderedDictionary] $InputObject,
 
-		# The property names and sort directions.
-		[Parameter(Mandatory, ParameterSetName = "Property", Position = 1)]
-		[AllowEmptyString()]
-		[string] $Property
+		# The names and directions of the sorted properties.
+		[Parameter(ParameterSetName = "Property", Position = 1)]
+		[string] $Property = ""
 	)
 
 	process {
