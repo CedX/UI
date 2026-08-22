@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [0.24.0](https://github.com/CedX/UI/compare/v0.23.0...v0.24.0)
+- Added the `New-Sort` cmdlet.
+
 ## Version [0.23.0](https://github.com/CedX/UI/compare/v0.22.0...v0.23.0)
 - Added the `-QueryString` parameter to the `New-Pagination` cmdlet.
 - Added an overload to the `Pagination.FromQuery()` method.
