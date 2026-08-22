@@ -15,7 +15,7 @@ function New-ActionBar {
 		[Parameter(Position = 1, ValueFromPipeline)]
 		[object] $Content,
 
-		# Value indicating whether the browser should not render the contents of this element.
+		# Value indicating whether the browser should not render this element.
 		[switch] $Hidden
 	)
 
