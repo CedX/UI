@@ -2,7 +2,7 @@ import {Context} from "../Context.js";
 import {Position, cssClass} from "../Position.js";
 import {html} from "../Tags.js";
 import "./Toast.js";
-import type {IToast} from "./Toast.js"; // eslint-disable-line no-duplicate-imports
+import type {IToast, Toast} from "./Toast.js"; // eslint-disable-line no-duplicate-imports
 
 /**
  * Provides details about the `ui:toaster:notify` event.
@@ -149,16 +149,18 @@ export class Toaster extends HTMLElement {
 	 * @param context The contextual modifier.
 	 * @param caption The title displayed in the header.
 	 * @param message The child content displayed in the body.
+	 * @returns The newly created toast.
 	 */
-	notify(context: Context, caption: string, message: DocumentFragment): void {
+	notify(context: Context, caption: string, message: DocumentFragment): Toast {
 		return this.show({body: message, caption, context});
 	}
 
 	/**
 	 * Shows a toast.
 	 * @param toast The toast to show.
+	 * @returns The newly created toast.
 	 */
-	show(toast: IToast): void {
+	show(toast: IToast): Toast {
 		const item = document.createElement("toaster-item");
 		const childContent = (this.#toastTemplate.cloneNode(true) as DocumentFragment).querySelector(".toast")!;
 		childContent.addEventListener("hidden.bs.toast", () => item.remove());
@@ -175,6 +177,7 @@ export class Toaster extends HTMLElement {
 
 		this.firstElementChild!.appendChild(item);
 		item.show();
+		return item;
 	}
 
 	/**
