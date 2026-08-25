@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [0.26.0](https://github.com/CedX/UI/compare/v0.25.0...v0.26.0)
+- The `Toaster.show()` method now returns the newly created `Toast` instance.
+
 ## Version [0.25.0](https://github.com/CedX/UI/compare/v0.24.0...v0.25.0)
 - Added the `Hidden` property to the `ActionBar` component.
 - Added the `-Hidden` parameter to the `New-ActionBar` cmdlet.
