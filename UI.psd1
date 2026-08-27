@@ -61,7 +61,7 @@
 	)
 
 	RequiredModules = @(
-		@{ ModuleName = "Belin.Html"; ModuleVersion = "4.4.0" }
+		@{ ModuleName = "Belin.Html"; ModuleVersion = "4.5.0" }
 	)
 
 	PrivateData = @{
