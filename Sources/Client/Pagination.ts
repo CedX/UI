@@ -102,8 +102,8 @@ export class Pagination {
 	static fromQuery(query: string|URLSearchParams, maxItemsPerPage = 1000): Pagination {
 		if (typeof query == "string") query = new URLSearchParams(query);
 
-		const parseInt = (key: string, defaultValue: number) => {
-			var value = Number(query.get(key) ?? defaultValue.toString());
+		const parseInt = (key: string, defaultValue: number): number => {
+			const value = Number(query.get(key) ?? defaultValue.toString());
 			return Number.isNaN(value) ? defaultValue : value;
 		};
 

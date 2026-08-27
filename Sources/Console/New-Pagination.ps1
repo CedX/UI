@@ -59,7 +59,7 @@ function New-Pagination {
 		[int]::TryParse($numericString, [NumberStyles]::None, [cultureinfo]::InvariantCulture, [ref] $value) ? $value : $defaultValue
 	}
 
-	[Pagination]@{
+	return [Pagination]@{
 		CurrentPageIndex = (& $parseInt "Page" 1) - 1
 		ItemsPerPage = [Math]::Min($MaxItemsPerPage, (& $parseInt "PerPage" 25))
 	}
