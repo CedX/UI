@@ -1,4 +1,6 @@
 using namespace Belin.UI
+using namespace System.Collections
+using namespace System.Globalization
 using namespace System.Web
 
 <#
@@ -26,9 +28,9 @@ function New-Pagination {
 		[ValidateRange("NonNegative")]
 		[int] $TotalItemCount,
 
-		# The hash table providing the query.
+		# The dictionary providing the query.
 		[Parameter(Mandatory, ParameterSetName = "Query", Position = 1)]
-		[hashtable] $Query,
+		[IDictionary] $Query,
 
 		# The string providing the query.
 		[Parameter(Mandatory, ParameterSetName = "QueryString", Position = 1)]
@@ -42,9 +44,23 @@ function New-Pagination {
 		[int] $MaxItemsPerPage = 1000
 	)
 
-	switch ($PSCmdlet.ParameterSetName) {
-		"Query" { return [Pagination]::FromQuery($Query, $MaxItemsPerPage) }
-		"QueryString" { return [Pagination]::FromQuery($QueryString, $MaxItemsPerPage) }
-		default { return [Pagination]@{ CurrentPageIndex = $CurrentPageIndex; ItemsPerPage = $ItemsPerPage; TotalItemCount = $TotalItemCount } }
+	if ($PSCmdlet.ParameterSetName -eq "ItemsPerPage") {
+		return [Pagination]@{
+			CurrentPageIndex = $CurrentPageIndex
+			ItemsPerPage = $ItemsPerPage
+			TotalItemCount = $TotalItemCount
+		}
+	}
+
+	$collection = $Query ? (New-HtmlQueryString $Query -AsCollection) : (New-HtmlQueryString -Value $QueryString -AsCollection)
+	$parseInt = { param ([string] $key, [int] $defaultValue)
+		$numericString = $collection[$key] ?? $defaultValue.ToString([cultureinfo]::InvariantCulture)
+		$value = 0
+		[int]::TryParse($numericString, [NumberStyles]::None, [cultureinfo]::InvariantCulture, [ref] $value) ? $value : $defaultValue
+	}
+
+	[Pagination]@{
+		CurrentPageIndex = (& $parseInt "Page" 1) - 1
+		ItemsPerPage = [Math]::Min($MaxItemsPerPage, (& $parseInt "PerPage" 25))
 	}
 }

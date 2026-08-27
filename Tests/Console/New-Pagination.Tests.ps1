@@ -41,7 +41,7 @@ Describe "New-Pagination" {
 		}
 	}
 
-	Context "FromQuery" {
+	Context "Query" {
 		It "should create a new pagination from the specified query" -ForEach @{ Page = 100; PerPage = 50 }, "Page=100&PerPage=50" {
 			$pagination = New-UIPagination $_
 			Should-Be 99 $pagination.CurrentPageIndex

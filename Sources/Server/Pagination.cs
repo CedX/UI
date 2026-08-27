@@ -1,7 +1,5 @@
 namespace Belin.UI;
 
-using System.Collections;
-using System.Collections.Specialized;
 using System.Globalization;
 using System.Text.Json.Serialization;
 using System.Web;
@@ -59,26 +57,18 @@ public sealed class Pagination {
 	/// <summary>
 	/// Creates a new pagination from the specified query.
 	/// </summary>
-	/// <param name="query">The hash table providing the query.</param>
+	/// <param name="query">The dictionary providing the query.</param>
 	/// <param name="maxItemsPerPage">The maximum number of items allowed per page.</param>
 	/// <returns>The pagination corresponding to the specified query.</returns>
-	public static Pagination FromQuery(Hashtable query, int maxItemsPerPage = 1000) {
-		var collection = HttpUtility.ParseQueryString("");
-		foreach (DictionaryEntry entry in query) collection.Add(entry.Key.ToString(), entry.Value?.ToString());
-		return FromQuery(collection, maxItemsPerPage);
-	}
+	public static Pagination FromQuery(IDictionary<string, string?> query, int maxItemsPerPage = 1000) {
+		int parseInt(string key, int defaultValue) {
+			var numericString = query.TryGetValue(key, out var value) ? value : defaultValue.ToString(CultureInfo.InvariantCulture);
+			return int.TryParse(numericString, NumberStyles.None, CultureInfo.InvariantCulture, out var result) ? result : defaultValue;
+		}
 
-	/// <summary>
-	/// Creates a new pagination from the specified query.
-	/// </summary>
-	/// <param name="query">The name/value collection providing the query.</param>
-	/// <param name="maxItemsPerPage">The maximum number of items allowed per page.</param>
-	/// <returns>The pagination corresponding to the specified query.</returns>
-	public static Pagination FromQuery(NameValueCollection query, int maxItemsPerPage = 1000) {
-		static bool tryParseInt(string value, out int result) => int.TryParse(value, NumberStyles.None, CultureInfo.InvariantCulture, out result);
 		return new Pagination {
-			CurrentPageIndex = (tryParseInt(query["Page"] ?? "1", out var page) ? page : 1) - 1,
-			ItemsPerPage = Math.Min(maxItemsPerPage, tryParseInt(query["PerPage"] ?? "25", out var perPage) ? perPage : 25)
+			CurrentPageIndex = parseInt("Page", 1) - 1,
+			ItemsPerPage = Math.Min(maxItemsPerPage, parseInt("PerPage", 25))
 		};
 	}
 
@@ -88,5 +78,8 @@ public sealed class Pagination {
 	/// <param name="query">The string providing the query.</param>
 	/// <param name="maxItemsPerPage">The maximum number of items allowed per page.</param>
 	/// <returns>The pagination corresponding to the specified query.</returns>
-	public static Pagination FromQuery(string query, int maxItemsPerPage = 1000) => FromQuery(HttpUtility.ParseQueryString(query), maxItemsPerPage);
+	public static Pagination FromQuery(string query, int maxItemsPerPage = 1000) {
+		var queryString = HttpUtility.ParseQueryString(query);
+		return FromQuery(queryString.AllKeys.ToDictionary(key => key ?? "", key => queryString[key]), maxItemsPerPage);
+	}
 }
