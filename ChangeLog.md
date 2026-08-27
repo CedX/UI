@@ -2,7 +2,9 @@
 
 ## Version [0.27.0](https://github.com/CedX/UI/compare/v0.26.0...v0.27.0)
 - Added the `Scenario.Read` property.
+- Changed the type of the `-Query` parameter of the `New-Pagination` cmdlet to `IDictionary`.
 - Renamed the `Creation` and `Deletion` values of the `Scenario` class to `Create` and `Delete`.
+- Replaced the `Sort.Of()` static method by a constructor overload.
 
 ## Version [0.26.0](https://github.com/CedX/UI/compare/v0.25.0...v0.26.0)
 - The `Toaster.show()` method now returns the newly created `Toast` instance.

@@ -17,13 +17,13 @@ function New-Sort {
 		[Parameter(ParameterSetName = "InputObject", Position = 1, ValueFromPipeline)]
 		[OrderedDictionary] $InputObject,
 
-		# The names and directions of the sorted properties.
+		# The names and directions of the sorted properties, as a string to be parsed.
 		[Parameter(ParameterSetName = "Property", Position = 1)]
 		[string] $Property = ""
 	)
 
 	process {
-		if (-not $InputObject) { return [Sort]::Parse($Property) }
+		if ($Property) { return [Sort]::Parse($Property) }
 
 		$sort = [Sort]::new()
 		foreach ($key in $InputObject.Keys) { $sort.Add($key, $InputObject[$key]) }
