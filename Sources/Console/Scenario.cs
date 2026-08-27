@@ -8,7 +8,7 @@ public static class Scenario {
 	/// <summary>
 	/// A scenario in which the underlying model is created.
 	/// </summary>
-	public const string Creation = "Creation";
+	public const string Create = "Create";
 
 	/// <summary>
 	/// A scenario in which the underlying model is deleted.

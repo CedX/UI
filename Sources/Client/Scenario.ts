@@ -6,7 +6,7 @@ export const Scenario = Object.freeze({
 	/**
 	 * A scenario in which the underlying model is created.
 	 */
-	Creation: "Creation",
+	Create: "Create",
 
 	/**
 	 * A scenario in which the underlying model is deleted.
