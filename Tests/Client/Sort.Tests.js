@@ -45,7 +45,7 @@ describe("Sort", () => {
 
 		// TODO
 		// it("should iterate over the entries if the sort is not empty", () => {
-		// 	const iterator = Sort.of("foo").insert("bar", SortDirection.Descending)[Symbol.iterator]();
+		// 	const iterator = new Sort("foo").insert("bar", SortDirection.Descending)[Symbol.iterator]();
 		// 	let next = iterator.next();
 		// 	assert.isTrue(!next.done);
 		// 	assert.deepEqual(next.value, ["bar", SortDirection.Descending]);
@@ -57,7 +57,7 @@ describe("Sort", () => {
 	});
 
 	describe("add()", () => {
-		const sort = Sort.of("foo");
+		const sort = new Sort("foo");
 
 		it("should append a new property to the end", () => {
 			sort.add("bar", SortDirection.Ascending);
@@ -71,7 +71,7 @@ describe("Sort", () => {
 
 	// TODO
 	// describe("clear()", () => {
-	// 	const sort = Sort.of("foo");
+	// 	const sort = new Sort("foo");
 
 	// 	it("should prepend a new entry to the start", () => {
 	// 		sort.clear("bar", SortDirection.Ascending);
@@ -89,45 +89,45 @@ describe("Sort", () => {
 		const y = {index: 2, name: "xyz", type: "object"};
 
 		it("should return zero if the two objects are considered equal", () => {
-			assert.equal(Sort.of("type").compare(x, y), 0);
-			assert.equal(Sort.of("type", SortDirection.Descending).compare(x, y), 0);
+			assert.equal(new Sort("type").compare(x, y), 0);
+			assert.equal(new Sort("type", SortDirection.Descending).compare(x, y), 0);
 		});
 
 		it("should return a negative number if the first object is before the second", () => {
-			assert.isBelow(Sort.of("index").compare(x, y), 0);
-			assert.isBelow(Sort.of("name").compare(x, y), 0);
+			assert.isBelow(new Sort("index").compare(x, y), 0);
+			assert.isBelow(new Sort("name").compare(x, y), 0);
 			assert.isBelow(new Sort([["type", SortDirection.Ascending], ["index", SortDirection.Ascending]]).compare(x, y), 0);
 		});
 
 		it("should return a positive number if the first object is after the second", () => {
-			assert.isAbove(Sort.of("index", SortDirection.Descending).compare(x, y), 0);
-			assert.isAbove(Sort.of("name", SortDirection.Descending).compare(x, y), 0);
+			assert.isAbove(new Sort("index", SortDirection.Descending).compare(x, y), 0);
+			assert.isAbove(new Sort("name", SortDirection.Descending).compare(x, y), 0);
 			assert.isAbove(new Sort([["type", SortDirection.Descending], ["index", SortDirection.Descending]]).compare(x, y), 0);
 		});
 	});
 
 	describe("containsKey()", () => {
-		const sort = Sort.of("foo");
+		const sort = new Sort("foo");
 		it("should return `true` for an existing entry", () => assert.isTrue(sort.containsKey("foo")));
 		it("should return `false` for an unknown entry", () => assert.isFalse(sort.containsKey("bar")));
 	});
 
 	describe("get()", () => {
-		const sort = Sort.of("foo");
+		const sort = new Sort("foo");
 		it("should return the corresponding direction for an existing entry", () => assert.equal(sort.get("foo"), SortDirection.Ascending));
 		it("should return `null` for an unknown entry", () => assert.isNull(sort.get("bar")));
 	});
 
 	describe("getAt()", () => {
-		const sort = Sort.of("foo");
+		const sort = new Sort("foo");
 		it("should return the entry at the specified index", () => assert.deepEqual(sort.getAt(0), ["foo", SortDirection.Ascending]));
 		it("should return `null` for an unknown entry", () => assert.isNull(sort.getAt(1)));
 	});
 
 	describe("getIcon()", () => {
 		it("should return the icon corresponding to the sort direction", () => {
-			assert.equal(Sort.of("foo").getIcon("foo"), "arrow_upward");
-			assert.equal(Sort.of("foo", SortDirection.Descending).getIcon("foo"), "arrow_downward");
+			assert.equal(new Sort("foo").getIcon("foo"), "arrow_upward");
+			assert.equal(new Sort("foo", SortDirection.Descending).getIcon("foo"), "arrow_downward");
 			assert.equal(new Sort().getIcon("foo"), "swap_vert");
 		});
 	});
@@ -145,7 +145,7 @@ describe("Sort", () => {
 
 	// TODO
 	// describe("insert()", () => {
-	// 	const sort = Sort.of("foo");
+	// 	const sort = new Sort("foo");
 
 	// 	it("should prepend a new entry to the start", () => {
 	// 		sort.insert("bar", SortDirection.Ascending);
@@ -206,7 +206,7 @@ describe("Sort", () => {
 
 	// TODO
 	// describe("setAt()", () => {
-	// 	const sort = Sort.of("foo");
+	// 	const sort = new Sort("foo");
 
 	// 	it("should prepend a new entry to the start", () => {
 	// 		sort.setAt("bar", SortDirection.Ascending);
@@ -224,7 +224,7 @@ describe("Sort", () => {
 			assert.isEmpty(String(new Sort)));
 
 		it("should return the property for an ascending direction", () =>
-			assert.equal(String(Sort.of("foo")), "foo"));
+			assert.equal(String(new Sort("foo")), "foo"));
 
 		it("should return the property with a '-' prefix for a descending direction", () =>
 			assert.equal(String(Sort.parse("foo,-bar")), "foo,-bar"));

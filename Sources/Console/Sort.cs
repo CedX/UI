@@ -15,9 +15,7 @@ public sealed class Sort(IEnumerable<KeyValuePair<string, SortDirection>>? prope
 	/// <param name="property">The property name.</param>
 	/// <param name="direction">The sort direction.</param>
 	/// <returns>The sort corresponding to the property and direction.</returns>
-	public static Sort Of(string property, SortDirection direction = SortDirection.Ascending) => new([
-		new(property, direction)
-	]);
+	public Sort(string property, SortDirection direction = SortDirection.Ascending): this([new(property, direction)]) {}
 
 	/// <summary>
 	/// Creates a new sort from the specified string.

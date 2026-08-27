@@ -11,8 +11,8 @@ public sealed class SortTests {
 	[TestMethod]
 	public void GetIcon() {
 		// It should return the icon corresponding to the sort direction.
-		AreEqual("arrow_upward", Sort.Of("foo").GetIcon("foo"));
-		AreEqual("arrow_downward", Sort.Of("foo", SortDirection.Descending).GetIcon("foo"));
+		AreEqual("arrow_upward", new Sort("foo").GetIcon("foo"));
+		AreEqual("arrow_downward", new Sort("foo", SortDirection.Descending).GetIcon("foo"));
 		AreEqual("swap_vert", new Sort().GetIcon("foo"));
 	}
 
@@ -32,7 +32,7 @@ public sealed class SortTests {
 		IsEmpty(new Sort().ToString());
 
 		// It should return the property for an ascending direction.
-		AreEqual("foo", Sort.Of("foo").ToString());
+		AreEqual("foo", new Sort("foo").ToString());
 
 		// It should return the property with a "-" prefix for a descending direction.
 		AreEqual("foo,-bar", Sort.Parse("foo,-bar").ToString());

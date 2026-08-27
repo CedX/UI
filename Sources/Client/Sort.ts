@@ -18,9 +18,10 @@ export class Sort implements Iterable<SortedProperty> {
 	/**
 	 * Creates new sort.
 	 * @param properties The list of properties to be sorted.
+	 * @param direction The sort direction.
 	 */
-	constructor(properties: SortedProperty[] = []) {
-		this.#properties = properties;
+	constructor(properties: string|SortedProperty[] = [], direction: SortDirection = SortDirection.Ascending) {
+		this.#properties = typeof properties == "string" ? [[properties, direction]] : properties;
 	}
 
 	/**
@@ -35,16 +36,6 @@ export class Sort implements Iterable<SortedProperty> {
 	 */
 	get length(): number {
 		return this.#properties.length;
-	}
-
-	/**
-	 * Creates a new sort from the specified property and direction.
-	 * @param property The property name.
-	 * @param direction The sort direction.
-	 * @returns The sort corresponding to the property and direction.
-	 */
-	static of(property: string, direction: SortDirection = SortDirection.Ascending): Sort {
-		return new this([[property, direction]]);
 	}
 
 	/**
