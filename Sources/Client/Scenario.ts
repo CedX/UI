@@ -11,7 +11,12 @@ export const Scenario = Object.freeze({
 	/**
 	 * A scenario in which the underlying model is deleted.
 	 */
-	Deletion: "Deletion",
+	Delete: "Delete",
+
+	/**
+	 * A scenario in which the underlying model is read.
+	 */
+	Read: "Read",
 
 	/**
 	 * A scenario in which the underlying model is updated.

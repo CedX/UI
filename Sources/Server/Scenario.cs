@@ -13,7 +13,12 @@ public static class Scenario {
 	/// <summary>
 	/// A scenario in which the underlying model is deleted.
 	/// </summary>
-	public const string Deletion = "Deletion";
+	public const string Delete = "Delete";
+
+	/// <summary>
+	/// A scenario in which the underlying model is read.
+	/// </summary>
+	public const string Read = "Read";
 
 	/// <summary>
 	/// A scenario in which the underlying model is updated.
