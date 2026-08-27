@@ -101,12 +101,15 @@ export class Pagination {
 	 */
 	static fromQuery(query: string|URLSearchParams, maxItemsPerPage = 1000): Pagination {
 		if (typeof query == "string") query = new URLSearchParams(query);
-		const currentPage = Number(query.get("Page") ?? "1");
-		const itemsPerPage = Number(query.get("PerPage") ?? "25");
+
+		const parseInt = (key: string, defaultValue: number) => {
+			var value = Number(query.get(key) ?? defaultValue.toString());
+			return Number.isNaN(value) ? defaultValue : value;
+		};
 
 		return new this({
-			currentPageIndex: (Number.isNaN(currentPage) ? 1 : currentPage) - 1,
-			itemsPerPage: Math.min(maxItemsPerPage, Number.isNaN(itemsPerPage) ? 25 : itemsPerPage)
+			currentPageIndex: parseInt("Page", 1),
+			itemsPerPage: Math.min(maxItemsPerPage, parseInt("PerPage", 25))
 		});
 	}
 }
