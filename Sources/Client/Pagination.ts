@@ -108,7 +108,7 @@ export class Pagination {
 		};
 
 		return new this({
-			currentPageIndex: parseInt("Page", 1),
+			currentPageIndex: parseInt("Page", 1) - 1,
 			itemsPerPage: Math.min(maxItemsPerPage, parseInt("PerPage", 25))
 		});
 	}
