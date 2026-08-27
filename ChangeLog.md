@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [0.27.0](https://github.com/CedX/UI/compare/v0.26.0...v0.27.0)
+- Added the `Scenario.Read` property.
+- Renamed the `Creation` and `Deletion` values of the `Scenario` class to `Create` and `Delete`.
+
 ## Version [0.26.0](https://github.com/CedX/UI/compare/v0.25.0...v0.26.0)
 - The `Toaster.show()` method now returns the newly created `Toast` instance.
 
