@@ -18,7 +18,7 @@ function New-PaginatedList {
 		# The information relevant to the pagination of list items.
 		[Parameter(ParameterSetName = "Items")]
 		[ValidateNotNull()]
-		[Pagination] $Pagination = [Pagination]::new(),
+		[Pagination] $Pagination = (New-Pagination),
 
 		# The number of items per page.
 		[Parameter(Mandatory, ParameterSetName = "ItemsPerPage", Position = 1)]
@@ -26,11 +26,7 @@ function New-PaginatedList {
 		[int] $ItemsPerPage
 	)
 
-	if ($PSCmdlet.ParameterSetName -eq "ItemsPerPage") {
-		Write-Output ([PaginatedList[object]]::Empty($ItemsPerPage)) -NoEnumerate
-		return
-	}
-
+	if ($PSCmdlet.ParameterSetName -eq "ItemsPerPage") { $Pagination = New-Pagination $ItemsPerPage }
 	$paginatedList = [PaginatedList[object]]::new($Items)
 	$paginatedList.Pagination = $Pagination
 	Write-Output $paginatedList -NoEnumerate

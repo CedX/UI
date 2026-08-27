@@ -1,5 +1,4 @@
 ﻿using namespace Belin.UI
-using namespace System.Collections.Generic
 using namespace System.Collections.Specialized
 
 <#
