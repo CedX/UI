@@ -1,7 +1,7 @@
 # Changelog
 
 ## Version [0.28.0](https://github.com/CedX/UI/compare/v0.27.0...v0.28.0)
-- Dropped support for [C#](https://learn.microsoft.com/en-us/dotnet/csharp) and [ASP.NET](https://learn.microsoft.com/en-us/aspnet/core).
+- Dropped support for [ASP.NET](https://learn.microsoft.com/en-us/aspnet/core) and [C#](https://learn.microsoft.com/en-us/dotnet/csharp).
 
 ## Version [0.27.0](https://github.com/CedX/UI/compare/v0.26.0...v0.27.0)
 - Added the `Scenario.Read` property.
