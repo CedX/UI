@@ -2,7 +2,7 @@
 	DefaultCommandPrefix = "UI"
 	ModuleVersion = "0.28.0"
 	PowerShellVersion = "7.6"
-	RootModule = "Sources/Console/Main.psm1"
+	RootModule = "Sources/Server/Main.psm1"
 
 	Author = "Cédric Belin <cedx@outlook.com>"
 	CompanyName = "Cedric-Belin.fr"
@@ -11,7 +11,7 @@
 	GUID = "13e38ea8-3ddf-4d0d-8440-eeb8d0e8f9fa"
 
 	CmdletsToExport = @()
-	RequiredAssemblies = , "Binaries/Belin.UI.PowerShell.dll"
+	RequiredAssemblies = , "Binaries/Belin.UI.dll"
 	VariablesToExport = @()
 
 	AliasesToExport = @(
