@@ -17,14 +17,6 @@ function Build-DotNetSolution {
 
 <#
 .SYNOPSIS
-	Applies style preferences and static analysis recommendations to the .NET solution.
-#>
-function Format-DotNetSolution {
-	dotnet format
-}
-
-<#
-.SYNOPSIS
 	Installs the specified Npm package, if any. Otherwise, installs all packages.
 #>
 function Install-NpmPackage {
@@ -36,25 +28,6 @@ function Install-NpmPackage {
 
 	$argumentList = $Package ? @($Package) : @()
 	npm install @argumentList
-}
-
-<#
-.SYNOPSIS
-	Invokes the .NET test runner.
-#>
-function Invoke-DotNetTest {
-	param (
-		# The path to the settings file to use for running the tests.
-		[ValidateScript({ Test-Path $_ -PathType Leaf }, ErrorMessage = "The specified settings file does not exist.")]
-		[string] $Settings,
-
-		# Value indicating whether to not build the solution before running the tests.
-		[switch] $NoBuild
-	)
-
-	$argumentList = $Settings ? "--settings", $Settings : @()
-	if ($NoBuild) { $argumentList += "--no-build" }
-	dotnet test @argumentList
 }
 
 <#
@@ -142,23 +115,6 @@ function Publish-NpmPackage {
 
 <#
 .SYNOPSIS
-	Publishes the project package to the NuGet registry.
-#>
-function Publish-NuGetPackage {
-	param (
-		# Value indicating whether to not build the solution before compression.
-		[switch] $NoBuild
-	)
-
-	$output = "$PSScriptRoot/../Temp/NuGet"
-	$argumentList = "--output", $output
-	if ($NoBuild) { $argumentList += "--no-build" }
-	dotnet pack "$PSScriptRoot/../Sources/Server" @argumentList
-	foreach ($package in Get-Item $output/*.nupkg) { dotnet nuget push $package --api-key $Env:NUGET_API_KEY --source NuGet }
-}
-
-<#
-.SYNOPSIS
 	Publishes the project package to the PowerShell Gallery registry.
 #>
 function Publish-PSGalleryModule {
@@ -185,14 +141,6 @@ function Publish-PSGalleryModule {
 #>
 function Test-NpmPackageUpdate {
 	npm outdated
-}
-
-<#
-.SYNOPSIS
-	Checks whether an update is available for the NuGet packages.
-#>
-function Test-NuGetPackageUpdate {
-	dotnet package list --outdated
 }
 
 <#
