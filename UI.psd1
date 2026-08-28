@@ -33,6 +33,7 @@
 	FunctionsToExport = @(
 		"Format-AppTheme"
 		"Format-Context"
+		"Format-Date"
 		"Format-Position"
 		"Format-Size"
 		"Format-String"

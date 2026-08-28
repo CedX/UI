@@ -5,6 +5,20 @@ using module ../../UI.psd1
 	Tests the features of the `New-Pagination` cmdlet.
 #>
 Describe "New-Pagination" {
+	Context "FromQuery" {
+		It "should create a new pagination from the specified query" -ForEach @{ Page = 100; PerPage = 50 }, "Page=100&PerPage=50" {
+			$pagination = New-UIPagination $_
+			Should-Be 99 $pagination.CurrentPageIndex
+			Should-Be 50 $pagination.ItemsPerPage
+		}
+
+		It "should allow setting a maximum allowed value for the `ItemsPerPage` property" -ForEach @{ PerPage = 666 }, "PerPage=666" {
+			$pagination = New-UIPagination $_ -MaxItemsPerPage 100
+			Should-Be 0 $pagination.CurrentPageIndex
+			Should-Be 100 $pagination.ItemsPerPage
+		}
+	}
+
 	Context "HasNextPage" {
 		It "should return `$false if there is no next page" {
 			Should-BeFalse (New-UIPagination).HasNextPage
@@ -38,20 +52,6 @@ Describe "New-Pagination" {
 			Should-Be 0 (New-UIPagination).Offset
 			Should-Be 100 (New-UIPagination -CurrentPageIndex 4).Offset
 			Should-Be 610 (New-UIPagination -CurrentPageIndex 122 -ItemsPerPage 5).Offset
-		}
-	}
-
-	Context "FromQuery" {
-		It "should create a new pagination from the specified query" -ForEach @{ Page = 100; PerPage = 50 }, "Page=100&PerPage=50" {
-			$pagination = New-UIPagination $_
-			Should-Be 99 $pagination.CurrentPageIndex
-			Should-Be 50 $pagination.ItemsPerPage
-		}
-
-		It "should allow setting a maximum allowed value for the `ItemsPerPage` property" -ForEach @{ PerPage = 666 }, "PerPage=666" {
-			$pagination = New-UIPagination $_ -MaxItemsPerPage 100
-			Should-Be 0 $pagination.CurrentPageIndex
-			Should-Be 100 $pagination.ItemsPerPage
 		}
 	}
 }

@@ -17,12 +17,12 @@ Describe "New-Sort" {
 
 	Context "Parse()" {
 		It "should return an empty sort for an empty string" {
-			Should-Be 0 (New-UISort).Count
+			Should-BeCollection (New-UISort) -Count 0
 		}
 
 		It "should return an ascending direction for a property without prefix, a descending direction for a property with a '-' prefix" {
 			$sort = New-UISort "foo,-bar"
-			Should-Be 2 $sort.Count
+			Should-BeCollection $sort -Count 2
 			Should-Be ([KeyValuePair[string, SortDirection]]::new("foo", "Ascending")) $sort.GetAt(0)
 			Should-Be ([KeyValuePair[string, SortDirection]]::new("bar", "Descending")) $sort.GetAt(1)
 		}
