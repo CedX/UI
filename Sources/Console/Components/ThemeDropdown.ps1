@@ -33,32 +33,30 @@ function New-ThemeDropdown {
 		[string] $StorageKey = "AppTheme"
 	)
 
-	process {
-		$attributes = @{
-			alignment = $Alignment
-			appTheme = $AppTheme
-			cookie = $Cookie
-			cookieDomain = $CookieDomain
-			storageKey = $StorageKey
-			text = $Text
-		}
+	$attributes = @{
+		alignment = $Alignment
+		appTheme = $AppTheme
+		cookie = $Cookie
+		cookieDomain = $CookieDomain
+		storageKey = $StorageKey
+		text = $Text
+	}
 
-		New-HtmlCustomElement theme-dropdown -Attributes $attributes {
-			li -Class nav-item, dropdown {
-				button -Class dropdown-toggle, nav-link -DataSet @{ BsToggle = "dropdown" } -Type button {
-					i -Class icon, icon-fill (Format-AppTheme $AppTheme -Icon)
-					span -Class ms-2 $Text
-				}
-				ul -Class dropdown-menu, ($Alignment -eq [Alignment]::End ? "dropdown-menu-end" : "") {
-					foreach ($theme in [Enum]::GetValues[AppTheme]()) {
-						li {
-							button -Class dropdown-item, d-flex, align-items-center, justify-content-between -Type button -Value $theme {
-								span {
-									i -Class icon, icon-fill, me-2 (Format-AppTheme $theme -Icon)
-									Format-AppTheme $theme -Text
-								}
-								if ($theme -eq $AppTheme) { i -Class icon, ms-3 "check" }
+	New-HtmlCustomElement theme-dropdown -Attributes $attributes {
+		li -Class nav-item, dropdown {
+			button -Class dropdown-toggle, nav-link -DataSet @{ BsToggle = "dropdown" } -Type button {
+				i -Class icon, icon-fill (Format-AppTheme $AppTheme -Icon)
+				span -Class ms-2 $Text
+			}
+			ul -Class dropdown-menu, ($Alignment -eq [Alignment]::End ? "dropdown-menu-end" : "") {
+				foreach ($theme in [Enum]::GetValues[AppTheme]()) {
+					li {
+						button -Class dropdown-item, d-flex, align-items-center, justify-content-between -Type button -Value $theme {
+							span {
+								i -Class icon, icon-fill, me-2 (Format-AppTheme $theme -Icon)
+								Format-AppTheme $theme -Text
 							}
+							if ($theme -eq $AppTheme) { i -Class icon, ms-3 "check" }
 						}
 					}
 				}
