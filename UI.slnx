@@ -1,7 +1,3 @@
 <Solution>
 	<Project Path="Sources/Console/Console.csproj" />
-	<Project Path="Sources/Server/Server.csproj" />
-	<Project Path="Tests/Server/Server.Tests.csproj">
-		<Build Solution="Release|*" Project="false" />
-	</Project>
 </Solution>
