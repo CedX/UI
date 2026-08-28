@@ -9,7 +9,7 @@
 
 	<PropertyGroup>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-		<AssemblyName>Belin.UI.PowerShell</AssemblyName>
+		<AssemblyName>Belin.UI</AssemblyName>
 		<CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
 		<HotReloadAutoRestart>true</HotReloadAutoRestart>
 		<ImplicitUsings>enable</ImplicitUsings>
