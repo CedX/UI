@@ -1,6 +1,6 @@
 # Belin UI
 Component library by [Cédric Belin](https://cedric-belin.fr), full stack developer, implemented in
-[C#](https://learn.microsoft.com/en-us/dotnet/csharp), [PowerShell](https://learn.microsoft.com/en-us/powershell) and [TypeScript](https://www.typescriptlang.org).
+[PowerShell](https://learn.microsoft.com/en-us/powershell) and [TypeScript](https://www.typescriptlang.org).
 
 > [!CAUTION]
 > This library is dedicated to personal/side projects.  
@@ -10,9 +10,6 @@ Component library by [Cédric Belin](https://cedric-belin.fr), full stack develo
 Install the latest version of **Belin UI** with your package manager:
 
 ```shell
-# .NET with NuGet
-dotnet add package Belin.UI
-
 # PowerShell with PSResourceGet
 Install-PSResource Belin.UI
 
