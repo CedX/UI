@@ -7,7 +7,7 @@
 	Author = "Cédric Belin <cedx@outlook.com>"
 	CompanyName = "Cedric-Belin.fr"
 	Copyright = "© Cédric Belin"
-	Description = "Component library by Cédric Belin, full stack developer."
+	Description = "Web component library by Cédric Belin, full stack developer."
 	GUID = "13e38ea8-3ddf-4d0d-8440-eeb8d0e8f9fa"
 
 	CmdletsToExport = @()

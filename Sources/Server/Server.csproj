@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<Company>Cedric-Belin.fr</Company>
 		<Copyright>© Cédric Belin</Copyright>
-		<Description>Component library by Cédric Belin, full stack developer.</Description>
+		<Description>Web component library by Cédric Belin, full stack developer.</Description>
 		<Product>Belin UI</Product>
 		<Version>0.28.0</Version>
 	</PropertyGroup>

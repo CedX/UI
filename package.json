@@ -1,7 +1,7 @@
 {
 	"author": "Cédric Belin <cedx@outlook.com>",
 	"bugs": "https://github.com/CedX/UI/issues",
-	"description": "Component library by Cédric Belin, full stack developer.",
+	"description": "Web component library by Cédric Belin, full stack developer.",
 	"homepage": "https://github.com/CedX/UI",
 	"license": "MIT",
 	"name": "@cedx/ui",
