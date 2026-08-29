@@ -1,6 +1,6 @@
 ﻿@{
 	DefaultCommandPrefix = "UI"
-	ModuleVersion = "0.28.0"
+	ModuleVersion = "0.29.0"
 	PowerShellVersion = "7.6"
 	RootModule = "Sources/Server/Main.psm1"
 
@@ -36,6 +36,7 @@
 		"Format-Date"
 		"Format-Position"
 		"Format-Size"
+		"Format-Sort"
 		"Format-String"
 		"Format-Variant"
 		"New-ActionBar"
