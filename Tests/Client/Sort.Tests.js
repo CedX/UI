@@ -1,6 +1,5 @@
 /* eslint-disable max-lines-per-function */
-import {Sort} from "@cedx/ui/Sort.js";
-import {SortDirection} from "@cedx/ui/SortDirection.js";
+import {Sort, SortDirection} from "@cedx/ui/Sort.js";
 import {assert} from "chai";
 
 /**
