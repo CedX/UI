@@ -1,6 +1,7 @@
 # Changelog
 
 ## Version [0.30.0](https://github.com/CedX/UI/compare/v0.29.0...v0.30.0)
+- Removed the `Sort.toJSON()` method.
 - Renamed the `cssClass()` functions to `getCssClass()`.
 - Renamed the `icon()` functions to `getIcon()`.
 - Renamed the `text()` functions to `getText()`.

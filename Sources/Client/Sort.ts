@@ -217,14 +217,6 @@ export class Sort implements Iterable<SortedProperty> {
 	}
 
 	/**
-	 * Returns a JSON representation of this object.
-	 * @returns The JSON representation of this object.
-	 */
-	toJSON(): string {
-		return this.toString();
-	}
-
-	/**
 	 * Returns a string representation of this object.
 	 * @returns The string representation of this object.
 	 */
