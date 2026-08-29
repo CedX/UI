@@ -1,5 +1,12 @@
 # Changelog
 
+## Version [0.30.0](https://github.com/CedX/UI/compare/v0.29.0...v0.30.0)
+- Renamed the `cssClass()` function to `getCssClass()`.
+- Renamed the `daysInMonth()` function to `getDaysInMonth()`.
+- Renamed the `icon()` functions to `getIcon()`.
+- Renamed the `text()` functions to `getText()`.
+- Renamed the `invalidControl()` function to `getInvalidControl()`.
+
 ## Version [0.29.0](https://github.com/CedX/UI/compare/v0.28.0...v0.29.0)
 - Added the `Format-Sort` cmdlet.
 - Optimized the packaging.
