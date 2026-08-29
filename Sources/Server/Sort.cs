@@ -48,16 +48,6 @@ public sealed class Sort(IEnumerable<KeyValuePair<string, SortDirection>>? prope
 	}));
 
 	/// <summary>
-	/// Gets the icon corresponding to the specified property.
-	/// </summary>
-	/// <param name="property">The property name.</param>
-	/// <returns>The icon corresponding to the specified property.</returns>
-	public string GetIcon(string property) => !TryGetValue(property, out var direction) ? "swap_vert" : direction switch {
-		SortDirection.Ascending => "arrow_upward",
-		SortDirection.Descending => "arrow_downward"
-	};
-
-	/// <summary>
 	/// Returns a string representation of this object.
 	/// </summary>
 	/// <returns>The string representation of this object.</returns>
