@@ -14,7 +14,7 @@ export function atMidnight(date: Date): Date {
  * @param date The date.
  * @returns The number of days in the month of the specified date.
  */
-export function daysInMonth(date: Date): number {
+export function getDaysInMonth(date: Date): number {
 	return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
 }
 

@@ -4,6 +4,7 @@
 - Renamed the `cssClass()` functions to `getCssClass()`.
 - Renamed the `icon()` functions to `getIcon()`.
 - Renamed the `text()` functions to `getText()`.
+- Renamed the `daysInMonth()` function to `getDaysInMonth()`.
 - Renamed the `invalidControl()` function to `getInvalidControl()`.
 
 ## Version [0.29.0](https://github.com/CedX/UI/compare/v0.28.0...v0.29.0)
