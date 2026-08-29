@@ -1,11 +1,11 @@
-import {invalidControl, isControl, resetValidity, trimControl} from "@cedx/ui/Form.js";
+import {getInvalidControl, isControl, resetValidity, trimControl} from "@cedx/ui/Form.js";
 import {assert} from "chai";
 
 /**
  * Tests the features of the form functions.
  */
 describe("Form", () => {
-	describe("invalidControl()", () => {
+	describe("getInvalidControl()", () => {
 		const form = document.createElement("form");
 		const input = document.createElement("input");
 		const textarea = document.createElement("textarea");
@@ -15,17 +15,17 @@ describe("Form", () => {
 		it("should return the first invalid control if it exists", () => {
 			input.setCustomValidity("error");
 			textarea.setCustomValidity("");
-			assert.equal(invalidControl(form), input);
+			assert.equal(getInvalidControl(form), input);
 
 			input.setCustomValidity("");
 			textarea.setCustomValidity("error");
-			assert.equal(invalidControl(form), textarea);
+			assert.equal(getInvalidControl(form), textarea);
 		});
 
 		it("should return `null` if all form controls are valid", () => {
 			input.setCustomValidity("");
 			textarea.setCustomValidity("");
-			assert.isNull(invalidControl(form));
+			assert.isNull(getInvalidControl(form));
 		});
 	});
 

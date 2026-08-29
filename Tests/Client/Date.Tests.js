@@ -1,4 +1,4 @@
-import {atMidnight, daysInMonth, getQuarter, getWeekOfYear} from "@cedx/ui/Date.js";
+import {atMidnight, getDaysInMonth, getQuarter, getWeekOfYear} from "@cedx/ui/Date.js";
 import {assert} from "chai";
 
 /**
@@ -14,13 +14,13 @@ describe("Date", () => {
 		});
 	});
 
-	describe("daysInMonth()", () => {
+	describe("getDaysInMonth()", () => {
 		it("should return the number of days in the month of the given date", () => {
-			assert.equal(daysInMonth(new Date(2000, 0, 1)), 31);
-			assert.equal(daysInMonth(new Date(2008, 1, 1, 12)), 29);
-			assert.equal(daysInMonth(new Date(2009, 1, 1, 12)), 28);
-			assert.equal(daysInMonth(new Date(2009, 3, 1, 20, 30, 15)), 30);
-			assert.equal(daysInMonth(new Date(2024, 11, 31, 23, 59, 59)), 31);
+			assert.equal(getDaysInMonth(new Date(2000, 0, 1)), 31);
+			assert.equal(getDaysInMonth(new Date(2008, 1, 1, 12)), 29);
+			assert.equal(getDaysInMonth(new Date(2009, 1, 1, 12)), 28);
+			assert.equal(getDaysInMonth(new Date(2009, 3, 1, 20, 30, 15)), 30);
+			assert.equal(getDaysInMonth(new Date(2024, 11, 31, 23, 59, 59)), 31);
 		});
 	});
 
