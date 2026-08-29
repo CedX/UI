@@ -1,7 +1,7 @@
 # Changelog
 
 ## Version [0.29.0](https://github.com/CedX/UI/compare/v0.28.0...v0.29.0)
-- Added the `Format-Sort` cmlet.
+- Added the `Format-Sort` cmdlet.
 - Optimized the packaging.
 
 ## Version [0.28.0](https://github.com/CedX/UI/compare/v0.27.0...v0.28.0)
