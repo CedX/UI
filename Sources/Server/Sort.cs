@@ -3,6 +3,7 @@ namespace Belin.UI;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Globalization;
+using System.Text.Json.Serialization;
 
 /// <summary>
 /// Represents information relevant to the sorting of data items.
@@ -62,4 +63,21 @@ public sealed class Sort(IEnumerable<KeyValuePair<string, SortDirection>>? prope
 	/// <returns>The string representation of this object.</returns>
 	public override string ToString() =>
 		string.Join(',', this.Select(property => $"{(property.Value == SortDirection.Descending ? "-" : "")}{property.Key}"));
+}
+
+/// <summary>
+/// Specifies the direction of a sorted property.
+/// </summary>
+[JsonConverter(typeof(JsonStringEnumConverter<SortDirection>))]
+public enum SortDirection {
+
+	/// <summary>
+	/// The sort is ascending.
+	/// </summary>
+	Ascending,
+
+	/// <summary>
+	/// The sort is descending.
+	/// </summary>
+	Descending
 }
