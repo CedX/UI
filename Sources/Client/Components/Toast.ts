@@ -307,12 +307,12 @@ export class Toast extends HTMLElement {
 		const contexts = Object.values(Context);
 
 		let {classList} = this.querySelector(".toast-header")!;
-		classList.remove(...contexts.map(context => `toast-header-${cssClass(context)}`));
-		classList.add(`toast-header-${cssClass(value)}`);
+		classList.remove(...contexts.map(context => `toast-header-${getCssClass(context)}`));
+		classList.add(`toast-header-${getCssClass(value)}`);
 
 		({classList} = this.querySelector(".toast-header .icon")!);
-		classList.remove(...contexts.map(context => `text-${cssClass(context)}`));
-		classList.add(`text-${cssClass(value)}`);
+		classList.remove(...contexts.map(context => `text-${getCssClass(context)}`));
+		classList.add(`text-${getCssClass(value)}`);
 
 		if (!this.icon) this.#updateIcon(getIcon(value));
 	}

@@ -3,7 +3,7 @@ import {Context, getCssClass as contextCssClass, getIcon as contextIcon} from ".
 import {DialogResult} from "../DialogResult.js";
 import type {HtmxConfirmEventArgs} from "../Htmx.js";
 import {html} from "../Tags.js";
-import {Variant, cssClass as variantCssClass} from "../Variant.js";
+import {Variant, getCssClass as variantCssClass} from "../Variant.js";
 
 /**
  * Represents a dialog box button.

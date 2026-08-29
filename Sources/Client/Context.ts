@@ -34,7 +34,7 @@ export type Context = typeof Context[keyof typeof Context];
  * @param context The context.
  * @returns The CSS class of the specified context.
  */
-export function cssClass(context: Context): string {
+export function getCssClass(context: Context): string {
 	return context.toLowerCase();
 }
 

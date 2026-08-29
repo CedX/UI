@@ -59,7 +59,7 @@ export type Position = typeof Position[keyof typeof Position];
  * @param position The position.
  * @returns The CSS class of the specified position.
  */
-export function cssClass(position: Position): string {
+export function getCssClass(position: Position): string {
 	switch (position) {
 		case Position.TopCenter: return "top-0 start-50 translate-middle-x";
 		case Position.TopEnd: return "top-0 end-0";

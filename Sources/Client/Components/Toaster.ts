@@ -1,5 +1,5 @@
 import {Context} from "../Context.js";
-import {Position, cssClass} from "../Position.js";
+import {Position, getCssClass} from "../Position.js";
 import {html} from "../Tags.js";
 import "./Toast.js";
 import type {IToast, Toast} from "./Toast.js"; // eslint-disable-line no-duplicate-imports
@@ -201,8 +201,8 @@ export class Toaster extends HTMLElement {
 	 */
 	#updatePosition(value: Position): void {
 		const {classList} = this.firstElementChild!;
-		classList.remove(...Object.values(Position).flatMap(position => cssClass(position).split(" ")));
-		classList.add(...cssClass(value).split(" "));
+		classList.remove(...Object.values(Position).flatMap(position => getCssClass(position).split(" ")));
+		classList.add(...getCssClass(value).split(" "));
 	}
 }
 

@@ -22,7 +22,7 @@ export function getControls(form: HTMLFormElement): FormControl[] {
  * @param form The form element.
  * @returns The first invalid control, or `null` if all controls are valid.
  */
-export function invalidControl(form: HTMLFormElement): FormControl|null {
+export function getInvalidControl(form: HTMLFormElement): FormControl|null {
 	return form.querySelector(":not(fieldset):invalid");
 }
 

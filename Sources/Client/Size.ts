@@ -44,7 +44,7 @@ export type Size = typeof Size[keyof typeof Size];
  * @param size The size.
  * @returns The CSS class of the specified size.
  */
-export function cssClass(size: Size): string {
+export function getCssClass(size: Size): string {
 	switch (size) {
 		case Size.ExtraSmall: return "xs";
 		case Size.Small: return "sm";

@@ -37,6 +37,6 @@ export type Variant = typeof Variant[keyof typeof Variant];
  * @param variant The variant.
  * @returns The CSS class of the specified variant.
  */
-export function cssClass(variant: Variant): string {
+export function getCssClass(variant: Variant): string {
 	return variant.toLowerCase();
 }
