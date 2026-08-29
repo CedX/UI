@@ -1,5 +1,5 @@
 import {Modal} from "bootstrap";
-import {Context, cssClass as contextCssClass, icon as contextIcon} from "../Context.js";
+import {Context, getCssClass as contextCssClass, getIcon as contextIcon} from "../Context.js";
 import {DialogResult} from "../DialogResult.js";
 import type {HtmxConfirmEventArgs} from "../Htmx.js";
 import {html} from "../Tags.js";
