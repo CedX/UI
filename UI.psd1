@@ -1,6 +1,6 @@
 ﻿@{
 	DefaultCommandPrefix = "UI"
-	ModuleVersion = "0.30.0"
+	ModuleVersion = "0.31.0"
 	PowerShellVersion = "7.6"
 	RootModule = "Sources/Server/Main.psm1"
 
@@ -59,7 +59,9 @@
 		"Send-Trigger"
 		"Show-DialogBox"
 		"Show-Toast"
+		"Test-Environment"
 		"Test-Request"
+		"Test-Service"
 	)
 
 	RequiredModules = @(
