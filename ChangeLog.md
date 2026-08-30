@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [0.31.0](https://github.com/CedX/UI/compare/v0.30.0...v0.31.0)
+- Added the `Test-Environment` and `Test-Service` cmdlets.
+
 ## Version [0.30.0](https://github.com/CedX/UI/compare/v0.29.0...v0.30.0)
 - Removed the `Sort.toJSON()` method.
 - Renamed the `cssClass()` functions to `getCssClass()`.
