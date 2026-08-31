@@ -8,14 +8,9 @@ using module ../../UI.psd1
 Describe "Format-Sort" {
 	Context "Icon" {
 		It "should return the icon corresponding to the property's direction" {
-			$sort = New-UISort "foo"
-			Should-BeString arrow_upward (Format-UISort $sort "foo" -Icon) -CaseSensitive
-
-			$sort = New-UISort "-foo"
-			Should-BeString arrow_downward (Format-UISort $sort "foo" -Icon) -CaseSensitive
-
-			$sort = New-UISort
-			Should-BeString swap_vert (Format-UISort $sort "foo" -Icon) -CaseSensitive
+			Should-BeString arrow_upward (Format-UISort "foo" "foo" -Icon) -CaseSensitive
+			Should-BeString arrow_downward (Format-UISort "-foo" "foo" -Icon) -CaseSensitive
+			Should-BeString swap_vert (Format-UISort (New-UISort) "foo" -Icon) -CaseSensitive
 		}
 	}
 }
