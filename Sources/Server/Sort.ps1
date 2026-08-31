@@ -27,14 +27,7 @@ function Format-Sort {
 	)
 
 	process {
-		if ($Icon) {
-			$direction = [SortDirection]::Ascending
-			switch ((-not $InputObject.TryGetValue($Property, [ref] $direction)) ? $null : $direction) {
-				([SortDirection]::Ascending) { return "arrow_upward" }
-				([SortDirection]::Descending) { return "arrow_downward" }
-				default { return "swap_vert" }
-			}
-		}
+		if ($Icon) { return $InputObject.GetIcon($Property) }
 	}
 }
 

@@ -1,4 +1,4 @@
-using namespace System.Globalization
+using namespace Belin.UI
 
 <#
 .SYNOPSIS
@@ -26,7 +26,7 @@ function Format-Date {
 	)
 
 	process {
-		if ($Quarter) { return [int] [Math]::Ceiling($Value.Month / 3) }
-		if ($WeekOfYear) { return [ISOWeek]::GetWeekOfYear($Value) }
+		if ($Quarter) { return [DateTimeExtensions]::get_Quarter($Value) }
+		if ($WeekOfYear) { return [DateTimeExtensions]::get_WeekOfYear($Value) }
 	}
 }

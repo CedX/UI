@@ -26,20 +26,7 @@ function Format-AppTheme {
 	)
 
 	process {
-		if ($Icon) {
-			switch ($InputObject) {
-				([AppTheme]::Dark) { return "dark_mode" }
-				([AppTheme]::Light) { return "light_mode" }
-				default { return "contrast" }
-			}
-		}
-
-		if ($Text) {
-			switch ($InputObject) {
-				([AppTheme]::Dark) { return "Sombre" }
-				([AppTheme]::Light) { return "Clair" }
-				default { return "Auto" }
-			}
-		}
+		if ($Icon) { return [AppThemeExtensions]::get_Icon($InputObject) }
+		if ($Text) { return [AppThemeExtensions]::get_Text($InputObject) }
 	}
 }

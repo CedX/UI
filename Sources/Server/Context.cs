@@ -28,3 +28,26 @@ public enum Context {
 	/// </summary>
 	Success
 }
+
+/// <summary>
+/// Provides extension members for contextual modifiers.
+/// </summary>
+public static class ContextExtensions {
+	extension(Context context) {
+
+		/// <summary>
+		/// The CSS class of this context.
+		/// </summary>
+		public string CssClass => context.ToString().ToLowerInvariant();
+
+		/// <summary>
+		/// The icon corresponding to this context.
+		/// </summary>
+		public string Icon => context switch {
+			Context.Danger => "error",
+			Context.Info => "info",
+			Context.Success => "check_circle",
+			Context.Warning => "warning"
+		};
+	}
+}

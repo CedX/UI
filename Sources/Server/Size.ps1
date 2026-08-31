@@ -22,15 +22,6 @@ function Format-Size {
 	)
 
 	process {
-		if ($CssClass) {
-			switch ($InputObject) {
-				([Size]::ExtraSmall) { return "xs" }
-				([Size]::Small) { return "sm" }
-				([Size]::Large) { return "lg" }
-				([Size]::ExtraLarge) { return "xl" }
-				([Size]::ExtraExtraLarge) { return "xxl" }
-				default { return "md" }
-			}
-		}
+		if ($CssClass) { return [SizeExtensions]::get_CssClass($InputObject) }
 	}
 }

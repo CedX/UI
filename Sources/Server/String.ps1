@@ -1,3 +1,5 @@
+using namespace Belin.UI
+
 <#
 .SYNOPSIS
 	Formats the specified string.
@@ -31,7 +33,7 @@ function Format-String {
 		[string] $Ellipsis = "...",
 
 		# The maximum length of the string to truncate.
-		[Parameter(ParameterSetName = "Truncate")]
+		[Parameter(Mandatory, ParameterSetName = "Truncate")]
 		[ValidateRange("NonNegative")]
 		[int] $Length,
 
@@ -41,7 +43,7 @@ function Format-String {
 	)
 
 	process {
-		if ($Capitalize) { return -not $Value.Length ? "" : "$([char]::ToUpper($Value[0], $Culture))$($Value.Substring(1))" }
-		if ($Truncate) { return $Value.Length -gt $Length ? "$($Value.Substring(0, $Length))$Ellipsis" : $Value }
+		if ($Capitalize) { return [StringExtensions]::Capitalize($Value, $Culture) }
+		if ($Truncate) { return [StringExtensions]::Truncate($Value, $Length, $Ellipsis) }
 	}
 }

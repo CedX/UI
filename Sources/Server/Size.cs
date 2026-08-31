@@ -38,3 +38,23 @@ public enum Size {
 	/// </summary>
 	ExtraExtraLarge
 }
+
+/// <summary>
+/// Provides extension members for element sizes.
+/// </summary>
+public static class SizeExtensions {
+	extension(Size size) {
+
+		/// <summary>
+		/// The CSS class of this size.
+		/// </summary>
+		public string CssClass => size switch {
+			Size.ExtraSmall => "xs",
+			Size.Small => "sm",
+			Size.Medium => "md",
+			Size.Large => "lg",
+			Size.ExtraLarge => "xl",
+			Size.ExtraExtraLarge => "xxl"
+		};
+	}
+}

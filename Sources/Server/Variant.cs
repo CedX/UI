@@ -48,3 +48,16 @@ public enum Variant {
 	/// </summary>
 	Dark
 }
+
+/// <summary>
+/// Provides extension members for tone variants.
+/// </summary>
+public static class VariantExtensions {
+	extension(Variant variant) {
+
+		/// <summary>
+		/// The CSS class of this variant.
+		/// </summary>
+		public string CssClass => variant.ToString().ToLowerInvariant();
+	}
+}

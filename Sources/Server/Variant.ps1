@@ -22,8 +22,6 @@ function Format-Variant {
 	)
 
 	process {
-		if ($CssClass) {
-			return $InputObject.ToString().ToLowerInvariant()
-		}
+		if ($CssClass) { return [VariantExtensions]::get_CssClass($InputObject) }
 	}
 }
