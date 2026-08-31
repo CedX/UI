@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [0.32.0](https://github.com/CedX/UI/compare/v0.31.0...v0.32.0)
+- Restored the [C#](https://learn.microsoft.com/en-us/dotnet/csharp) extension members.
+
 ## Version [0.31.0](https://github.com/CedX/UI/compare/v0.30.0...v0.31.0)
 - Added the `Test-Environment` and `Test-Service` cmdlets.
 
