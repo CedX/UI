@@ -59,9 +59,7 @@
 		"Send-Trigger"
 		"Show-DialogBox"
 		"Show-Toast"
-		"Test-Environment"
 		"Test-Request"
-		"Test-Service"
 	)
 
 	RequiredModules = @(
