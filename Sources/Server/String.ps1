@@ -16,7 +16,7 @@ function Format-String {
 		[Parameter(Mandatory, Position = 1, ValueFromPipeline)]
 		[AllowEmptyString()]
 		[AllowNull()]
-		[string] $Value,
+		[string] $InputObject,
 
 		# Value indicating whether to convert the first character of the string to uppercase.
 		[Parameter(ParameterSetName = "Capitalize")]
@@ -43,7 +43,7 @@ function Format-String {
 	)
 
 	process {
-		if ($Capitalize) { return [StringExtensions]::Capitalize($Value, $Culture) }
-		if ($Truncate) { return [StringExtensions]::Truncate($Value, $Length, $Ellipsis) }
+		if ($Capitalize) { return [StringExtensions]::Capitalize($InputObject, $Culture) }
+		if ($Truncate) { return [StringExtensions]::Truncate($InputObject, $Length, $Ellipsis) }
 	}
 }

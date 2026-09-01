@@ -14,7 +14,7 @@ function Format-Date {
 	param (
 		# The date to format.
 		[Parameter(Mandatory, Position = 1, ValueFromPipeline)]
-		[datetime] $Value,
+		[datetime] $InputObject,
 
 		# Value indicating whether to return the quarter corresponding to the specified date.
 		[Parameter(ParameterSetName = "Quarter")]
@@ -26,7 +26,7 @@ function Format-Date {
 	)
 
 	process {
-		if ($Quarter) { return [DateTimeExtensions]::get_Quarter($Value) }
-		if ($WeekOfYear) { return [DateTimeExtensions]::get_WeekOfYear($Value) }
+		if ($Quarter) { return [DateTimeExtensions]::get_Quarter($InputObject) }
+		if ($WeekOfYear) { return [DateTimeExtensions]::get_WeekOfYear($InputObject) }
 	}
 }
