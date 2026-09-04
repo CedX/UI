@@ -1,5 +1,10 @@
 # Changelog
 
+## Version [0.33.0](https://github.com/CedX/UI/compare/v0.32.0...v0.33.0)
+- Removed the `failed()` and `successful()` functions.
+- Removed the `HtmxEventArgs` type.
+- Upgraded [htmx](https://four.htmx.org) to version 4.
+
 ## Version [0.32.0](https://github.com/CedX/UI/compare/v0.31.0...v0.32.0)
 - Restored the [C#](https://learn.microsoft.com/en-us/dotnet/csharp) extension members.
 
