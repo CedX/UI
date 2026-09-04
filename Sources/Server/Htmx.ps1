@@ -16,7 +16,6 @@ function Send-Location {
 		[string] $Select,
 
 		# Value indicating how the response will be swapped in relative to the target.
-		[ValidateSet("afterbegin", "afterend", "beforebegin", "beforeend", "delete", "innerHTML", "none", "outerHTML", "textContent")]
 		[string] $Swap,
 
 		# The selector specifying the target in which to perform the swap.
