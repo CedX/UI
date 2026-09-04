@@ -1,6 +1,6 @@
 ﻿@{
 	DefaultCommandPrefix = "UI"
-	ModuleVersion = "0.33.0"
+	ModuleVersion = "0.33.1"
 	PowerShellVersion = "7.6"
 	RootModule = "Sources/Server/Main.psm1"
 
