@@ -33,23 +33,3 @@ export type HtmxConfirmEventArgs = HtmxEventArgs & {
 	 */
 	triggeringEvent: Event;
 };
-
-/**
- * Returns a value indicating whether the specified response failed.
- * @param response The `htmx` response.
- * @returns `true` if the specified response failed, otherwise `false`.
- */
-export function failed(response: HtmxResponseInfo): boolean {
-	const {status} = response.xhr;
-	return Boolean(response.failed) || (status >= 400 && status < 600);
-}
-
-/**
- * Returns a value indicating whether the specified response was successful.
- * @param response The `htmx` response.
- * @returns `true` if the specified response was successful, otherwise `false`.
- */
-export function successful(response: HtmxResponseInfo): boolean {
-	const {status} = response.xhr;
-	return Boolean(response.successful) || (status >= 200 && status < 300);
-}
