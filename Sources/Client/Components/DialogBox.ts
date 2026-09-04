@@ -338,7 +338,7 @@ export class DialogBox extends HTMLElement {
 
 			void this
 				.confirm(Object.values(Context).includes(context) ? context : Context.Warning, caption ?? "", html`${event.detail.question}`)
-				.then(dialogResult => { if (dialogResult == DialogResult.OK) event.detail.issueRequest(true); });
+				.then(dialogResult => { if (dialogResult == DialogResult.OK) event.detail.issueRequest(); });
 		};
 
 		const abortController = new AbortController;
