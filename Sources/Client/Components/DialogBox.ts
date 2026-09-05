@@ -319,7 +319,7 @@ export class DialogBox extends HTMLElement {
 		};
 
 		const abortController = new AbortController;
-		document.body.addEventListener("ui:dialogbox:alert", listener as EventListener, {signal: abortController.signal});
+		document.addEventListener("ui:dialogbox:alert", listener as EventListener, {signal: abortController.signal});
 		return abortController;
 	}
 
@@ -345,7 +345,7 @@ export class DialogBox extends HTMLElement {
 		};
 
 		const abortController = new AbortController;
-		document.body.addEventListener("htmx:confirm", listener as EventListener, {signal: abortController.signal});
+		document.addEventListener("htmx:confirm", listener as EventListener, {signal: abortController.signal});
 		return abortController;
 	}
 

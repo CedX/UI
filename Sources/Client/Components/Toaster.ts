@@ -191,7 +191,7 @@ export class Toaster extends HTMLElement {
 		};
 
 		const abortController = new AbortController;
-		document.body.addEventListener("ui:toaster:notify", listener as EventListener, {signal: abortController.signal});
+		document.addEventListener("ui:toaster:notify", listener as EventListener, {signal: abortController.signal});
 		return abortController;
 	}
 

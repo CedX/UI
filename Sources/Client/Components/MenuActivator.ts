@@ -22,7 +22,7 @@ export class MenuActivator extends HTMLElement {
 		this.#abortController = new AbortController;
 		this.#update();
 		addEventListener("popstate", () => this.#update(), {signal: this.#abortController.signal});
-		document.body.addEventListener("htmx:after:history:push", () => this.#update(), {signal: this.#abortController.signal});
+		document.addEventListener("htmx:after:history:update", () => this.#update(), {signal: this.#abortController.signal});
 	}
 
 	/**
