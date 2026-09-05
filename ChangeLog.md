@@ -1,10 +1,13 @@
 # Changelog
 
-## Version [0.34.0](https://github.com/CedX/UI/compare/v0.33.0...v0.34.0)
+## Version [0.34.0](https://github.com/CedX/UI/compare/v0.33.1...v0.34.0)
 - Added the `-Transition` parameter to the `Send-Location` cmdlet.
 - Removed the `-AfterSettle` and `-AfterSwap` parameters from the `Send-Trigger` cmdlet.
+
+## Version [0.33.1](https://github.com/CedX/UI/compare/v0.33.0...v0.33.1)
 - Fixed a regression in the `DialogBox` component.
 - Fixed a regression in the `MenuActivator` component.
+- Removed the `[ValidateSet]` attribute on the `-Swap` parameter of the `Send-Location` cmdlet.
 
 ## Version [0.33.0](https://github.com/CedX/UI/compare/v0.32.0...v0.33.0)
 - Upgraded [htmx](https://four.htmx.org) to version 4.
