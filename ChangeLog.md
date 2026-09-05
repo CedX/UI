@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [0.34.1](https://github.com/CedX/UI/compare/v0.34.0...v0.34.1)
+- Fixed the handling of [htmx](https://four.htmx.org) events in the `DialogBox`, `MenuActivator` and `Toaster` components.
+
 ## Version [0.34.0](https://github.com/CedX/UI/compare/v0.33.1...v0.34.0)
 - Added the `-Transition` parameter to the `Send-Location` cmdlet.
 - Removed the `-AfterSettle` and `-AfterSwap` parameters from the `Send-Trigger` cmdlet.
