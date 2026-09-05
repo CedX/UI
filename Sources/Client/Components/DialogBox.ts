@@ -329,16 +329,19 @@ export class DialogBox extends HTMLElement {
 	 */
 	useConfirmEventHandler(): AbortController {
 		const listener = (event: CustomEvent<HtmxConfirmEventArgs>): void => {
-			if (!event.detail.question) return;
 			event.preventDefault();
 
 			const element = event.target as HTMLElement;
 			const caption = element.closest("[hx-confirm-caption]")?.getAttribute("hx-confirm-caption");
 			const context = element.closest("[hx-confirm-context]")?.getAttribute("hx-confirm-context") as Context;
+			const message = event.detail.ctx.confirm;
 
 			void this
-				.confirm(Object.values(Context).includes(context) ? context : Context.Warning, caption ?? "", html`${event.detail.question}`)
-				.then(dialogResult => { if (dialogResult == DialogResult.OK) event.detail.issueRequest(); });
+				.confirm(Object.values(Context).includes(context) ? context : Context.Warning, caption ?? "", html`${message}`)
+				.then(dialogResult => {
+					if (dialogResult == DialogResult.OK) event.detail.issueRequest();
+					else event.detail.dropRequest();
+				});
 		};
 
 		const abortController = new AbortController;

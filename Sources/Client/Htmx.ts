@@ -7,7 +7,7 @@ export const Htmx = htmx as unknown as typeof htmx.default;
 export type HtmxConfirmEventArgs = HtmxEventMap["htmx:confirm"] & {
 
 	/**
-	 * The question passed to the `hx-confirm` attribute.
+	 * The message passed to the `hx-confirm` attribute.
 	 */
-	question?: string;
+	ctx: {confirm: string};
 };
