@@ -1,6 +1,8 @@
 # Changelog
 
-## Version [0.33.1](https://github.com/CedX/UI/compare/v0.33.0...v0.33.1)
+## Version [0.34.0](https://github.com/CedX/UI/compare/v0.33.0...v0.34.0)
+- Added the `-Transition` parameter to the `Send-Location` cmdlet.
+- Removed the `-AfterSettle` and `-AfterSwap` parameters from the `Send-Trigger` cmdlet.
 - Fixed a regression in the `DialogBox` component.
 - Fixed a regression in the `MenuActivator` component.
 

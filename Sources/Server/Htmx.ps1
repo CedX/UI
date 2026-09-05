@@ -19,7 +19,10 @@ function Send-Location {
 		[string] $Swap,
 
 		# The selector specifying the target in which to perform the swap.
-		[string] $Target
+		[string] $Target,
+
+		# Value indicating whether to use a view transition.
+		[switch] $Transition
 	)
 
 	process {
@@ -27,6 +30,7 @@ function Send-Location {
 		if (-not [string]::IsNullOrWhiteSpace($Select)) { $location.select = $Select }
 		if (-not [string]::IsNullOrWhiteSpace($Swap)) { $location.swap = $Swap }
 		if (-not [string]::IsNullOrWhiteSpace($Target)) { $location.target = $Target }
+		if ($Transition) { $location.transition = $true }
 		Set-PodeHeader "HX-Location" (ConvertTo-Json $location -Compress -EscapeHandling EscapeNonAscii)
 	}
 }
@@ -49,21 +53,14 @@ function Send-Trigger {
 		[Parameter(Mandatory, ParameterSetName = "Name", Position = 1)]
 		[string[]] $Name,
 
-		# Value indicating whether to trigger client-side events after the settle step.
-		[switch] $AfterSettle,
-
-		# Value indicating whether to trigger client-side events after the swap step.
-		[switch] $AfterSwap,
-
 		# Value indicating whether to convert all enumerations to their string representation.
 		[Parameter(ParameterSetName = "InputObject")]
 		[switch] $EnumsAsStrings
 	)
 
 	process {
-		$header = $AfterSettle ? "HX-Trigger-After-Settle" : ($AfterSwap ? "HX-Trigger-After-Swap" : "HX-Trigger")
 		$trigger = $InputObject ? (ConvertTo-Json $InputObject -Compress -Depth 5 -EnumsAsStrings:$EnumsAsStrings -EscapeHandling EscapeNonAscii) : ($Name -join ", ")
-		Set-PodeHeader $header $trigger
+		Set-PodeHeader "HX-Trigger" $trigger
 	}
 }
 
