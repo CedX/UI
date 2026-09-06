@@ -1,6 +1,6 @@
 ﻿@{
 	DefaultCommandPrefix = "UI"
-	ModuleVersion = "0.34.1"
+	ModuleVersion = "0.35.0"
 	PowerShellVersion = "7.6"
 	RootModule = "Sources/Server/Main.psm1"
 
@@ -31,6 +31,7 @@
 	)
 
 	FunctionsToExport = @(
+		"Disable-Swap"
 		"Format-AppTheme"
 		"Format-Context"
 		"Format-Date"
