@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [0.35.0](https://github.com/CedX/UI/compare/v0.34.1...v0.35.0)
+- Added the `Disable-Swap` cmdlet.
+
 ## Version [0.34.1](https://github.com/CedX/UI/compare/v0.34.0...v0.34.1)
 - Fixed the handling of [htmx](https://four.htmx.org) events in the `DialogBox`, `MenuActivator` and `Toaster` components.
 
