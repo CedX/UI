@@ -1,5 +1,29 @@
 ﻿<#
 .SYNOPSIS
+	Gets the `htmx` attributes that disable swapping for the specified HTTP status codes.
+.INPUTS
+	The HTTP status codes for which to disable the swap.
+.OUTPUTS
+	The hash table providing the `htmx` attributes that disable the swap.
+#>
+function Disable-Swap {
+	[CmdletBinding()]
+	[OutputType([hashtable])]
+	param (
+		# The HTTP status codes for which to disable the swap.
+		[Parameter(Mandatory, Position = 1, ValueFromPipeline)]
+		[string[]] $Status
+	)
+
+	process {
+		$hashtable = @{}
+		foreach ($code in $Status) { $hashtable["Status:$code"] = "swap:none" }
+		$hashtable
+	}
+}
+
+<#
+.SYNOPSIS
 	Sets an `HX-Location` header on the HTTP response.
 .INPUTS
 	The path of the page's location.
