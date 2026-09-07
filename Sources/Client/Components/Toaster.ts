@@ -181,19 +181,13 @@ export class Toaster extends HTMLElement {
 	}
 
 	/**
-	 * Registers this toaster as a listener for the `ui:toaster:notify` event.
-	 * @returns An abort controller used to cancel the subscription to the `ui:toaster:notify` event.
+	 * The handler for the `ui:toaster:notify` event.
+	 * @param event The dispatched event.
 	 */
-	useNotifyEventHandler(): AbortController {
-		const listener = (event: CustomEvent<IToasterEventArgs>): void => {
-			const {caption, context, message} = event.detail;
-			this.notify(context ?? Context.Info, caption ?? "", html`${message}`);
-		};
-
-		const abortController = new AbortController;
-		document.addEventListener("ui:toaster:notify", listener as EventListener, {signal: abortController.signal});
-		return abortController;
-	}
+	readonly #notifyEventHandler: (event: CustomEvent<IToasterEventArgs>) => void = event => {
+		const {caption, context, message} = event.detail;
+		this.notify(context ?? Context.Info, caption ?? "", html`${message}`);
+	};
 
 	/**
 	 * Updates the toaster placement.
