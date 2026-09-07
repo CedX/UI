@@ -9,6 +9,11 @@ export class LoadingIndicator extends HTMLElement {
 	static readonly observedAttributes = ["fade"];
 
 	/**
+	 * The abort controller used to remove the event listeners.
+	 */
+	#abortController: AbortController|null = null;
+
+	/**
 	 * The number of concurrent HTTP requests.
 	 */
 	#requestCount = 0;
@@ -35,6 +40,16 @@ export class LoadingIndicator extends HTMLElement {
 	 */
 	get isShown(): boolean {
 		return this.classList.contains("show");
+	}
+
+	/**
+	 * Value indicating whether to register this component as a listener for the `htmx:before:request` and `htmx:finally:request` events.
+	 */
+	get listen(): boolean {
+		return this.hasAttribute("listen");
+	}
+	set listen(value: boolean) {
+		this.toggleAttribute("listen", value);
 	}
 
 	/**
@@ -65,7 +80,15 @@ export class LoadingIndicator extends HTMLElement {
 	 */
 	connectedCallback(): void {
 		this.#requestCount = 0;
+		if (this.listen) this.#abortController = this.useRequestEventHandler();
 		if (this.open) this.show();
+	}
+
+	/**
+	 * Method invoked when this component is disconnected.
+	 */
+	disconnectedCallback(): void {
+		this.#abortController?.abort();
 	}
 
 	/**

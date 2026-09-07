@@ -36,6 +36,11 @@ export class Toaster extends HTMLElement {
 	static readonly observedAttributes = ["position"];
 
 	/**
+	 * The abort controller used to remove the event listeners.
+	 */
+	#abortController: AbortController|null = null;
+
+	/**
 	 * The template for a toast.
 	 */
 	readonly #toastTemplate = this.querySelector("template")!.content;
@@ -121,6 +126,16 @@ export class Toaster extends HTMLElement {
 	}
 
 	/**
+	 * Value indicating whether to register this component as a listener for the `ui:toaster:notify` event.
+	 */
+	get listen(): boolean {
+		return this.hasAttribute("listen");
+	}
+	set listen(value: boolean) {
+		this.toggleAttribute("listen", value);
+	}
+
+	/**
 	 * The toaster placement.
 	 */
 	get position(): Position {
@@ -142,6 +157,20 @@ export class Toaster extends HTMLElement {
 			case "position": this.#updatePosition(Object.values(Position).includes(newValue as Position) ? newValue as Position : Position.BottomEnd); break;
 			// No default
 		}
+	}
+
+	/**
+	 * Method invoked when this component is connected.
+	 */
+	connectedCallback(): void {
+		if (this.listen) this.#abortController = this.useNotifyEventHandler();
+	}
+
+	/**
+	 * Method invoked when this component is disconnected.
+	 */
+	disconnectedCallback(): void {
+		this.#abortController?.abort();
 	}
 
 	/**

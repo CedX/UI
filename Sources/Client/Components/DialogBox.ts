@@ -89,6 +89,11 @@ export class DialogBox extends HTMLElement {
 	static readonly observedAttributes = ["caption", "centered", "fade", "modal", "scrollable"];
 
 	/**
+	 * The abort controller used to remove the event listeners.
+	 */
+	#abortController: AbortController|null = null;
+
+	/**
 	 * The underlying Bootstrap modal.
 	 */
 	#modal: Modal|null = null;
@@ -164,6 +169,16 @@ export class DialogBox extends HTMLElement {
 		const footer = this.querySelector<HTMLElement>(".modal-footer")!;
 		footer.hidden = !value.hasChildNodes();
 		footer.replaceChildren(...value.childNodes);
+	}
+
+	/**
+	 * Value indicating whether to register this component as a listener for the `htmx:confirm` and `ui:dialogbox:alert` events.
+	 */
+	get listen(): boolean {
+		return this.hasAttribute("listen");
+	}
+	set listen(value: boolean) {
+		this.toggleAttribute("listen", value);
 	}
 
 	/**
@@ -275,6 +290,16 @@ export class DialogBox extends HTMLElement {
 	 * Method invoked when this component is connected.
 	 */
 	connectedCallback(): void {
+		if (this.listen) {
+			const eventHandlers = [this.useAlertEventHandler(), this.useConfirmEventHandler()];
+
+			this.#abortController = new AbortController;
+			this.#abortController.signal.addEventListener("abort", () => {
+				const reason = this.#abortController?.signal.reason; // eslint-disable-line @typescript-eslint/no-unsafe-assignment
+				for (const eventHandler of eventHandlers) eventHandler.abort(reason);
+			}, {once: true});
+		}
+
 		this.#modal = new Modal(this.firstElementChild!);
 		if (this.open) void this.show();
 	}
@@ -283,6 +308,7 @@ export class DialogBox extends HTMLElement {
 	 * Method invoked when this component is disconnected.
 	 */
 	disconnectedCallback(): void {
+		this.#abortController?.abort();
 		this.#modal?.dispose();
 	}
 
