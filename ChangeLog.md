@@ -1,10 +1,15 @@
 # Changelog
 
+## Version [0.36.0](https://github.com/CedX/UI/compare/v0.35.0...v0.36.0)
+- Added the `-Listen` parameter to the `New-DialogBox`, `New-LoadingIndicator` and `New-Toaster` cmdlets.
+- Added the `listen` property to the `DialogBox`, `LoadingIndicator` and `Toaster` components.
+- Added the `LoadingIndicator.useRequestEventHandler()` method.
+
 ## Version [0.35.0](https://github.com/CedX/UI/compare/v0.34.1...v0.35.0)
 - Added the `Disable-Swap` cmdlet.
 
 ## Version [0.34.1](https://github.com/CedX/UI/compare/v0.34.0...v0.34.1)
-- Fixed the handling of [htmx](https://four.htmx.org) events in the `DialogBox`, `MenuActivator` and `Toaster` components.
+- Fixed the handling of [htmx](https://htmx.org) events in the `DialogBox`, `MenuActivator` and `Toaster` components.
 
 ## Version [0.34.0](https://github.com/CedX/UI/compare/v0.33.1...v0.34.0)
 - Added the `-Transition` parameter to the `Send-Location` cmdlet.
@@ -16,7 +21,7 @@
 - Removed the `[ValidateSet]` attribute on the `-Swap` parameter of the `Send-Location` cmdlet.
 
 ## Version [0.33.0](https://github.com/CedX/UI/compare/v0.32.0...v0.33.0)
-- Upgraded [htmx](https://four.htmx.org) to version 4.
+- Upgraded [htmx](https://htmx.org) to version 4.
 - Removed the `failed()` and `successful()` functions from the `Htmx` module.
 - Removed the `HtmxEventArgs` type from the `Htmx` module.
 
