@@ -308,46 +308,14 @@ export class DialogBox extends HTMLElement {
 	}
 
 	/**
-	 * Registers this dialog box as a listener for the `ui:dialogbox:alert` event.
-	 * @returns An abort controller used to cancel the subscription to the `ui:dialogbox:alert` event.
+	 * The handler for the `ui:dialogbox:alert` event.
+	 * @param event The dispatched event.
 	 */
-	useAlertEventHandler(): AbortController {
-		const listener = (event: CustomEvent<IDialogEventArgs>): void => {
-			const {button, caption, context, message} = event.detail;
-			const buttons = [{text: button ?? "OK", value: DialogResult.OK, variant: Variant.Primary}];
-			void this.alert(context ?? Context.Info, caption ?? "", html`${message}`, buttons);
-		};
-
-		const abortController = new AbortController;
-		document.addEventListener("ui:dialogbox:alert", listener as EventListener, {signal: abortController.signal});
-		return abortController;
-	}
-
-	/**
-	 * Registers this dialog box as a listener for the `htmx:confirm` event.
-	 * @returns An abort controller used to cancel the subscription to the `htmx:confirm` event.
-	 */
-	useConfirmEventHandler(): AbortController {
-		const listener = (event: CustomEvent<HtmxConfirmEventArgs>): void => {
-			event.preventDefault();
-
-			const element = event.target as HTMLElement;
-			const caption = element.closest("[hx-confirm-caption]")?.getAttribute("hx-confirm-caption");
-			const context = element.closest("[hx-confirm-context]")?.getAttribute("hx-confirm-context") as Context;
-			const message = event.detail.ctx.confirm;
-
-			void this
-				.confirm(Object.values(Context).includes(context) ? context : Context.Warning, caption ?? "", html`${message}`)
-				.then(dialogResult => {
-					if (dialogResult == DialogResult.OK) event.detail.issueRequest();
-					else event.detail.dropRequest();
-				});
-		};
-
-		const abortController = new AbortController;
-		document.addEventListener("htmx:confirm", listener as EventListener, {signal: abortController.signal});
-		return abortController;
-	}
+	readonly #alertEventHandler: (event: CustomEvent<IDialogEventArgs>) => void = event => {
+		const {button, caption, context, message} = event.detail;
+		const buttons = [{text: button ?? "OK", value: DialogResult.OK, variant: Variant.Primary}];
+		void this.alert(context ?? Context.Info, caption ?? "", html`${message}`, buttons);
+	};
 
 	/**
 	 * Closes this dialog box.
