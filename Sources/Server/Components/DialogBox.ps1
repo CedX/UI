@@ -37,6 +37,9 @@ function New-DialogBox {
 		# The child content displayed in the footer.
 		[object] $Footer,
 
+		# Value indicating whether to register this component as a listener for the `ui:toaster:notify` event.
+		[switch] $Listen,
+
 		# Value indicating whether to this dialog box will not close when clicking outside of it.
 		[switch] $Modal,
 
@@ -52,6 +55,7 @@ function New-DialogBox {
 			caption = $Caption
 			centered = $Centered
 			fade = $Fade
+			listen = $Listen
 			modal = $Modal
 			open = $Open
 		}

@@ -18,12 +18,15 @@ function New-LoadingIndicator {
 		# Value indicating whether to apply a transition.
 		[switch] $Fade,
 
+		# Value indicating whether to register this component as a listener for the `ui:toaster:notify` event.
+		[switch] $Listen,
+
 		# Value indicating whether to initially show this component.
 		[switch] $Open
 	)
 
 	process {
-		$attributes = @{ fade = $Fade ; open = $Open }
+		$attributes = @{ fade = $Fade ; listen = $Listen; open = $Open }
 		$cssClass = ($Fade ? "fade" : ""), ($Open ? "show" : "hide")
 		New-HtmlCustomElement loading-indicator -Attributes $attributes -Class $cssClass $Content
 	}

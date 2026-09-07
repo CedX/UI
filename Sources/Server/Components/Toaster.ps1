@@ -38,6 +38,9 @@ function New-Toaster {
 		# The default icon displayed next to the captions.
 		[string] $Icon,
 
+		# Value indicating whether to register this component as a listener for the `ui:toaster:notify` event.
+		[switch] $Listen,
+
 		# The toaster placement.
 		[Position] $Position = [Position]::BottomEnd
 	)
@@ -50,6 +53,7 @@ function New-Toaster {
 			delay = $Delay
 			fade = $Fade
 			icon = $Icon ? $Icon : $null
+			listen = $Listen
 			position = $Position
 		}
 
