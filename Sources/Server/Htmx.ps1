@@ -14,6 +14,9 @@ function Disable-Swap {
 		[Parameter(Mandatory, Position = 1, ValueFromPipeline)]
 		[string[]] $Status,
 
+		# Value indicating whether the attributes are inherited.
+		[switch] $Inherited,
+
 		# The character used in attribute modifiers.
 		[ValidateNotNullOrWhiteSpace()]
 		[string] $MetaCharacter = ":"
@@ -21,7 +24,12 @@ function Disable-Swap {
 
 	process {
 		$hashtable = @{}
-		foreach ($code in $Status) { $hashtable["Status$MetaCharacter$code"] = "swap:none" }
+		foreach ($code in $Status) {
+			$modifier = "${MetaCharacter}${code}"
+			if ($Inherited) { $modifier += "${MetaCharacter}inherited" }
+			$hashtable["Status$modifier"] = "swap:none"
+		}
+
 		$hashtable
 	}
 }
