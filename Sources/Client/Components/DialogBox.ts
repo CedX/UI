@@ -308,6 +308,8 @@ export class DialogBox extends HTMLElement {
 	 * @returns An abort controller to cancel the subscription to the `htmx:confirm` and `ui:dialogbox:alert` events.
 	 */
 	listen(): AbortController {
+		if (this.#abortController) return this.#abortController;
+
 		const alertListener = (event: CustomEvent<IDialogEventArgs>): void => {
 			const {button, caption, context, message} = event.detail;
 			const buttons = [{text: button ?? "OK", value: DialogResult.OK, variant: Variant.Primary}];

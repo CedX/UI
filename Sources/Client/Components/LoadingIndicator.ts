@@ -105,23 +105,25 @@ export class LoadingIndicator extends HTMLElement {
 	}
 
 	/**
+	 * Registers this component as a listener for the `htmx:before:request` and `htmx:finally:request` events.
+	 * @returns An abort controller to cancel the subscription to the `htmx:before:request` and `htmx:finally:request` events.
+	 */
+	listen(): AbortController {
+		if (this.#abortController) return this.#abortController;
+
+		this.#abortController = new AbortController;
+		document.addEventListener("htmx:before:request", () => this.show(), {signal: this.#abortController.signal});
+		document.addEventListener("htmx:finally:request", () => this.hide(), {signal: this.#abortController.signal});
+		return this.#abortController;
+	}
+
+	/**
 	 * Shows this loading indicator.
 	 */
 	show(): void {
 		this.#requestCount++;
 		this.classList.remove("hide");
 		this.classList.add("show");
-	}
-
-	/**
-	 * Registers this loading indicator as a listener for the `htmx:before:request` and `htmx:finally:request` events.
-	 * @returns An abort controller to cancel the subscription to the `htmx:before:request` and `htmx:finally:request` events.
-	 */
-	useRequestEventHandler(): AbortController {
-		const abortController = new AbortController;
-		document.addEventListener("htmx:before:request", () => this.show(), {signal: abortController.signal});
-		document.addEventListener("htmx:finally:request", () => this.hide(), {signal: abortController.signal});
-		return abortController;
 	}
 
 	/**
