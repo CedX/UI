@@ -1,5 +1,12 @@
 # Changelog
 
+## Version [0.37.0](https://github.com/CedX/UI/compare/v0.36.0...v0.37.0)
+- Renamed the `-Listen` parameter of the `New-DialogBox`, `New-LoadingIndicator` and `New-Toaster` cmdlets to `-NoListen`.
+- Renamed the `listen` property of the `DialogBox`, `LoadingIndicator` and `Toaster` components to `noListen`.
+- Merged the `useAlertEventHandler()` and `useConfirmEventHandler()` methods of the `DialogBox` component into the `listen()` method.
+- Renamed the `LoadingIndicator.useRequestEventHandler()` method to `listen()`.
+- Renamed the `Toaster.useNotifyEventHandler()` method to `listen()`.
+
 ## Version [0.36.0](https://github.com/CedX/UI/compare/v0.35.0...v0.36.0)
 - Added the `-Listen` parameter to the `New-DialogBox`, `New-LoadingIndicator` and `New-Toaster` cmdlets.
 - Added the `listen` property to the `DialogBox`, `LoadingIndicator` and `Toaster` components.
