@@ -43,7 +43,7 @@ export class LoadingIndicator extends HTMLElement {
 	}
 
 	/**
-	 * Value indicating whether to register this component as a listener for the `htmx:before:request` and `htmx:finally:request` events.
+	 * Value indicating whether to register this component as a listener for the related events.
 	 */
 	get noListen(): boolean {
 		return this.hasAttribute("noListen");
@@ -105,8 +105,8 @@ export class LoadingIndicator extends HTMLElement {
 	}
 
 	/**
-	 * Registers this component as a listener for the `htmx:before:request` and `htmx:finally:request` events.
-	 * @returns An abort controller to cancel the subscription to the `htmx:before:request` and `htmx:finally:request` events.
+	 * Registers this component as a listener for the related events.
+	 * @returns An abort controller to cancel the subscription to the related events.
 	 */
 	listen(): AbortController {
 		if (this.#abortController) return this.#abortController;

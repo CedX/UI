@@ -38,7 +38,7 @@ function New-Toaster {
 		# The default icon displayed next to the captions.
 		[string] $Icon,
 
-		# Value indicating whether to prevent this component from being registered as a listener for the `ui:toaster:notify` event.
+		# Value indicating whether to prevent this component from being registered as a listener for the related events.
 		[switch] $NoListen,
 
 		# The toaster placement.

@@ -126,7 +126,7 @@ export class Toaster extends HTMLElement {
 	}
 
 	/**
-	 * Value indicating whether to register this component as a listener for the `ui:toaster:notify` event.
+	 * Value indicating whether to register this component as a listener for the related events.
 	 */
 	get noListen(): boolean {
 		return this.hasAttribute("noListen");
@@ -174,8 +174,8 @@ export class Toaster extends HTMLElement {
 	}
 
 	/**
-	 * Registers this component as a listener for the `ui:toaster:notify` event.
-	 * @returns An abort controller to cancel the subscription to the `ui:toaster:notify` event.
+	 * Registers this component as a listener for the related events.
+	 * @returns An abort controller to cancel the subscription to the related events.
 	 */
 	listen(): AbortController {
 		if (this.#abortController) return this.#abortController;
