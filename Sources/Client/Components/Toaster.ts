@@ -174,6 +174,23 @@ export class Toaster extends HTMLElement {
 	}
 
 	/**
+	 * Registers this component as a listener for the `ui:toaster:notify` event.
+	 * @returns An abort controller to cancel the subscription to the `ui:toaster:notify` event.
+	 */
+	listen(): AbortController {
+		if (this.#abortController) return this.#abortController;
+
+		const listener = (event: CustomEvent<IToasterEventArgs>): void => {
+			const {caption, context, message} = event.detail;
+			this.notify(context ?? Context.Info, caption ?? "", html`${message}`);
+		};
+
+		this.#abortController = new AbortController;
+		document.addEventListener("ui:toaster:notify", listener as EventListener, {signal: this.#abortController.signal});
+		return this.#abortController;
+	}
+
+	/**
 	 * Shows a toast.
 	 * @param context The contextual modifier.
 	 * @param caption The title displayed in the header.
@@ -207,21 +224,6 @@ export class Toaster extends HTMLElement {
 		this.firstElementChild!.appendChild(item);
 		item.show();
 		return item;
-	}
-
-	/**
-	 * Registers this toaster as a listener for the `ui:toaster:notify` event.
-	 * @returns An abort controller to cancel the subscription to the `ui:toaster:notify` event.
-	 */
-	useNotifyEventHandler(): AbortController {
-		const listener = (event: CustomEvent<IToasterEventArgs>): void => {
-			const {caption, context, message} = event.detail;
-			this.notify(context ?? Context.Info, caption ?? "", html`${message}`);
-		};
-
-		const abortController = new AbortController;
-		document.addEventListener("ui:toaster:notify", listener as EventListener, {signal: abortController.signal});
-		return abortController;
 	}
 
 	/**
