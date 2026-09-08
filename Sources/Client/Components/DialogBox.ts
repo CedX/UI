@@ -290,16 +290,6 @@ export class DialogBox extends HTMLElement {
 	 * Method invoked when this component is connected.
 	 */
 	connectedCallback(): void {
-		if (this.listen) {
-			const eventHandlers = [this.useAlertEventHandler(), this.useConfirmEventHandler()];
-
-			this.#abortController = new AbortController;
-			this.#abortController.signal.addEventListener("abort", () => {
-				const reason = this.#abortController?.signal.reason; // eslint-disable-line @typescript-eslint/no-unsafe-assignment
-				for (const eventHandler of eventHandlers) eventHandler.abort(reason);
-			}, {once: true});
-		}
-
 		this.#modal = new Modal(this.firstElementChild!);
 		if (!this.noListen) this.listen();
 		if (this.open) void this.show();
@@ -311,6 +301,33 @@ export class DialogBox extends HTMLElement {
 	disconnectedCallback(): void {
 		this.#abortController?.abort();
 		this.#modal?.dispose();
+	}
+
+	/**
+	 * Registers this component as a listener for the `htmx:confirm` and `ui:dialogbox:alert` events.
+	 * @returns An abort controller to cancel the subscription to the `htmx:confirm` and `ui:dialogbox:alert` events.
+	 */
+	listen(): AbortController {
+		const alertListener = (event: CustomEvent<IDialogEventArgs>): void => {
+			const {button, caption, context, message} = event.detail;
+			const buttons = [{text: button ?? "OK", value: DialogResult.OK, variant: Variant.Primary}];
+			void this.alert(context ?? Context.Info, caption ?? "", html`${message}`, buttons);
+		};
+
+		const confirmListener = (event: CustomEvent<HtmxConfirmEventArgs>): void => {
+			event.preventDefault();
+			const element = event.target as HTMLElement;
+			const caption = element.closest("[hx-confirm-caption]")?.getAttribute("hx-confirm-caption");
+			const context = element.closest("[hx-confirm-context]")?.getAttribute("hx-confirm-context") as Context;
+			void this
+				.confirm(Object.values(Context).includes(context) ? context : Context.Warning, caption ?? "", html`${event.detail.ctx.confirm}`)
+				.then(dialogResult => { if (dialogResult == DialogResult.OK) event.detail.issueRequest(); else event.detail.dropRequest(); });
+		};
+
+		this.#abortController = new AbortController;
+		document.addEventListener("ui:dialogbox:alert", alertListener as EventListener, {signal: this.#abortController.signal});
+		document.addEventListener("htmx:confirm", confirmListener as EventListener, {signal: this.#abortController.signal});
+		return this.#abortController;
 	}
 
 	/**
@@ -332,48 +349,6 @@ export class DialogBox extends HTMLElement {
 		this.#result = DialogResult.None;
 		this.#modal?.show();
 		return promise;
-	}
-
-	/**
-	 * Registers this dialog box as a listener for the `ui:dialogbox:alert` event.
-	 * @returns An abort controller to cancel the subscription to the `ui:dialogbox:alert` event.
-	 */
-	useAlertEventHandler(): AbortController {
-		const listener = (event: CustomEvent<IDialogEventArgs>): void => {
-			const {button, caption, context, message} = event.detail;
-			const buttons = [{text: button ?? "OK", value: DialogResult.OK, variant: Variant.Primary}];
-			void this.alert(context ?? Context.Info, caption ?? "", html`${message}`, buttons);
-		};
-
-		const abortController = new AbortController;
-		document.addEventListener("ui:dialogbox:alert", listener as EventListener, {signal: abortController.signal});
-		return abortController;
-	}
-
-	/**
-	 * Registers this dialog box as a listener for the `htmx:confirm` event.
-	 * @returns An abort controller to cancel the subscription to the `htmx:confirm` event.
-	 */
-	useConfirmEventHandler(): AbortController {
-		const listener = (event: CustomEvent<HtmxConfirmEventArgs>): void => {
-			event.preventDefault();
-
-			const element = event.target as HTMLElement;
-			const caption = element.closest("[hx-confirm-caption]")?.getAttribute("hx-confirm-caption");
-			const context = element.closest("[hx-confirm-context]")?.getAttribute("hx-confirm-context") as Context;
-			const message = event.detail.ctx.confirm;
-
-			void this
-				.confirm(Object.values(Context).includes(context) ? context : Context.Warning, caption ?? "", html`${message}`)
-				.then(dialogResult => {
-					if (dialogResult == DialogResult.OK) event.detail.issueRequest();
-					else event.detail.dropRequest();
-				});
-		};
-
-		const abortController = new AbortController;
-		document.addEventListener("htmx:confirm", listener as EventListener, {signal: abortController.signal});
-		return abortController;
 	}
 
 	/**
