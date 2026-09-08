@@ -12,12 +12,16 @@ function Disable-Swap {
 	param (
 		# The HTTP status codes for which to disable the swap.
 		[Parameter(Mandatory, Position = 1, ValueFromPipeline)]
-		[string[]] $Status
+		[string[]] $Status,
+
+		# The character used in attribute modifiers.
+		[ValidateNotNullOrWhiteSpace()]
+		[string] $MetaCharacter = ":"
 	)
 
 	process {
 		$hashtable = @{}
-		foreach ($code in $Status) { $hashtable["Status:$code"] = "swap:none" }
+		foreach ($code in $Status) { $hashtable["Status$MetaCharacter$code"] = "swap:none" }
 		$hashtable
 	}
 }
