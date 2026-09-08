@@ -114,6 +114,7 @@ export class LoadingIndicator extends HTMLElement {
 		this.#abortController = new AbortController;
 		document.addEventListener("htmx:before:request", () => this.show(), {signal: this.#abortController.signal});
 		document.addEventListener("htmx:finally:request", () => this.hide(), {signal: this.#abortController.signal});
+		document.addEventListener("htmx:before:history:restore", () => this.hide({force: true}), {signal: this.#abortController.signal});
 		return this.#abortController;
 	}
 
