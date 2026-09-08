@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [0.37.1](https://github.com/CedX/UI/compare/v0.37.0...v0.37.1)
+- Hides the `LoadingIndicator` component on [htmx](https://htmx.org) history restoration.
+
 ## Version [0.37.0](https://github.com/CedX/UI/compare/v0.36.0...v0.37.0)
 - Renamed the `-Listen` parameter of the `New-DialogBox`, `New-LoadingIndicator` and `New-Toaster` cmdlets to `-NoListen`.
 - Renamed the `listen` property of the `DialogBox`, `LoadingIndicator` and `Toaster` components to `noListen`.
