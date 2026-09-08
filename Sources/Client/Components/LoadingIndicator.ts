@@ -45,11 +45,11 @@ export class LoadingIndicator extends HTMLElement {
 	/**
 	 * Value indicating whether to register this component as a listener for the `htmx:before:request` and `htmx:finally:request` events.
 	 */
-	get listen(): boolean {
-		return this.hasAttribute("listen");
+	get noListen(): boolean {
+		return this.hasAttribute("noListen");
 	}
-	set listen(value: boolean) {
-		this.toggleAttribute("listen", value);
+	set noListen(value: boolean) {
+		this.toggleAttribute("noListen", value);
 	}
 
 	/**
@@ -80,7 +80,7 @@ export class LoadingIndicator extends HTMLElement {
 	 */
 	connectedCallback(): void {
 		this.#requestCount = 0;
-		if (this.listen) this.#abortController = this.useRequestEventHandler();
+		if (!this.noListen) this.listen();
 		if (this.open) this.show();
 	}
 

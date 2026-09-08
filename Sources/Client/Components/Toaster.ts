@@ -128,11 +128,11 @@ export class Toaster extends HTMLElement {
 	/**
 	 * Value indicating whether to register this component as a listener for the `ui:toaster:notify` event.
 	 */
-	get listen(): boolean {
-		return this.hasAttribute("listen");
+	get noListen(): boolean {
+		return this.hasAttribute("noListen");
 	}
-	set listen(value: boolean) {
-		this.toggleAttribute("listen", value);
+	set noListen(value: boolean) {
+		this.toggleAttribute("noListen", value);
 	}
 
 	/**
@@ -163,7 +163,7 @@ export class Toaster extends HTMLElement {
 	 * Method invoked when this component is connected.
 	 */
 	connectedCallback(): void {
-		if (this.listen) this.#abortController = this.useNotifyEventHandler();
+		if (!this.noListen) this.listen();
 	}
 
 	/**

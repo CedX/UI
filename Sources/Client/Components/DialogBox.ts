@@ -172,16 +172,6 @@ export class DialogBox extends HTMLElement {
 	}
 
 	/**
-	 * Value indicating whether to register this component as a listener for the `htmx:confirm` and `ui:dialogbox:alert` events.
-	 */
-	get listen(): boolean {
-		return this.hasAttribute("listen");
-	}
-	set listen(value: boolean) {
-		this.toggleAttribute("listen", value);
-	}
-
-	/**
 	 * Value indicating whether to this dialog box will not close when clicking outside of it.
 	 */
 	get modal(): boolean {
@@ -189,6 +179,16 @@ export class DialogBox extends HTMLElement {
 	}
 	set modal(value: boolean) {
 		this.toggleAttribute("modal", value);
+	}
+
+	/**
+	 * Value indicating whether to register this component as a listener for the `htmx:confirm` and `ui:dialogbox:alert` events.
+	 */
+	get noListen(): boolean {
+		return this.hasAttribute("noListen");
+	}
+	set noListen(value: boolean) {
+		this.toggleAttribute("noListen", value);
 	}
 
 	/**
@@ -301,6 +301,7 @@ export class DialogBox extends HTMLElement {
 		}
 
 		this.#modal = new Modal(this.firstElementChild!);
+		if (!this.noListen) this.listen();
 		if (this.open) void this.show();
 	}
 
