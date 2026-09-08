@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [0.38.0](https://github.com/CedX/UI/compare/v0.37.1...v0.38.0)
+- Added the `-MetaCharacter` parameter to the `Disable-Swap` cmdlet.
+
 ## Version [0.37.1](https://github.com/CedX/UI/compare/v0.37.0...v0.37.1)
 - Hides the `LoadingIndicator` component on [htmx](https://htmx.org) history restoration.
 
