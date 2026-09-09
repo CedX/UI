@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [0.39.0](https://github.com/CedX/UI/compare/v0.38.0...v0.39.0)
+- Added the `fetch()` function to the `File` module.
+
 ## Version [0.38.0](https://github.com/CedX/UI/compare/v0.37.1...v0.38.0)
 - Added the `-Inherited` and `-MetaCharacter` parameters to the `Disable-Swap` cmdlet.
 
