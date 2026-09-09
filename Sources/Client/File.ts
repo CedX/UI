@@ -1,17 +1,39 @@
 /**
- * Downloads the specified file.
+ * Triggers the download of the specified file.
  * @param file The file to be downloaded.
  */
 export function download(file: File): void {
 	const url = URL.createObjectURL(file);
 	const anchor = document.createElement("a");
 	anchor.download = file.name;
+	anchor.hidden = true;
 	anchor.href = url;
 
 	document.body.appendChild(anchor);
 	anchor.click();
 	document.body.removeChild(anchor);
 	URL.revokeObjectURL(url);
+}
+
+/**
+ * Fetches the file located at the specified URL.
+ * @param url The file URL.
+ * @param name The name to assign to the file.
+ * @param mediaType The expected media type.
+ * @returns The content of the file located at the specified URL.
+ */
+export async function fetch(url: string|URL, fileName: string, mediaType = "application/octet-stream"): Promise<File> {
+	const loadingIndicator = document.querySelector("loading-indicator");
+
+	try {
+		loadingIndicator?.show();
+		const response = await window.fetch(url, {headers: {Accept: mediaType}});
+		if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+		return new File([await response.blob()], fileName, {type: response.headers.get("Content-Type") ?? mediaType});
+	}
+	finally {
+		loadingIndicator?.hide();
+	}
 }
 
 /**
