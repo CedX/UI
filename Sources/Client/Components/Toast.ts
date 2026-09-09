@@ -273,7 +273,7 @@ export class Toast extends HTMLElement {
 	 * Starts the timer.
 	 */
 	#startTimer(): void {
-		this.#timer = window.setInterval(() => this.#updateElapsedTime(), 1_000);
+		this.#timer = setInterval(() => this.#updateElapsedTime(), 1_000);
 	}
 
 	/**

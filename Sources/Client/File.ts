@@ -27,7 +27,7 @@ export async function fetch(url: string|URL, fileName: string, mediaType = "appl
 
 	try {
 		loadingIndicator?.show();
-		const response = await window.fetch(url, {headers: {Accept: mediaType}});
+		const response = await globalThis.fetch(url, {headers: {Accept: mediaType}});
 		if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
 		return new File([await response.blob()], fileName, {type: response.headers.get("Content-Type") ?? mediaType});
 	}
@@ -48,13 +48,13 @@ export function open(file: File, options: {newTab?: boolean} = {}): void {
 		return;
 	}
 
-	const handle = window.open(url, "_blank");
+	const handle = globalThis.open(url, "_blank");
 	if (!handle)  {
 		location.assign(url);
 		return;
 	}
 
-	const timer = window.setInterval(() => {
+	const timer = setInterval(() => {
 		if (!handle.closed) return;
 		clearInterval(timer);
 		URL.revokeObjectURL(url);
