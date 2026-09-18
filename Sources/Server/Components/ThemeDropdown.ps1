@@ -7,7 +7,6 @@
 	The rendered component.
 #>
 function New-ThemeDropdown {
-	[Alias("ThemeDropdown")]
 	[CmdletBinding()]
 	[OutputType([string])]
 	param (

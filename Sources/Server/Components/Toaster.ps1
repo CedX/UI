@@ -10,7 +10,6 @@ using namespace System.Diagnostics.CodeAnalysis
 	The rendered component.
 #>
 function New-Toaster {
-	[Alias("Toaster")]
 	[CmdletBinding()]
 	[OutputType([string])]
 	[SuppressMessage("PSReviewUnusedParameter", "Content")]

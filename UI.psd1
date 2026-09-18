@@ -10,25 +10,10 @@
 	Description = "Web component library by Cédric Belin, full stack developer."
 	GUID = "13e38ea8-3ddf-4d0d-8440-eeb8d0e8f9fa"
 
+	AliasesToExport = @()
 	CmdletsToExport = @()
 	RequiredAssemblies = , "Binaries/Belin.UI.dll"
 	VariablesToExport = @()
-
-	AliasesToExport = @(
-		"ActionBar"
-		"Alert"
-		"BackButton"
-		"DialogBox"
-		"FullScreenToggler"
-		"KeyboardAccelerator"
-		"LoadingIndicator"
-		"MenuActivator"
-		"OfflineIndicator"
-		"TabActivator"
-		"ThemeDropdown"
-		"Toast"
-		"Toaster"
-	)
 
 	FunctionsToExport = @(
 		"Disable-Swap"

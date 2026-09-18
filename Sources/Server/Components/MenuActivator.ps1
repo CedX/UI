@@ -7,7 +7,6 @@
 	The rendered component.
 #>
 function New-MenuActivator {
-	[Alias("MenuActivator")]
 	[CmdletBinding()]
 	[OutputType([string])]
 	param (

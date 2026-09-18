@@ -9,7 +9,6 @@ using namespace Belin.UI
 	The rendered component.
 #>
 function New-TabActivator {
-	[Alias("TabActivator")]
 	[CmdletBinding()]
 	[OutputType([string])]
 	param (

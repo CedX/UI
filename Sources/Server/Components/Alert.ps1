@@ -10,7 +10,6 @@ using namespace System.Diagnostics.CodeAnalysis
 	The rendered component.
 #>
 function New-Alert {
-	[Alias("Alert")]
 	[CmdletBinding()]
 	[OutputType([string])]
 	[SuppressMessage("PSReviewUnusedParameter", "Content")]

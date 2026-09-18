@@ -7,7 +7,6 @@
 	The rendered component.
 #>
 function New-OfflineIndicator {
-	[Alias("OfflineIndicator")]
 	[CmdletBinding()]
 	[OutputType([string])]
 	param (

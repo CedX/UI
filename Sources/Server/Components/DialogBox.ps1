@@ -9,7 +9,6 @@ using namespace System.Diagnostics.CodeAnalysis
 	The rendered component.
 #>
 function New-DialogBox {
-	[Alias("DialogBox")]
 	[CmdletBinding(DefaultParameterSetName = "Content")]
 	[OutputType([string])]
 	[SuppressMessage("PSReviewUnusedParameter", "Body")]

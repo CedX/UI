@@ -9,7 +9,6 @@ using namespace Belin.UI
 	The rendered component.
 #>
 function New-KeyboardAccelerator {
-	[Alias("KeyboardAccelerator")]
 	[CmdletBinding()]
 	[OutputType([string])]
 	param (

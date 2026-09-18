@@ -7,7 +7,6 @@
 	The rendered component.
 #>
 function New-BackButton {
-	[Alias("BackButton")]
 	[CmdletBinding()]
 	[OutputType([string])]
 	param (
