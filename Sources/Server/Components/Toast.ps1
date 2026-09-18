@@ -62,7 +62,7 @@ function New-Toast {
 			div -Class toast -DataSet @{ BsAnimation = $Fade ? "true" : "false"; BsAutohide = $AutoHide ? "true" : "false"; BsDelay = $Delay } {
 				div -Class toast-header, "toast-header-$contextCssClass" {
 					i -Class icon, me-2, "text-$contextCssClass", transform-scale-110 ([string]::IsNullOrWhiteSpace($Icon) ? (Format-Context $Context -Icon) : $Icon)
-					b -Class fw-semibold, me-auto $Caption
+					b -Class me-auto $Caption
 					small -Class text-secondary # Toast.ElapsedTime
 					button -Class btn-close -DataSet @{ BsDismiss = "toast" } -Type button
 				}
