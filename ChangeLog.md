@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [0.40.0](https://github.com/CedX/UI/compare/v0.39.1...v0.40.0)
+- Removed all aliases.
+- Updated the package dependencies.
+
 ## Version [0.39.1](https://github.com/CedX/UI/compare/v0.39.0...v0.39.1)
 - Removed the `.fw-semibold` class from the header of the `Toast` component.
 
