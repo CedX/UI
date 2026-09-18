@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [0.39.1](https://github.com/CedX/UI/compare/v0.39.0...v0.39.1)
+- Removed the `.fw-semibold` class from the header of the `Toast` component.
+
 ## Version [0.39.0](https://github.com/CedX/UI/compare/v0.38.0...v0.39.0)
 - Added the `fetch()` function to the `File` module.
 
