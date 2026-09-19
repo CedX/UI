@@ -54,5 +54,5 @@ function stringFromHtml(value: unknown): string {
 
 	const element = document.createElement("div");
 	element.appendChild(value);
-	return element.innerHTML;
+	return element.getHTML();
 }
