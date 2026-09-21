@@ -5,7 +5,7 @@ Before installing **Belin UI**, you need to make sure you have [Node.js](https:/
 		
 You can verify if you're already good to go with the following commands:
 
-```shell
+```powershell
 node --version
 # v26.8.1
 
@@ -25,7 +25,7 @@ npm install @cedx/ui
 ### 2. Import it
 Now in your [JavaScript](https://developer.mozilla.org/docs/Web/JavaScript) code, you can use:
 
-```js
+```typescript
 import {...} from "@cedx/ui";
 ```
 

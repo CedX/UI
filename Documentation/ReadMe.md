@@ -9,12 +9,12 @@ Web component library by [Cédric Belin](https://cedric-belin.fr), full stack de
 ## Quick start
 Install the latest version of **Belin UI** with your package manager:
 
-```shell
-# PowerShell with PSResourceGet
-Install-PSResource Belin.UI
-
+```powershell
 # JavaScript/TypeScript with npm
 npm install @cedx/ui
+
+# PowerShell with PSResourceGet
+Install-PSResource Belin.UI
 ```
 
 For detailed instructions, see the [installation guide](Installation.md).
