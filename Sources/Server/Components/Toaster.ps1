@@ -56,7 +56,7 @@ function New-Toaster {
 			position = $Position
 		}
 
-		New-HtmlCustomElement toaster-container -Attributes $attributes {
+		tag toaster-container -Attributes $attributes {
 			div -Class toast-container, p-3, (Format-Position $Position -CssClass) $Content
 			template (New-Toast)
 		}

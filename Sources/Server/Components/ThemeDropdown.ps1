@@ -41,7 +41,7 @@ function New-ThemeDropdown {
 		text = $Text
 	}
 
-	New-HtmlCustomElement theme-dropdown -Attributes $attributes {
+	tag theme-dropdown -Attributes $attributes {
 		li -Class nav-item, dropdown {
 			button -Class dropdown-toggle, nav-link -DataSet @{ BsToggle = "dropdown" } -Type button {
 				i -Class icon, icon-fill (Format-AppTheme $AppTheme -Icon)

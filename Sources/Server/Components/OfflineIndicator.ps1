@@ -24,6 +24,6 @@ function New-OfflineIndicator {
 	process {
 		$attributes = @{ fade = $Fade ; open = $Open }
 		$cssClass = ($Fade ? "fade" : ""), ($Open ? "show" : "hide")
-		New-HtmlCustomElement offline-indicator -Attributes $attributes -Class $cssClass $Content
+		tag offline-indicator -Attributes $attributes -Class $cssClass $Content
 	}
 }

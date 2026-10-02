@@ -19,6 +19,6 @@ function New-ActionBar {
 	)
 
 	process {
-		New-HtmlCustomElement action-bar -Hidden:$Hidden $Content
+		tag action-bar -Hidden:$Hidden $Content
 	}
 }

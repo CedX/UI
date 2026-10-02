@@ -59,7 +59,7 @@ function New-DialogBox {
 			open = $Open
 		}
 
-		New-HtmlCustomElement dialog-box -Attributes $attributes {
+		tag dialog-box -Attributes $attributes {
 			div -Class modal, ($Fade ? "fade" : "") -DataSet @{ BsBackdrop = $Modal ? "static" : "true" } -TabIndex -1 {
 				div -Class modal-dialog, ($Centered ? "modal-dialog-centered" : ""), ($Scrollable ? "modal-dialog-scrollable" : "") {
 					div -Class modal-content {
