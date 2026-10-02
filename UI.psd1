@@ -49,7 +49,7 @@
 	)
 
 	RequiredModules = @(
-		@{ ModuleName = "Belin.Html"; ModuleVersion = "5.0.0" }
+		@{ ModuleName = "Belin.Html"; ModuleVersion = "6.0.0" }
 		# @{ ModuleName = "Pode"; ModuleVersion = "2.14.1" }
 	)
 
