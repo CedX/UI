@@ -127,7 +127,7 @@ function Publish-PSGalleryModule {
 	Copy-Item $root/*.md $output
 	Copy-Item $root/Sources/Server $output/Sources -Recurse
 	Remove-Item $output/Sources/Server/*.cs*, $output/Sources/Server/obj -Recurse
-	$module.RequiredAssemblies.ForEach{ "$root/$_" } | Copy-Item -Destination $output/Binaries
+	$module.RequiredAssemblies | ForEach-Object { "$root/$_" } | Copy-Item -Destination $output/Binaries
 
 	$output = "$root/Temp/PSGallery"
 	New-Item $output -ItemType Directory | Out-Null
