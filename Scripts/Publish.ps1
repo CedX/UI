@@ -1,10 +1,13 @@
-using module ./Cmdlets.psm1
+using module ./Tools.psm1
 
 if ($Release) { & "$PSScriptRoot/Default.ps1" }
-else { "The ""-Release"" switch must be set!"; exit 1 }
+else { Write-Error "The ""-Release"" switch must be set!"; exit 1 }
 
-"Publishing the package..."
-$version = (Import-PowerShellDataFile UI.psd1).ModuleVersion
-New-GitTag "v$version"
+Write-Information "Tagging the repository..."
+$version = Get-Version
+git tag "v$version"
+git push origin "v$version"
+
+Write-Information "Publishing the package..."
 Publish-NpmPackage
 Publish-PSGalleryModule

@@ -1,7 +1,8 @@
 using module PSScriptAnalyzer
-using module ./Cmdlets.psm1
+using module ./Tools.psm1
 
-"Performing the static analysis of source code..."
+Write-Information "Performing the static analysis of source code..."
+dotnet fsharplint lint --lint-config Configuration/FSharpLint.json (Get-Solution)
 $PSScriptRoot, "Sources", "Tests" | Invoke-ScriptAnalyzer -ExcludeRule PSAvoidUsingCmdletAliases, PSAvoidUsingPositionalParameters, PSUseShouldProcessForStateChangingFunctions -Recurse
 Test-ModuleManifest UI.psd1 | Out-Null
 

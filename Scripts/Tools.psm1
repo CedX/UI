@@ -19,7 +19,7 @@ function Build-DotNetSolution {
 .SYNOPSIS
 	Installs the specified Npm package, if any. Otherwise, installs all packages.
 #>
-function Install-NpmPackage {
+function npm install {
 	param (
 		# The package to install.
 		[Parameter(Position = 1)]
@@ -139,7 +139,7 @@ function Publish-PSGalleryModule {
 .SYNOPSIS
 	Checks whether an update is available for the NPM packages.
 #>
-function Test-NpmPackageUpdate {
+function npm outdated {
 	npm outdated
 }
 

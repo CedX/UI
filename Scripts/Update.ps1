@@ -1,4 +1,4 @@
-using module ./Cmdlets.psm1
+using module ./Tools.psm1
 
 "Updating the dependencies..."
 $modules = Import-PowerShellDataFile PSModules.psd1

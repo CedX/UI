@@ -1,4 +1,4 @@
-using module ./Cmdlets.psm1
+using module ./Tools.psm1
 & "$PSScriptRoot/Build.ps1"
 
 "Running the test suite..."

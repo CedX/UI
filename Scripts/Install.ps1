@@ -1,5 +1,5 @@
-using module ./Cmdlets.psm1
+using module ./Tools.psm1
 
-"Installing the dependencies..."
+Write-Information "Installing the dependencies..."
 Install-PSResource -RequiredResourceFile PSModules.psd1 -TrustRepository -WarningAction Ignore
-Install-NpmPackage
+npm install
