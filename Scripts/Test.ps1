@@ -3,8 +3,4 @@ using module ./Tools.psm1
 
 "Running the test suite..."
 Invoke-NodeTest
-pwsh -Command {
-	Import-Module Pester
-	Invoke-Pester Tests
-	exit $LASTEXITCODE
-}
+pwsh -Command { Import-Module Pester; Invoke-Pester Tests; exit $LASTEXITCODE }
