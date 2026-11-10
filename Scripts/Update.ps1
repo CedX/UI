@@ -1,6 +1,4 @@
 using module ./Tools.psm1
 
-"Updating the dependencies..."
-$modules = Import-PowerShellDataFile PSModules.psd1
-$modules.Keys | ForEach-Object { Update-PSResource $_ -Repository $modules[$_].repository -TrustRepository }
-Update-NpmPackage
+Write-Information "Updating the dependencies..."
+npm update
