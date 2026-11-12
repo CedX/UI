@@ -1,7 +1,7 @@
 ﻿@{
 	DefaultCommandPrefix = "UI"
 	ModuleVersion = "0.40.0"
-	PowerShellVersion = "7.6"
+	PowerShellVersion = "7.7"
 	RootModule = "Sources/Server/Main.psm1"
 
 	Author = "Cédric Belin <cedx@outlook.com>"
