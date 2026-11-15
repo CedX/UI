@@ -1,5 +1,4 @@
 import {capitalize, truncate} from "@cedx/ui/String.js";
-import {assert} from "chai";
 
 /**
  * Tests the features of the string functions.
@@ -9,22 +8,22 @@ describe("String", () => {
 
 	describe("capitalize()", () => {
 		it("should convert in uppercase the first character of the specified string", () => {
-			assert.equal(capitalize("", culture), "");
-			assert.equal(capitalize("foo bAr baZ", culture), "Foo bAr baZ");
+			capitalize("", culture).should.equal("");
+			capitalize("foo bAr baZ", culture).should.equal("Foo bAr baZ");
 		});
 	});
 
 	describe("truncate()", () => {
 		it("should truncate the string to the specified length", () => {
-			assert.equal(truncate("", 0), "");
-			assert.equal(truncate("foo bar", 7), "foo bar");
-			assert.equal(truncate("foo bar", 0), "...");
-			assert.equal(truncate("foo bar", 4), "foo ...");
+			truncate("", 0).should.equal("");
+			truncate("foo bar", 7).should.equal("foo bar");
+			truncate("foo bar", 0).should.equal("...");
+			truncate("foo bar", 4).should.equal("foo ...");
 		});
 
 		it("should append the specified ellipsis to the truncated string", () => {
-			assert.equal(truncate("foo bar", 0, "--"), "--");
-			assert.equal(truncate("foo bar", 4, "--"), "foo --");
+			truncate("foo bar", 0, "--").should.equal("--");
+			truncate("foo bar", 4, "--").should.equal("foo --");
 		});
 	});
 });
