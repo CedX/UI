@@ -25,7 +25,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<OutDir>../../Binaries</OutDir>
-		<RootNamespace>Belin.UI.Server</RootNamespace>
+		<RootNamespace>Belin.UI</RootNamespace>
 		<TargetFramework>net11.0</TargetFramework>
 		<WarningsAsErrors>RZ2012</WarningsAsErrors>
 	</PropertyGroup>
