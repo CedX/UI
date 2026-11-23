@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<Company>Cedric-Belin.fr</Company>
+		<Copyright>© Cédric Belin</Copyright>
+		<Description>Web component library by Cédric Belin, full stack developer.</Description>
+		<Product>Belin UI</Product>
+		<Version>2026.11.0</Version>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<AssemblyName>Belin.UI.Tests</AssemblyName>
+		<BaseOutputPath>obj</BaseOutputPath>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<OutDir>../../Binaries</OutDir>
+		<RootNamespace>Belin.UI</RootNamespace>
+		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+		<TargetFramework>net11.0</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Belin.Should" Version="2026.12.0" />
+		<PackageReference Include="MSTest" Version="4.5.3" />
+		<ProjectReference Include="../../Sources/Server/Server.fsproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include="AssemblyInfo.fs" />
+		<Compile Include="**/*.Tests.fs" />
+	</ItemGroup>
+</Project>
