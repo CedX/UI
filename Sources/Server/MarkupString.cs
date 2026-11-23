@@ -1,5 +1,7 @@
 namespace Belin.UI;
 
+using Microsoft.AspNetCore.Components;
+
 /// <summary>
 /// Provides extension members for markup strings.
 /// </summary>
