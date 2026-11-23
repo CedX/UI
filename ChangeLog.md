@@ -1,5 +1,10 @@
 # Changelog
 
+## Version [2026.11.0](https://github.com/CedX/UI/compare/v0.40.0...v2026.11.0)
+- Added support for [F#](https://learn.microsoft.com/en-us/dotnet/csharp) and [Fable](https://fable.io).
+- Dropped support for [PowerShell](https://learn.microsoft.com/en-us/powershell).
+- Restored the [ASP.NET](https://learn.microsoft.com/en-us/aspnet/core) components.
+
 ## Version [0.40.0](https://github.com/CedX/UI/compare/v0.39.1...v0.40.0)
 - Removed all aliases.
 - Updated the package dependencies.
