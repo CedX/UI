@@ -1,10 +1,9 @@
-/**/*.user
 /.idea/
 /.vs/
+/**/obj/
+/**/*.user
 /Binaries/
 /Distributable/
 /node_modules/
 /npm-debug.log
-/Sources/**/obj/
 /Temp/
-/Tests/**/obj/
