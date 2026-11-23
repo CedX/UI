@@ -1,0 +1,31 @@
+@namespace Belin.UI.Components
+
+<loading-indicator class="@(Fade ? "fade" : "") @(Open ? "show" : "hide")" fade="@Fade" noListen="@NoListen" open="@Open">
+	@ChildContent
+</loading-indicator>
+
+@code {
+	/// <summary>
+	/// The child content.
+	/// </summary>
+	[Parameter]
+	public RenderFragment? ChildContent { get; set; }
+
+	/// <summary>
+	/// Value indicating whether to apply a transition.
+	/// </summary>
+	[Parameter]
+	public bool Fade { get; set; }
+
+	/// <summary>
+	/// Value indicating whether to prevent this component from being registered as a listener for the related events.
+	/// </summary>
+	[Parameter]
+	public bool NoListen { get; set; }
+
+	/// <summary>
+	/// Value indicating whether to initially show this component.
+	/// </summary>
+	[Parameter]
+	public bool Open { get; set; }
+}

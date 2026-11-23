@@ -1,0 +1,25 @@
+@namespace Belin.UI.Components
+
+<offline-indicator class="@(Fade ? "fade" : "") @(Open ? "show" : "hide")" fade="@Fade" open="@Open">
+	@ChildContent
+</offline-indicator>
+
+@code {
+	/// <summary>
+	/// The child content.
+	/// </summary>
+	[Parameter]
+	public RenderFragment? ChildContent { get; set; }
+
+	/// <summary>
+	/// Value indicating whether to apply a transition.
+	/// </summary>
+	[Parameter]
+	public bool Fade { get; set; }
+
+	/// <summary>
+	/// Value indicating whether to initially show this component.
+	/// </summary>
+	[Parameter]
+	public bool Open { get; set; }
+}

@@ -1,0 +1,13 @@
+@namespace Belin.UI.Components
+
+<menu-activator>
+	@ChildContent
+</menu-activator>
+
+@code {
+	/// <summary>
+	/// The child content.
+	/// </summary>
+	[Parameter]
+	public RenderFragment? ChildContent { get; set; }
+}

@@ -1,0 +1,19 @@
+@namespace Belin.UI.Components
+
+<back-button onClick="this.goBack(event)" steps="@Steps">
+	@ChildContent
+</back-button>
+
+@code {
+	/// <summary>
+	/// The child content.
+	/// </summary>
+	[Parameter]
+	public RenderFragment? ChildContent { get; set; }
+
+	/// <summary>
+	/// The number of pages to go back.
+	/// </summary>
+	[Parameter]
+	public int Steps { get; set => field = Math.Max(0, value); } = 1;
+}
