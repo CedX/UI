@@ -2,20 +2,8 @@
  * Enumerates different themes an operating system or application can show.
  */
 export const AppTheme = Object.freeze({
-
-	/**
-	 * The system theme.
-	 */
 	System: "System",
-
-	/**
-	 * The light theme.
-	 */
 	Light: "Light",
-
-	/**
-	 * The dark theme.
-	 */
 	Dark: "Dark"
 });
 

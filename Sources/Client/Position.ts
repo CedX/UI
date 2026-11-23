@@ -2,50 +2,14 @@
  * Defines the position of an element.
  */
 export const Position = Object.freeze({
-
-	/**
-	 * Top left.
-	 */
 	TopStart: "TopStart",
-
-	/**
-	 * Top center.
-	 */
 	TopCenter: "TopCenter",
-
-	/**
-	 * Top right.
-	 */
 	TopEnd: "TopEnd",
-
-	/**
-	 * Middle left.
-	 */
 	MiddleStart: "MiddleStart",
-
-	/**
-	 * Middle center.
-	 */
 	MiddleCenter: "MiddleCenter",
-
-	/**
-	 * Middle right.
-	 */
 	MiddleEnd: "MiddleEnd",
-
-	/**
-	 * Bottom left.
-	 */
 	BottomStart: "BottomStart",
-
-	/**
-	 * Bottom center.
-	 */
 	BottomCenter: "BottomCenter",
-
-	/**
-	 * Bottom right.
-	 */
 	BottomEnd: "BottomEnd"
 });
 

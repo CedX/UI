@@ -2,35 +2,11 @@
  * Defines the size of an element.
  */
 export const Size = Object.freeze({
-
-	/**
-	 * An extra small size.
-	 */
 	ExtraSmall: "ExtraSmall",
-
-	/**
-	 * A small size.
-	 */
 	Small: "Small",
-
-	/**
-	 * A medium size.
-	 */
 	Medium: "Medium",
-
-	/**
-	 * A large size.
-	 */
 	Large: "Large",
-
-	/**
-	 * An extra large size.
-	 */
 	ExtraLarge: "ExtraLarge",
-
-	/**
-	 * An extra extra large size.
-	 */
 	ExtraExtraLarge: "ExtraExtraLarge"
 });
 

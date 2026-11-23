@@ -5,25 +5,9 @@ import {Context} from "./Context.js";
  */
 export const Variant = Object.freeze({
 	...Context,
-
-	/**
-	 * A primary tone.
-	 */
 	Primary: "Primary",
-
-	/**
-	 * A secondary tone.
-	 */
 	Secondary: "Secondary",
-
-	/**
-	 * A light tone.
-	 */
 	Light: "Light",
-
-	/**
-	 * A dark tone.
-	 */
 	Dark: "Dark"
 });
 

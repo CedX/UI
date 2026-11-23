@@ -2,25 +2,9 @@
  * Defines contextual modifiers.
  */
 export const Context = Object.freeze({
-
-	/**
-	 * A danger.
-	 */
 	Danger: "Danger",
-
-	/**
-	 * A warning.
-	 */
 	Warning: "Warning",
-
-	/**
-	 * An information.
-	 */
 	Info: "Info",
-
-	/**
-	 * A success.
-	 */
 	Success: "Success"
 });
 
