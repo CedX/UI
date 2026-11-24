@@ -1,5 +1,6 @@
 namespace Belin.UI
 
+open System.Runtime.CompilerServices
 open System.Text.Json.Serialization
 
 /// Defines the position of an element.
@@ -32,3 +33,11 @@ module PositionExtensions =
       | Position.BottomCenter -> "bottom-0 start-50 translate-middle-x"
       | Position.BottomEnd -> "bottom-0 end-0"
       | _ -> "top-0 start-0"
+
+/// Provides extension members for element positions.
+[<Extension>]
+type PositionExtensions =
+
+  /// The CSS class of this context.
+  [<Extension>]
+  static member CssClass(this: Position) = this.CssClass

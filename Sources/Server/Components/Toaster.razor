@@ -1,7 +1,8 @@
 @namespace Belin.UI.Components
+@using System.Globalization
 
 <toaster-container autoHide="@AutoHide" context="@Context" culture="@Culture" delay="@Delay" fade="@Fade" icon="@Icon" noListen="@NoListen" position="@Position">
-	<div class="toast-container p-3 @(Position.CssClass)">
+	<div class="toast-container p-3 @Position.CssClass()">
 		@ChildContent
 	</div>
 

@@ -1,5 +1,6 @@
 namespace Belin.UI
 
+open System.Runtime.CompilerServices
 open System.Text.Json.Serialization
 
 /// Defines tone variants.
@@ -22,3 +23,11 @@ module VariantExtensions =
     /// The CSS class of this variant.
     member this.CssClass: string =
       (string this).ToLowerInvariant()
+
+/// Provides extension members for tone variants.
+[<Extension>]
+type VariantExtensions =
+
+  /// The CSS class of this variant.
+  [<Extension>]
+  static member CssClass(this: Variant) = this.CssClass

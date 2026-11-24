@@ -1,5 +1,6 @@
 namespace Belin.UI
 
+open System.Runtime.CompilerServices
 open System.Text.Json.Serialization
 
 /// Defines the size of an element.
@@ -26,3 +27,11 @@ module SizeExtensions =
       | Size.ExtraLarge -> "xl"
       | Size.ExtraExtraLarge -> "xxl"
       | _ -> "md"
+
+/// Provides extension members for element sizes.
+[<Extension>]
+type SizeExtensions =
+
+  /// The CSS class of this context.
+  [<Extension>]
+  static member CssClass(this: Size) = this.CssClass
