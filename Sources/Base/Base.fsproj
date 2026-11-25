@@ -54,6 +54,7 @@
 		<Compile Include="DialogResult.fs" />
 		<Compile Include="KeyboardModifiers.fs" />
 		<Compile Include="Pagination.fs" />
+		<Compile Include="PaginatedList.fs" />
 		<Compile Include="Position.fs" />
 		<Compile Include="Scenario.fs" />
 		<Compile Include="Size.fs" />
