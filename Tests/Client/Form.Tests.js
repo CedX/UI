@@ -1,5 +1,4 @@
 import {getInvalidControl, isControl, resetValidity, trimControl} from "@cedx/ui/Form.js";
-import {assert} from "chai";
 
 /**
  * Tests the features of the form functions.

@@ -1,5 +1,4 @@
 import {css, html} from "@cedx/ui/Tags.js";
-import {assert} from "chai";
 
 /**
  * Tests the features of the tag functions.

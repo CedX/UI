@@ -1,6 +1,5 @@
 /* eslint-disable max-lines-per-function */
 import {Sort, SortDirection} from "@cedx/ui/Sort.js";
-import {assert} from "chai";
 
 /**
  * Tests the features of the {@link Sort} class.
