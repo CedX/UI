@@ -1,14 +1,18 @@
 namespace Belin.UI
 
-open System
-
 /// A list with information relevant to the pagination of its items.
-type PaginatedList<'T>([<ParamArray>] items: 'T array) =
-  inherit ResizeArray<'T>(items)
+type PaginatedList<'T> = {
 
-  /// The information relevant to the pagination of list items.
-  member val Pagination = Pagination() with get, set
+  /// The list items.
+  Items: 'T list
+
+  /// The associated pagination.
+  Pagination: Pagination
+}
+
+/// Contains operations for working with paginated lists.
+module PaginatedList =
 
   /// Creates an empty paginated list.
-  static member Empty<'T>(itemsPerPage: int): PaginatedList<'T> =
-    PaginatedList<'T>(Pagination = Pagination(ItemsPerPage = itemsPerPage))
+  let empty<'T> (itemsPerPage: int): PaginatedList<'T> =
+    { Items = List.empty; Pagination = Pagination(ItemsPerPage = itemsPerPage) }

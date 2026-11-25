@@ -99,7 +99,7 @@ export class Pagination {
 	 * @param maxItemsPerPage The maximum number of items allowed per page.
 	 * @returns The pagination corresponding to the specified query.
 	 */
-	static fromQuery(query: string|URLSearchParams, maxItemsPerPage = 1000): Pagination {
+	static ofQuery(query: string|URLSearchParams, maxItemsPerPage = 1000): Pagination {
 		if (typeof query == "string") query = new URLSearchParams(query);
 
 		const parseInt = (key: string, defaultValue: number): number => {

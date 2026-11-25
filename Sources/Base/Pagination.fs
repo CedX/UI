@@ -47,8 +47,11 @@ type Pagination() =
   [<JsonIgnore>]
   member this.Offset: int = this.CurrentPageIndex * this.ItemsPerPage
 
+/// Contains operations for working with the pagination.
+module Pagination =
+
   /// Creates a new pagination from the specified query.
-  static member FromQuery(query: IDictionary<string, string|null>, ?maxItemsPerPage: int): Pagination =
+  let ofQuery (maxItemsPerPage: int) (query: IDictionary<string, string|null>): Pagination =
     let parseInt (key: string) (defaultValue: int): int =
       let numericString =
         match query.TryGetValue key with
@@ -60,14 +63,14 @@ type Pagination() =
 
     Pagination(
       CurrentPageIndex = parseInt "Page" 1 - 1,
-      ItemsPerPage = min (parseInt "PerPage" 25) (defaultArg maxItemsPerPage 1_000))
+      ItemsPerPage = min maxItemsPerPage (parseInt "PerPage" 25))
 
-  /// Creates a new pagination from the specified query.
-  static member FromQuery(query: string, ?maxItemsPerPage: int): Pagination =
+  /// Creates a new pagination from the specified query string.
+  let ofQueryString (maxItemsPerPage: int) (query: string): Pagination =
     let queryString = HttpUtility.ParseQueryString query
     let dictionary =
       queryString.AllKeys
       |> Seq.map (fun key -> key |> defaultIfNull "", queryString[key])
       |> dict
 
-    Pagination.FromQuery(dictionary, ?maxItemsPerPage = maxItemsPerPage)
+    ofQuery maxItemsPerPage dictionary
