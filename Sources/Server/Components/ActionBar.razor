@@ -5,11 +5,15 @@
 </action-bar>
 
 @code {
+	/// <summary>
 	/// The child content.
+	/// </summary>
 	[Parameter]
 	public RenderFragment? ChildContent { get; set; }
 
+	/// <summary>
 	/// Value indicating whether the browser should not render this element.
+	/// </summary>
 	[Parameter]
 	public bool Hidden { get; set; }
 }

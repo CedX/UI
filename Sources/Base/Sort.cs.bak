@@ -9,32 +9,12 @@ open System.Text.Json.Serialization
 /// <param name="properties">The list of properties to be sorted.</param>
 public sealed class Sort(IEnumerable<KeyValuePair<string, SortDirection>>? properties = null): OrderedDictionary<string, SortDirection>(properties ?? []) {
 
-		/// Creates a new sort from the specified property and direction.
-		/// <param name="property">The property name.</param>
-	/// <param name="direction">The sort direction.</param>
-	/// <returns>The sort corresponding to the property and direction.</returns>
-	public Sort(string property, SortDirection direction = SortDirection.Ascending): this([new(property, direction)]) {}
-
 		/// Creates a new sort from the specified string.
 		/// <param name="value">A string representing a sort.</param>
 	/// <returns>The sort corresponding to the specified string.</returns>
 	public static Sort Parse(string value) => new((value.Length > 0 ? value.Split(',') : []).Select(token => {
 		var direction = token.StartsWith('-') ? SortDirection.Descending : SortDirection.Ascending;
 		return new KeyValuePair<string, SortDirection>(direction == SortDirection.Ascending ? token : token[1..], direction);
-	}));
-
-		/// Creates a new order hint collection from the specified array of column names.
-		/// <param name="columns">The array whose elements are copied to the order hint collection.</param>
-	/// <returns>The order hint collection corresponding to the specified array of column names.</returns>
-	public static implicit operator Sort(object[] columns) =>
-		new(columns.Select(value => new KeyValuePair<string, SortDirection>(Convert.ToString(value, CultureInfo.InvariantCulture) ?? "", SortDirection.Ascending)));
-
-		/// Creates a new order hint collection from the specified dictionary of column names and sort orders.
-		/// <param name="orderHints">The dictionary whose elements are copied to the order hint collection.</param>
-	/// <returns>The order hint collection corresponding to the specified dictionary of column names and sort orders.</returns>
-	public static implicit operator Sort(OrderedDictionary orderHints) => new(orderHints.Cast<DictionaryEntry>().Select(entry => {
-		var value = entry.Value is SortDirection sortDirection ? sortDirection : Enum.Parse<SortDirection>(Convert.ToString(entry.Value, CultureInfo.InvariantCulture) ?? "", ignoreCase: true);
-		return new KeyValuePair<string, SortDirection>(Convert.ToString(entry.Key, CultureInfo.InvariantCulture) ?? "", value);
 	}));
 
 		/// Gets the icon corresponding to the specified property.

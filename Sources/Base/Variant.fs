@@ -1,19 +1,17 @@
 namespace Belin.UI
 
 open System.Runtime.CompilerServices
-open System.Text.Json.Serialization
 
 /// Defines tone variants.
-[<JsonConverter(typeof<JsonStringEnumConverter>)>]
 type Variant =
-  | Danger = 1
-  | Warning = 2
-  | Info = 3
-  | Success = 4
-  | Primary = 5
-  | Secondary = 6
-  | Light = 7
-  | Dark = 8
+  | Danger
+  | Warning
+  | Info
+  | Success
+  | Primary
+  | Secondary
+  | Light
+  | Dark
 
 /// Provides extension members for tone variants.
 [<AutoOpen>]

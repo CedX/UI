@@ -1,15 +1,13 @@
 namespace Belin.UI
 
 open System.Runtime.CompilerServices
-open System.Text.Json.Serialization
 
 /// Defines contextual modifiers.
-[<JsonConverter(typeof<JsonStringEnumConverter>)>]
 type Context =
-  | Danger = 1
-  | Warning = 2
-  | Info = 3
-  | Success = 4
+  | Danger
+  | Warning
+  | Info
+  | Success
 
 /// Provides extension members for contextual modifiers.
 [<AutoOpen>]
@@ -23,10 +21,10 @@ module ContextExtensions =
     /// The icon corresponding to this context.
     member this.Icon: string =
       match this with
-      | Context.Danger -> "error"
-      | Context.Success -> "check_circle"
-      | Context.Warning -> "warning"
-      | _ -> "info"
+      | Danger -> "error"
+      | Warning -> "warning"
+      | Info -> "info"
+      | Success -> "check_circle"
 
 /// Provides extension members for contextual modifiers.
 [<Extension>]

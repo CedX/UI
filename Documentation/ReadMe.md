@@ -20,4 +20,4 @@ Install-PSResource Belin.UI
 For detailed instructions, see the [installation guide](Installation.md).
 
 ## Usage
-TODO
+TODO To be documented.

@@ -1,14 +1,12 @@
 namespace Belin.UI
 
-open System.Text.Json.Serialization
 open System.Runtime.CompilerServices
 
 /// Enumerates different themes an operating system or application can show.
-[<JsonConverter(typeof<JsonStringEnumConverter>)>]
 type AppTheme =
-  | System = 1
-  | Light = 2
-  | Dark = 3
+  | System
+  | Light
+  | Dark
 
 /// Provides extension members for application themes.
 [<AutoOpen>]
@@ -18,16 +16,16 @@ module AppThemeExtensions =
     /// The icon corresponding to this context.
     member this.Icon: string =
       match this with
-      | AppTheme.Dark -> "dark_mode"
-      | AppTheme.Light -> "light_mode"
-      | _ -> "contrast"
+      | System -> "contrast"
+      | Light -> "light_mode"
+      | Dark -> "dark_mode"
 
     /// The icon corresponding to this context.
     member this.Text: string =
       match this with
-      | AppTheme.Dark -> "Sombre"
-      | AppTheme.Light -> "Clair"
-      | _ -> "Auto"
+      | System -> "Auto"
+      | Light -> "Clair"
+      | Dark -> "Sombre"
 
 /// Provides extension members for application themes.
 [<Extension>]

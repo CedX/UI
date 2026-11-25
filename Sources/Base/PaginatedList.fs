@@ -15,4 +15,4 @@ module PaginatedList =
 
   /// Creates an empty paginated list.
   let empty<'T> (itemsPerPage: int): PaginatedList<'T> =
-    { Items = List.empty; Pagination = Pagination(ItemsPerPage = itemsPerPage) }
+    { Items = List.empty<'T>; Pagination = Pagination(ItemsPerPage = itemsPerPage) }
