@@ -1,7 +1,6 @@
 namespace Belin.UI
 
 /// Specifies common return values of a dialog box.
-[<AutoOpen>]
 module DialogResult =
 
   /// The dialog box does not return any value.
