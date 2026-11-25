@@ -7,65 +7,65 @@ describe("Tags", () => {
 	describe("css()", () => {
 		it("should create a CSS stylesheet", () => {
 			const cssStyleSheet = css`p { display: block; } /* A comment. */ button.btn { color: black; }`;
-			assert.instanceOf(cssStyleSheet, CSSStyleSheet);
-			assert.lengthOf(cssStyleSheet.cssRules, 2);
+			cssStyleSheet.should.be.instanceOf(CSSStyleSheet);
+			cssStyleSheet.cssRules.should.have.lengthOf(2);
 
 			const {cssRules} = cssStyleSheet;
-			assert.equal(cssRules.item(0)?.cssText, "p { display: block; }");
-			assert.equal(cssRules.item(1)?.cssText, "button.btn { color: black; }");
+			cssRules.item(0)?.cssText.should.equal("p { display: block; }");
+			cssRules.item(1)?.cssText.should.equal("button.btn { color: black; }");
 		});
 
 		it("should support nested CSS stylesheets", () => {
 			const cssStyleSheet = css`${css`p { display: block; }`} /* A comment. */ ${css`button.btn { color: black; }`}`;
-			assert.lengthOf(cssStyleSheet.cssRules, 2);
+			cssStyleSheet.cssRules.should.have.lengthOf(2);
 
 			const {cssRules} = cssStyleSheet;
-			assert.equal(cssRules.item(0)?.cssText, "p { display: block; }");
-			assert.equal(cssRules.item(1)?.cssText, "button.btn { color: black; }");
+			cssRules.item(0)?.cssText.should.equal("p { display: block; }");
+			cssRules.item(1)?.cssText.should.equal("button.btn { color: black; }");
 		});
 
 		it("should support arrays of CSS stylesheets", () => {
 			const cssStyleSheet = css`${["green", "red"].map(item => css`.bg-${item} { background: ${item}; }`)}`;
-			assert.lengthOf(cssStyleSheet.cssRules, 2);
+			cssStyleSheet.cssRules.should.have.lengthOf(2);
 
 			const {cssRules} = cssStyleSheet;
-			assert.equal(cssRules.item(0)?.cssText, ".bg-green { background: green; }");
-			assert.equal(cssRules.item(1)?.cssText, ".bg-red { background: red; }");
+			cssRules.item(0)?.cssText.should.equal(".bg-green { background: green; }");
+			cssRules.item(1)?.cssText.should.equal(".bg-red { background: red; }");
 		});
 	});
 
 	describe("html()", () => {
 		it("should create a document fragment", () => {
 			const documentFragment = html`<p>Hello World!</p> <!-- A comment. --> <button class="btn">OK</button>`;
-			assert.instanceOf(documentFragment, DocumentFragment);
-			assert.lengthOf(documentFragment.childNodes, 5);
+			documentFragment.should.be.instanceOf(DocumentFragment);
+			documentFragment.childNodes.should.have.lengthOf(5);
 
 			const paragraph = documentFragment.childNodes.item(0);
-			assert.instanceOf(paragraph, HTMLParagraphElement);
-			assert.equal(paragraph.textContent, "Hello World!");
+			paragraph.should.be.instanceOf(HTMLParagraphElement);
+			should.equal(paragraph.textContent, "Hello World!");
 
-			const button = documentFragment.childNodes.item(4);
-			assert.instanceOf(button, HTMLButtonElement);
-			assert.equal(button.className, "btn");
+			const button = /** @type {HTMLButtonElement} */ (documentFragment.childNodes.item(4));
+			button.should.be.instanceOf(HTMLButtonElement);
+			should.equal(button.className, "btn");
 		});
 
 		it("should support nested document fragments", () => {
 			const documentFragment = html`${html`<p>Hello World!</p>`} <!-- A comment. --> ${html`<button class="btn">OK</button>`}`;
-			assert.lengthOf(documentFragment.childNodes, 5);
+			documentFragment.childNodes.should.have.lengthOf(5);
 
 			const {childNodes} = documentFragment;
-			assert.instanceOf(childNodes.item(0), HTMLParagraphElement);
-			assert.instanceOf(childNodes.item(2), Comment);
-			assert.instanceOf(childNodes.item(4), HTMLButtonElement);
+			childNodes.item(0).should.be.instanceOf(HTMLParagraphElement);
+			childNodes.item(2).should.be.instanceOf(Comment);
+			childNodes.item(4).should.be.instanceOf(HTMLButtonElement);
 		});
 
 		it("should support arrays of document fragments", () => {
 			const documentFragment = html`${["Hello", "World!"].map(item => html`<span>${item}</span>`)}`;
-			assert.lengthOf(documentFragment.childNodes, 2);
+			documentFragment.childNodes.should.have.lengthOf(2);
 
 			const {childNodes} = documentFragment;
-			assert.equal(childNodes.item(0).textContent, "Hello");
-			assert.equal(childNodes.item(1).textContent, "World!");
+			should.equal(childNodes.item(0).textContent, "Hello");
+			should.equal(childNodes.item(1).textContent, "World!");
 		});
 	});
 });

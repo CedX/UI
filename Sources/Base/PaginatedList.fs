@@ -6,7 +6,7 @@ type PaginatedList<'T> = {
   /// The list items.
   Items: 'T list
 
-  /// The associated pagination.
+  /// The information relevant to the pagination.
   Pagination: Pagination
 }
 

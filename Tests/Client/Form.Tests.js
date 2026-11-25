@@ -14,31 +14,31 @@ describe("Form", () => {
 		it("should return the first invalid control if it exists", () => {
 			input.setCustomValidity("error");
 			textarea.setCustomValidity("");
-			assert.equal(getInvalidControl(form), input);
+			should.equal(getInvalidControl(form), input)
 
 			input.setCustomValidity("");
 			textarea.setCustomValidity("error");
-			assert.equal(getInvalidControl(form), textarea);
+			should.equal(getInvalidControl(form), textarea)
 		});
 
 		it("should return `null` if all form controls are valid", () => {
 			input.setCustomValidity("");
 			textarea.setCustomValidity("");
-			assert.isNull(getInvalidControl(form));
+			should.not.exist(getInvalidControl(form));
 		});
 	});
 
 	describe("isControl()", () => {
 		it("should return `true` if the specified element is a form control", () => {
-			assert.isTrue(isControl(document.createElement("input")));
-			assert.isTrue(isControl(document.createElement("select")));
-			assert.isTrue(isControl(document.createElement("textarea")));
+			isControl(document.createElement("input")).should.be.true;
+			isControl(document.createElement("select")).should.be.true;
+			isControl(document.createElement("textarea")).should.be.true;
 		});
 
 		it("should return `false` if the specified element is a not form control", () => {
-			assert.isFalse(isControl(document.createElement("button")));
-			assert.isFalse(isControl(document.createElement("div")));
-			assert.isFalse(isControl(document.createElement("fieldset")));
+			isControl(document.createElement("button")).should.be.false;
+			isControl(document.createElement("div")).should.be.false;
+			isControl(document.createElement("fieldset")).should.be.false;
 		});
 	});
 
@@ -47,10 +47,10 @@ describe("Form", () => {
 			const input = document.createElement("input");
 
 			input.setCustomValidity("error");
-			assert.isFalse(input.checkValidity());
+			input.checkValidity().should.be.false;
 
 			resetValidity(input);
-			assert.isTrue(input.checkValidity());
+			input.checkValidity().should.be.true;
 		});
 
 		it("should reset the validity state of all elements of a form", () => {
@@ -64,14 +64,14 @@ describe("Form", () => {
 			textarea.setCustomValidity("error");
 			form.appendChild(textarea);
 
-			assert.isFalse(input.checkValidity());
-			assert.isFalse(textarea.checkValidity());
-			assert.isFalse(form.checkValidity());
+			input.checkValidity().should.be.false;
+			textarea.checkValidity().should.be.false;
+			form.checkValidity().should.be.false;
 
 			resetValidity(form);
-			assert.isTrue(input.checkValidity());
-			assert.isTrue(textarea.checkValidity());
-			assert.isTrue(form.checkValidity());
+			input.checkValidity().should.be.true;
+			textarea.checkValidity().should.be.true;
+			form.checkValidity().should.be.true;
 		});
 	});
 
@@ -80,7 +80,7 @@ describe("Form", () => {
 			const input = document.createElement("input");
 			input.value = " \t Foo Bar \r\n ";
 			trimControl(input);
-			assert.equal(input.value, "Foo Bar");
+			input.value.should.equal("Foo Bar");
 		});
 
 		it("should trim the value of all elements of a form", () => {
@@ -95,8 +95,8 @@ describe("Form", () => {
 			form.appendChild(textarea);
 
 			trimControl(form);
-			assert.equal(input.value, "Foo Bar");
-			assert.equal(textarea.value, "Baz Qux");
+			input.value.should.equal("Foo Bar");
+			textarea.value.should.equal("Baz Qux");
 		});
 	});
 });

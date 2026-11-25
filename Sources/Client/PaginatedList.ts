@@ -1,12 +1,17 @@
-import {Pagination} from "./Pagination.js";
+import {Pagination, type PaginationOptions} from "./Pagination.js";
 
 /**
  * A list with information relevant to the pagination of its items.
  */
-export class PaginatedList<T> extends Array<T> {
+export class PaginatedList<T> {
 
 	/**
-	 * The information relevant to the pagination of list items.
+	 * The list items.
+	 */
+	items: T[];
+
+	/**
+	 * The information relevant to the pagination.
 	 */
 	pagination: Pagination;
 
@@ -15,9 +20,8 @@ export class PaginatedList<T> extends Array<T> {
 	 * @param options An object providing values to initialize this instance.
 	 */
 	constructor(options: PaginatedListOptions<T> = {}) {
-		super();
-		for (const item of options.items ?? []) this.push(item);
-		this.pagination = options.pagination ?? new Pagination;
+		this.items = options.items ?? [];
+		this.pagination = new Pagination(options.pagination ?? {});
 	}
 
 	/**
@@ -43,5 +47,5 @@ export type PaginatedListOptions<T> = Partial<{
 	/**
 	 * The information relevant to the pagination of list items.
 	 */
-	pagination: Pagination;
+	pagination: PaginationOptions;
 }>;
